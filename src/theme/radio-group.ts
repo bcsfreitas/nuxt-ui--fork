@@ -8,7 +8,7 @@ export default (options: Required<ModuleOptions>) => ({
     legend: 'mb-1 block font-medium text-default',
     item: 'flex items-start',
     container: 'flex items-center',
-    base: 'rounded-full ring ring-inset ring-accented overflow-hidden focus-visible:outline-none',
+    base: 'rounded-full ring ring-inset ring-control overflow-hidden focus-visible:outline-none',
     indicator: 'flex items-center justify-center size-full after:bg-default after:rounded-full',
     wrapper: 'w-full',
     label: 'block font-medium text-default',

@@ -104,7 +104,7 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     color: 'neutral',
     variant: 'outline',
-    class: 'ring ring-inset ring-accented text-default bg-default hover:bg-elevated active:bg-elevated disabled:bg-default aria-disabled:bg-default outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+    class: 'ring ring-inset ring-control text-default bg-default hover:bg-elevated active:bg-elevated disabled:bg-default aria-disabled:bg-default outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
   }, {
     color: 'neutral',
     variant: 'soft',
@@ -112,7 +112,7 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     color: 'neutral',
     variant: 'subtle',
-    class: 'ring ring-inset ring-accented text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+    class: 'ring ring-inset ring-control text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
   }, {
     color: 'neutral',
     variant: 'ghost',
