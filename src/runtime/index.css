@@ -105,7 +105,7 @@
 /* Concentric frame rule ported from @ariakit/tailwind (MIT) */
 /* A container publishes `--ui-frame-radius` and `--ui-frame-inset` (its edge to the nested shape); the shape reads `--ui-frame-shape-radius` */
 @utility frame-shape-* {
-  --ui-frame-declared: --value(--radius-*, [length]);
+  --ui-frame-declared: --value(--radius-*, [*]);
   --ui-frame-shape-radius: var(--ui-frame-declared);
 
   /* Up to 0.5rem from the edge: concentric; 0.5rem to 1rem: blend toward the declared radius; from 1rem: declared radius */

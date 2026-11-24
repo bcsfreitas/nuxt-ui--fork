@@ -28,8 +28,9 @@ describe('concentric frame rule', () => {
   })
 
   it('accepts an arbitrary declared radius', async () => {
-    const output = await build(['frame-shape-[10px]'])
+    const output = await build(['frame-shape-[10px]', 'frame-shape-(--ui-button-radius)'])
 
     expect(output).toContain('--ui-frame-declared: 10px;')
+    expect(output).toContain('--ui-frame-declared: var(--ui-button-radius);')
   })
 })
