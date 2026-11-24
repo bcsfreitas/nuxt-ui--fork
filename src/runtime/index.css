@@ -49,6 +49,8 @@
     --ui-border-muted: var(--ui-color-neutral-200);
     --ui-border-accented: var(--ui-color-neutral-300);
     --ui-border-inverted: var(--ui-color-neutral-900);
+    /* Edge that identifies a control, at least 3:1 against the default, muted and elevated backgrounds */
+    --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-400), var(--ui-color-neutral-500));
 
     /* The literal values are the fallback when a Tailwind prefix renames the `--color-*` variables */
     --ui-chart-1: var(--ui-primary);
@@ -77,6 +79,7 @@
     --ui-border-muted: var(--ui-color-neutral-700);
     --ui-border-accented: var(--ui-color-neutral-700);
     --ui-border-inverted: white;
+    --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-400) 25%, var(--ui-color-neutral-500));
 
     --ui-chart-1: var(--ui-primary);
     --ui-chart-2: var(--color-blue-400, oklch(70.7% 0.165 254.624));
