@@ -54,6 +54,7 @@ provide('components', components)
       <NuxtPage v-if="route.path.startsWith('/components/sidebar')" />
       <UDashboardPanel
         v-else
+        class="bg-[#F2F2F2] dark:bg-default"
         :ui="{
           body: [
             route.path.startsWith('/components') && 'mt-16',
