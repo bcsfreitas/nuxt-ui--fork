@@ -25,7 +25,7 @@ function parseBlocks(source: string): Record<string, Tokens> {
       const prelude = stack.pop()!
       if (!prelude.startsWith('@')) {
         const key = [...stack.filter(entry => entry.startsWith('@media') || entry.startsWith('@supports')), prelude].join(' ')
-        for (const [, name, value] of buffer.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
+        for (const [, name, value] of buffer.matchAll(/(--[\w-]+):([^;]+);/g)) {
           (blocks[key] ||= {})[name!] = value!.trim()
         }
       }
@@ -164,6 +164,14 @@ describe('control edge contrast', () => {
   it('resolves known WCAG pairs', () => {
     expect(contrast('light', 'black', 'white', 'slate')).toBeCloseTo(21, 1)
     expect(contrast('light', '#767676', 'white', 'slate')).toBeCloseTo(4.54, 1)
+  })
+
+  it('keys rules by their media condition and selector', () => {
+    expect(parseBlocks('.dark { --a: red; } @media (prefers-contrast: more) { :root, .light { --b: blue; } .dark { --a: white; } }')).toEqual({
+      '.dark': { '--a': 'red' },
+      '@media (prefers-contrast: more) :root, .light': { '--b': 'blue' },
+      '@media (prefers-contrast: more) .dark': { '--a': 'white' }
+    })
   })
 
   it('flags an edge under the minimum', () => {
