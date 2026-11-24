@@ -1,6 +1,6 @@
 export default {
   slots: {
-    root: 'rounded-lg overflow-hidden',
+    root: 'rounded-4xl overflow-hidden',
     header: 'p-4 sm:px-6',
     title: 'text-highlighted font-semibold',
     description: 'mt-1 text-muted text-sm',
@@ -22,10 +22,13 @@ export default {
       },
       subtle: {
         root: 'bg-elevated/50 ring ring-default divide-y divide-default'
+      },
+      shaded: {
+        root: 'bg-default shadow-card'
       }
     }
   },
   defaultVariants: {
-    variant: 'outline'
+    variant: 'shaded'
   }
 }

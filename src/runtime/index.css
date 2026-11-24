@@ -5,6 +5,7 @@
 
 @theme default {
   --font-sans: 'Allo', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --shadow-card: 0px 24.1633px 9.88497px rgb(0 0 0 / 0.01), 0px 13.18px 7.68831px rgb(0 0 0 / 0.02), 0px 5.49165px 5.49165px rgb(0 0 0 / 0.04), 0px 1.09833px 3.29499px rgb(0 0 0 / 0.04);
 }
 
 @custom-variant light (&:where(.light, .light *));
