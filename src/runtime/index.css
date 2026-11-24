@@ -12,6 +12,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  /* Allo's roundness axis has no CSS property; optical size stays automatic unless an `optical-size-*` utility pins it */
+  body {
+    font-variation-settings: "ROND" var(--ui-font-roundness), var(--ui-font-optical-size, "ROND" var(--ui-font-roundness));
+  }
+
   /* Chromium applies an `outline-offset` on focused links, reset it so focus outlines hug elements consistently */
   a:focus-visible {
     outline-offset: 0;
@@ -20,6 +25,7 @@
 
 @layer theme {
   :root, :host {
+    --ui-font-roundness: 50;
     --ui-header-height: 4rem;
     --ui-radius: 0.25rem;
     --ui-container: 80rem;
@@ -79,4 +85,19 @@
     --ui-chart-5: var(--color-rose-400, oklch(71.2% 0.194 13.428));
     --ui-chart-6: var(--color-cyan-400, oklch(78.9% 0.154 211.53));
   }
+}
+
+@utility roundness-* {
+  --ui-font-roundness: --value(integer, [number]);
+  font-variation-settings: "ROND" var(--ui-font-roundness), var(--ui-font-optical-size, "ROND" var(--ui-font-roundness));
+}
+
+@utility optical-size-* {
+  --ui-font-optical-size: "opsz" --value(integer, [number]);
+  font-variation-settings: "ROND" var(--ui-font-roundness), var(--ui-font-optical-size, "ROND" var(--ui-font-roundness));
+}
+
+@utility optical-size-auto {
+  --ui-font-optical-size: initial;
+  font-variation-settings: "ROND" var(--ui-font-roundness), var(--ui-font-optical-size, "ROND" var(--ui-font-roundness));
 }
