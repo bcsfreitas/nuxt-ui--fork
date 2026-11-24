@@ -44,9 +44,13 @@ const blocks = parseBlocks(css)
  * High-contrast modes add their `@media (prefers-contrast: more) ...` keys here.
  */
 const MODES: Record<string, string[]> = {
-  light: [':root, :host, .light'],
-  dark: [':root, :host, .light', '.dark']
+  'light': [':root, :host, .light'],
+  'dark': [':root, :host, .light', '.dark'],
+  'light-hc': [':root, :host, .light', '@media (prefers-contrast: more) :root, :host, .light'],
+  'dark-hc': [':root, :host, .light', '.dark', '@media (prefers-contrast: more) :root, :host, .light', '@media (prefers-contrast: more) .dark']
 }
+
+const HC_PAIRS = [['light', 'light-hc'], ['dark', 'dark-hc']] as const
 
 /**
  * [mode, edge token, background token or literal color, minimum ratio].
@@ -59,8 +63,24 @@ const CASES: [string, string, string, number][] = [
   ['light', '--ui-border-control', '#f2f2f2', 3],
   ['dark', '--ui-border-control', '--ui-bg', 3],
   ['dark', '--ui-border-control', '--ui-bg-muted', 3],
-  ['dark', '--ui-border-control', '--ui-bg-elevated', 3]
+  ['dark', '--ui-border-control', '--ui-bg-elevated', 3],
+  ['light-hc', '--ui-border-control', '--ui-bg', 4.5],
+  ['light-hc', '--ui-border-control', '--ui-bg-muted', 4.5],
+  ['light-hc', '--ui-border-control', '--ui-bg-elevated', 4.5],
+  ['light-hc', '--ui-border-control', '#f2f2f2', 4.5],
+  ['light-hc', '--ui-text-muted', '--ui-bg', 4.5],
+  ['light-hc', '--ui-text-muted', '--ui-bg-muted', 4.5],
+  ['dark-hc', '--ui-border-control', '--ui-bg', 4.5],
+  ['dark-hc', '--ui-border-control', '--ui-bg-muted', 4.5],
+  ['dark-hc', '--ui-border-control', '--ui-bg-elevated', 4.5],
+  ['dark-hc', '--ui-text-muted', '--ui-bg', 4.5],
+  ['dark-hc', '--ui-text-muted', '--ui-bg-muted', 4.5]
 ]
+
+/**
+ * Tokens that high contrast must make stronger against the default background.
+ */
+const STRENGTHENED = ['--ui-border-control', '--ui-border', '--ui-border-muted', '--ui-border-accented', '--ui-text-dimmed', '--ui-text-muted']
 
 const NEUTRALS = ['slate', 'gray', 'zinc', 'neutral', 'stone'] as const
 
@@ -183,5 +203,19 @@ describe('control edge contrast', () => {
     it.each(CASES)('%s: %s on %s is at least %d:1', (mode, edge, background, min) => {
       expect(contrast(mode, edge, background, neutral)).toBeGreaterThanOrEqual(min)
     })
+
+    it.each(HC_PAIRS.flatMap(([normal, hc]) => STRENGTHENED.map(token => [hc, token, normal] as const)))('%s: %s is stronger than in %s', (hc, token, normal) => {
+      expect(contrast(hc, token, '--ui-bg', neutral)).toBeGreaterThan(contrast(normal, token, '--ui-bg', neutral))
+    })
+  })
+})
+
+describe('high contrast tokens', () => {
+  it('overrides the same tokens in light and dark', () => {
+    const light = blocks['@media (prefers-contrast: more) :root, :host, .light']
+    const dark = blocks['@media (prefers-contrast: more) .dark']
+    expect(light).toBeDefined()
+    // The light block also matches the root in dark mode, so the dark block must win on every token it sets
+    expect(Object.keys(dark ?? {}).sort()).toEqual(Object.keys(light ?? {}).sort())
   })
 })
