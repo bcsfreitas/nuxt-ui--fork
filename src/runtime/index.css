@@ -104,3 +104,15 @@
   --ui-font-optical-size: initial;
   font-variation-settings: "ROND" var(--ui-font-roundness), var(--ui-font-optical-size, "ROND" var(--ui-font-roundness));
 }
+
+/* Concentric frame rule ported from @ariakit/tailwind (MIT) */
+/* A container publishes `--ui-frame-radius` and `--ui-frame-inset` (its edge to the nested shape); the shape reads `--ui-frame-shape-radius` */
+@utility frame-shape-* {
+  --ui-frame-declared: --value(--radius-*, [*]);
+  --ui-frame-shape-radius: var(--ui-frame-declared);
+
+  /* Up to 0.5rem from the edge: concentric; 0.5rem to 1rem: blend toward the declared radius; from 1rem: declared radius */
+  @supports (width: calc(1px * tan(atan2(1px, 1px)))) {
+    --ui-frame-shape-radius: min(max(max(var(--ui-frame-radius, 0px) - var(--ui-frame-inset, 1rem), 0px), min(max(var(--ui-frame-radius, 0px) - 0.5rem, 0px), var(--ui-frame-declared)) + max(var(--ui-frame-declared) - max(var(--ui-frame-radius, 0px) - 0.5rem, 0px), 0px) * clamp(0, tan(atan2(var(--ui-frame-inset, 1rem) - 0.5rem, 0.5rem)), 1)), var(--ui-frame-declared) + max(1rem - 0.5px - var(--ui-frame-inset, 1rem), 0px) * 1000000000);
+  }
+}
