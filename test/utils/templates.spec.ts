@@ -31,7 +31,7 @@ describe('theme templates', () => {
 
     expect(await contents('ui/skeleton.ts')).not.toContain('animate-pulse')
     expect(await contents('ui/table.ts')).not.toContain('min-w-full')
-    expect(await contents('ui/button.ts')).toContain('rounded-md')
+    expect(await contents('ui/button.ts')).toContain('font-medium')
   })
 
   it('blanks base-shaped themes with `theme.unstyled`', async () => {
