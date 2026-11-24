@@ -28,10 +28,10 @@ describe('Card', () => {
 
   it('lets a consumer surface win over the shaded surface in every color mode', async () => {
     const wrapper = await mountSuspended(Card, { props: { class: 'bg-accented shadow-lg' } })
-    const classes = wrapper.element.className.split(' ')
+    const classes: string[] = wrapper.element.className.split(' ')
 
-    expect(classes.filter(c => /^(dark:)?bg-/.test(c))).toEqual(['bg-accented'])
-    expect(classes.filter(c => /^(dark:)?(shadow|ring)(-|$)/.test(c))).toEqual(['shadow-lg'])
+    expect(classes.filter(c => /^(?:dark:)?bg-/.test(c))).toEqual(['bg-accented'])
+    expect(classes.filter(c => /^(?:dark:)?(?:shadow|ring)(?:-|$)/.test(c))).toEqual(['shadow-lg'])
   })
 
   it('passes accessibility tests', async () => {
