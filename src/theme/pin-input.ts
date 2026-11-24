@@ -25,9 +25,9 @@ export default (options: Required<ModuleOptions>) => ({
       }
     },
     variant: {
-      outline: 'text-highlighted bg-default ring ring-inset ring-accented',
+      outline: 'text-highlighted bg-default ring ring-inset ring-control',
       soft: 'text-highlighted bg-elevated/50 hover:bg-elevated focus:bg-elevated disabled:bg-elevated/50',
-      subtle: 'text-highlighted bg-elevated ring ring-inset ring-accented',
+      subtle: 'text-highlighted bg-elevated ring ring-inset ring-control',
       ghost: 'text-highlighted bg-transparent hover:bg-elevated focus:bg-elevated disabled:bg-transparent dark:disabled:bg-transparent',
       none: 'text-highlighted bg-transparent focus:outline-none'
     },
