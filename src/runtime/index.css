@@ -1,6 +1,11 @@
 @import '#build/ui.css';
 @import './keyframes.css';
+@import 'allo-font';
 @source './components';
+
+@theme default {
+  --font-sans: 'Allo', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
 
 @custom-variant light (&:where(.light, .light *));
 @custom-variant dark (&:where(.dark, .dark *));

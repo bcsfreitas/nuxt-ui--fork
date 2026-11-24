@@ -61,7 +61,7 @@ function stackModel(key: 'serif' | 'mono') {
 }
 
 const stacks = [
-  { label: 'Body', model: font, inherit: false, default: 'Public Sans', hint: 'Body font' },
+  { label: 'Body', model: font, inherit: false, default: THEME_DEFAULTS.font, hint: 'Body font' },
   { label: 'Heading', model: stackModel('serif'), inherit: true, default: undefined, hint: 'Heading font' },
   { label: 'Code', model: stackModel('mono'), inherit: true, default: undefined, hint: 'Code font' }
 ]

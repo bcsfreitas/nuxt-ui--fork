@@ -124,7 +124,7 @@ const applyTheme = tool({
 })
 
 const resetTheme = tool({
-  description: 'Reset the theme back to defaults (primary: green, neutral: slate, radius: 0.25rem, font: Public Sans). Call this when users ask to reset, revert, or restore the default theme.',
+  description: 'Reset the theme back to defaults (primary: green, neutral: slate, radius: 0.25rem, font: Allo). Call this when users ask to reset, revert, or restore the default theme.',
   inputSchema: z.object({}),
   execute: async () => ({ reset: true })
 })
@@ -193,7 +193,7 @@ When users ask for a complete theme, to change "all colors", or describe a broad
 - Pick **success/info/warning/error** that feel harmonious with the palette while staying semantically meaningful (success = green-ish, error = red-ish, warning = amber/yellow-ish, info = blue/cyan-ish). You can shift hues — e.g. \`lime\` for success in a nature theme, \`rose\` for error in a warm theme — but keep them recognizable.
 - For monochrome/black-and-white themes, keep semantic colors meaningful. Only primary, secondary, and neutral should go monochrome. Use \`blackAsPrimary: true\` for monochrome primary.
 
-When users ask to reset, revert, or restore the default theme, use the \`resetTheme\` tool. This resets primary to green, neutral to slate, radius to 0.25rem, font to Public Sans, and removes any custom colors.
+When users ask to reset, revert, or restore the default theme, use the \`resetTheme\` tool. This resets primary to green, neutral to slate, radius to 0.25rem, font to Allo, and removes any custom colors.
 
 There are two types of customization:
 

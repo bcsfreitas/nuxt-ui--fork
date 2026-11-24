@@ -41,7 +41,7 @@ export function generateCSS(doc: ThemeDoc, framework: string = 'nuxt', { explici
       explicit || sans !== THEME_DEFAULTS.font ? sans : undefined,
       doc.font?.serif,
       doc.font?.mono
-    ].filter((name): name is string => !!name))]
+    ].filter((name): name is string => !!name && name !== THEME_DEFAULTS.font))]
     for (const family of families) {
       lines.push(`@import url("https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@300;400;500;600;700;800&display=swap");`)
     }

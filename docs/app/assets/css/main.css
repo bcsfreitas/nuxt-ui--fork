@@ -11,7 +11,6 @@
 @theme static {
   --container-8xl: 90rem;
 
-  --font-sans: 'Public Sans', sans-serif;
   /* Tailwind's preflight wires --font-sans and --font-mono itself, nothing
      consumes --font-serif. Defaulting it to the body stack keeps the heading
      rule below inert until the studio sets a serif of its own. */

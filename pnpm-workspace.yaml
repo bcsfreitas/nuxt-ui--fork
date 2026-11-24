@@ -86,6 +86,7 @@ catalog:
   "@vueuse/nuxt": ^14.4.0
   "@vueuse/shared": ^14.4.0
   ai: ^7.0.179
+  allo-font: ^1.0.3
   capture-website: ^5.1.0
   citty: ^0.2.2
   colortranslator: ^5.0.0

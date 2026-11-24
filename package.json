@@ -177,6 +177,7 @@
     "@vueuse/core": "catalog:",
     "@vueuse/integrations": "catalog:",
     "@vueuse/shared": "catalog:",
+    "allo-font": "catalog:",
     "colortranslator": "catalog:",
     "consola": "catalog:",
     "defu": "catalog:",

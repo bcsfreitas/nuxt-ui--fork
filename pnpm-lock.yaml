@@ -380,6 +380,9 @@ catalogs:
     ai:
       specifier: ^7.0.179
       version: 7.0.179
+    allo-font:
+      specifier: ^1.0.3
+      version: 1.0.3
     capture-website:
       specifier: ^5.1.0
       version: 5.1.0
@@ -703,6 +706,9 @@ importers:
       '@vueuse/shared':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.46(typescript@6.0.3))
+      allo-font:
+        specifier: 'catalog:'
+        version: 1.0.3
       colortranslator:
         specifier: 'catalog:'
         version: 5.0.0
@@ -4641,6 +4647,9 @@ packages:
 
   alien-signals@3.2.1:
     resolution: {integrity: sha512-I8FjmltrfnDFoZedi5CG8DghVYNhzb/Ijluz7tCSJH0xpd0484Kowhbb1XDYOxfJpU1p5wnM2X54dA+IfGyD1g==}
+
+  allo-font@1.0.3:
+    resolution: {integrity: sha512-h1u1ukonlmfTYSRc+MPvrjJU/p12A5xmzXIw5YQXf1/VGNi00cnPJfTf1AxYZOHzXRxK2pBLV7GgxtOm7/f+DQ==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -13893,6 +13902,8 @@ snapshots:
       require-from-string: 2.0.2
 
   alien-signals@3.2.1: {}
+
+  allo-font@1.0.3: {}
 
   ansi-regex@5.0.1: {}
 
