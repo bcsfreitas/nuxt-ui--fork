@@ -53,6 +53,8 @@
     --ui-border-inverted: var(--ui-color-neutral-900);
     /* Edge that identifies a control, at least 3:1 against the default, muted and elevated backgrounds */
     --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-400), var(--ui-color-neutral-500));
+    /* Rest shadow of a raised surface in light mode; high contrast adds a hairline edge */
+    --ui-shadow-raised: var(--shadow-card);
 
     /* The literal values are the fallback when a Tailwind prefix renames the `--color-*` variables */
     --ui-chart-1: var(--ui-primary);
@@ -91,26 +93,36 @@
     --ui-chart-6: var(--color-cyan-400, oklch(78.9% 0.154 211.53));
   }
 
-  /* When the OS asks for more contrast: control edges reach about 4.5:1, borders become visible, secondary text moves one step toward the main text */
+  /* When the OS asks for more contrast: control edges reach about 4.5:1, borders become visible, raised surfaces move one step and gain a hairline, secondary text moves one step toward the main text */
   @media (prefers-contrast: more) {
     :root, :host, .light {
       --ui-text-dimmed: var(--ui-color-neutral-500);
       --ui-text-muted: var(--ui-color-neutral-600);
 
+      --ui-bg-elevated: var(--ui-color-neutral-200);
+      --ui-bg-accented: var(--ui-color-neutral-300);
+
       --ui-border: var(--ui-color-neutral-300);
       --ui-border-muted: var(--ui-color-neutral-300);
       --ui-border-accented: var(--ui-color-neutral-400);
-      --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-500) 75%, var(--ui-color-neutral-600));
+      --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-500) 25%, var(--ui-color-neutral-600));
+
+      --ui-shadow-raised: var(--shadow-card-raised);
     }
 
     .dark {
       --ui-text-dimmed: var(--ui-color-neutral-400);
       --ui-text-muted: var(--ui-color-neutral-300);
 
+      --ui-bg-elevated: var(--ui-color-neutral-700);
+      --ui-bg-accented: var(--ui-color-neutral-600);
+
       --ui-border: var(--ui-color-neutral-700);
       --ui-border-muted: var(--ui-color-neutral-600);
       --ui-border-accented: var(--ui-color-neutral-600);
-      --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-400) 75%, var(--ui-color-neutral-500));
+      --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-300) 50%, var(--ui-color-neutral-400));
+
+      --ui-shadow-raised: var(--shadow-card-raised);
     }
   }
 }
