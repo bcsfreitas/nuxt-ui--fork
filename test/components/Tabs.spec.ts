@@ -64,4 +64,25 @@ describe('Tabs', () => {
 
     expect(await axe(wrapper.element)).toHaveNoViolations()
   })
+
+  it('gives the pill list a soft inset edge', async () => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'pill' } })
+    const list = wrapper.find('[data-slot="list"]')
+
+    expect(list.classes()).toEqual(expect.arrayContaining(['ring', 'ring-inset', 'ring-accented']))
+  })
+
+  it('keeps the link list without the pill edge', async () => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'link' } })
+
+    expect(wrapper.find('[data-slot="list"]').classes()).not.toContain('ring-accented')
+  })
+
+  it('lets ui.list remove the pill edge', async () => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'pill', ui: { list: 'ring-0' } } })
+    const classes = wrapper.find('[data-slot="list"]').classes()
+
+    expect(classes).toContain('ring-0')
+    expect(classes).not.toContain('ring')
+  })
 })
