@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useMediaQuery } from '@vueuse/core'
 import { DialRoot, DialStore, useDialKitController } from 'dialkit/vue'
 import 'dialkit/styles.css'
 
@@ -140,8 +141,25 @@ onBeforeUnmount(() => {
 })
 
 const theme = computed(() => colorMode.value === 'dark' ? 'dark' : 'light')
+
+// DialKit forgets open/collapsed on reload; the panel starts collapsed so it never covers a page's own controls
+const openKey = 'allo-dials:open'
+const startOpen = localStorage.getItem(openKey) === 'true'
+
+function rememberOpen(open: boolean) {
+  localStorage.setItem(openKey, String(open))
+}
+
+// Top-left only covers the logo while the sidebar shows (lg and up); below it, that corner holds the sidebar toggle
+const sidebarShown = useMediaQuery('(min-width: 64rem)')
+const position = computed(() => sidebarShown.value ? 'top-left' : 'bottom-left')
 </script>
 
 <template>
-  <DialRoot position="top-right" :theme="theme" />
+  <DialRoot
+    :position="position"
+    :default-open="startOpen"
+    :theme="theme"
+    @open-change="rememberOpen"
+  />
 </template>
