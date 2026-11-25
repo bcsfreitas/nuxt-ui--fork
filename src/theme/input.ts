@@ -90,7 +90,7 @@ export default (options: Required<ModuleOptions>) => ({
   compoundVariants: [...(options.theme.colors || []).map((color: string) => ({
     color,
     variant: ['outline', 'subtle'],
-    class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-${color}`
+    class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-focus-${color}`
   })), ...(options.theme.colors || []).map((color: string) => ({
     color,
     variant: ['soft', 'ghost'],
@@ -102,7 +102,7 @@ export default (options: Required<ModuleOptions>) => ({
   })), {
     color: 'neutral',
     variant: ['outline', 'subtle'],
-    class: 'outline-inverted/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-inverted'
+    class: 'outline-inverted/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-focus-inverted'
   }, {
     color: 'neutral',
     variant: ['soft', 'ghost'],
