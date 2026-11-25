@@ -136,8 +136,8 @@ watchEffect(() => {
     return
   }
 
-  // A persisted or hand-edited value can't push the text outside the font's real weights
-  const value = String(Math.min(900, Math.max(100, Math.round(weight))))
+  // DialKit already clamps and snaps every slider value to its range and step, on each write and on load
+  const value = String(weight)
 
   for (const variable of weightVariables) {
     root.style.setProperty(variable, value)
