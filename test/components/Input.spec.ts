@@ -86,7 +86,7 @@ describe('Input', () => {
     expect(frame).toContain('supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))]')
     expect(wrapper.get('[data-slot="base"]').classes()).toEqual(expect.arrayContaining(['py-(--py)', 'px-(--px)', 'rounded-(--ui-frame-radius)', 'ps-(--ui-field-icon-padding)']))
     expect(wrapper.get('[data-slot="leading"]').classes()).toContain('ps-(--ui-field-inset)')
-    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-[1lh]')
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
   })
 
   it('lets a consumer `rounded-*` / padding class replace the derived geometry', async () => {
@@ -96,6 +96,21 @@ describe('Input', () => {
     expect(classes).toEqual(expect.arrayContaining(['rounded-full', 'px-4']))
     expect(classes).not.toContain('rounded-(--ui-frame-radius)')
     expect(classes).not.toContain('px-(--px)')
+  })
+
+  it.each([['xs', 4], ['sm', 4], ['md', 5], ['lg', 5], ['xl', 6]])('keeps the upstream icon size as the fallback at size %s', async (size, spacing) => {
+    const wrapper = await mountSuspended(Input, { props: { icon: 'i-lucide-search', size: size as any } })
+
+    expect(wrapper.classes()).toContain(`[--ui-control-icon-size:--spacing(${spacing})]`)
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('supports-[height:1lh]:[--ui-control-icon-size:1lh]')
+  })
+
+  it('lets a `ui.leadingIcon` size replace the derived icon size', async () => {
+    const wrapper = await mountSuspended(Input, { props: { icon: 'i-lucide-search', ui: { leadingIcon: 'size-3' } } })
+
+    const classes = wrapper.get('[data-slot="leadingIcon"]').classes()
+    expect(classes).toContain('size-3')
+    expect(classes).not.toContain('size-(--ui-control-icon-size)')
   })
 
   it('passes accessibility tests', async () => {

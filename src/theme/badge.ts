@@ -24,30 +24,30 @@ export default (options: Required<ModuleOptions>) => ({
       soft: '',
       subtle: ''
     },
-    // Each size keeps its upstream block padding as `--py`; the plain `--px` / radius are the fallback for browsers without `cap` / `lh`
+    // Each size keeps its upstream block padding as `--py`; the plain `--px` / radius / icon size are the fallback for browsers without `cap` / `lh`
     size: {
       xs: {
-        base: '[--py:--spacing(0.5)] [--px:--spacing(1)] [--ui-badge-radius:var(--radius-sm)] text-[8px]/3 gap-1',
+        base: '[--py:--spacing(0.5)] [--px:--spacing(1)] [--ui-badge-radius:var(--radius-sm)] [--ui-control-icon-size:--spacing(3)] text-[8px]/3 gap-1',
         leadingAvatar: '[--ui-badge-avatar-size:--spacing(4)]',
         leadingAvatarSize: '3xs'
       },
       sm: {
-        base: '[--py:--spacing(1)] [--px:--spacing(1.5)] [--ui-badge-radius:var(--radius-sm)] text-[10px]/3 gap-1',
+        base: '[--py:--spacing(1)] [--px:--spacing(1.5)] [--ui-badge-radius:var(--radius-sm)] [--ui-control-icon-size:--spacing(3)] text-[10px]/3 gap-1',
         leadingAvatar: '[--ui-badge-avatar-size:--spacing(4)]',
         leadingAvatarSize: '3xs'
       },
       md: {
-        base: '[--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1',
+        base: '[--py:--spacing(1)] [--px:--spacing(2)] [--ui-control-icon-size:--spacing(4)] text-xs/4 gap-1',
         leadingAvatar: '[--ui-badge-avatar-size:--spacing(4)]',
         leadingAvatarSize: '3xs'
       },
       lg: {
-        base: '[--py:--spacing(1)] [--px:--spacing(2)] text-sm/5 gap-1.5',
+        base: '[--py:--spacing(1)] [--px:--spacing(2)] [--ui-control-icon-size:--spacing(5)] text-sm/5 gap-1.5',
         leadingAvatar: '[--ui-badge-avatar-size:--spacing(5)]',
         leadingAvatarSize: '2xs'
       },
       xl: {
-        base: '[--py:--spacing(1)] [--px:--spacing(2.5)] text-base/6 gap-1.5',
+        base: '[--py:--spacing(1)] [--px:--spacing(2.5)] [--ui-control-icon-size:--spacing(6)] text-base/6 gap-1.5',
         leadingAvatar: '[--ui-badge-avatar-size:--spacing(5)]',
         leadingAvatarSize: '2xs'
       }

@@ -156,7 +156,7 @@ describe('Button', () => {
     expect(classes).toContain('px-(--px)')
     expect(classes).toContain('rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]')
     expect(classes.some(name => name.startsWith('[--py:'))).toBe(true)
-    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-[1lh]')
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
   })
 
   it('lets a consumer `rounded-*` class replace the derived radius', async () => {
@@ -173,6 +173,21 @@ describe('Button', () => {
     const classes = wrapper.classes()
     expect(classes).toContain('px-4')
     expect(classes).not.toContain('px-(--px)')
+  })
+
+  it.each([['xs', 4], ['sm', 4], ['md', 5], ['lg', 5], ['xl', 6]])('keeps the upstream icon size as the fallback at size %s', async (size, spacing) => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', size: size as any, icon: 'i-lucide-rocket' } })
+
+    expect(wrapper.classes()).toContain(`[--ui-control-icon-size:--spacing(${spacing})]`)
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('supports-[height:1lh]:[--ui-control-icon-size:1lh]')
+  })
+
+  it('lets a `ui.leadingIcon` size replace the derived icon size', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', icon: 'i-lucide-rocket', ui: { leadingIcon: 'size-3' } } })
+
+    const classes = wrapper.get('[data-slot="leadingIcon"]').classes()
+    expect(classes).toContain('size-3')
+    expect(classes).not.toContain('size-(--ui-control-icon-size)')
   })
 
   it('replaces a slot class through a `:ui` function', async () => {

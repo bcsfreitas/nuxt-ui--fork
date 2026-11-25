@@ -168,6 +168,15 @@ describe('CommandPalette', () => {
     expect(await axe(wrapper.element)).toHaveNoViolations()
   })
 
+  it('keeps the input frame on `rounded-lg` in both forms', async () => {
+    const wrapper = await mountSuspended(CommandPalette, { props: { groups, close: true } })
+    const frame = wrapper.get('[data-slot="input"]').classes()
+
+    expect(frame).toContain('[--ui-frame-radius:var(--radius-lg)]')
+    expect(frame).toContain('supports-[height:1lh]:[--ui-frame-radius:var(--radius-lg)]')
+    expect(frame.filter(name => name.includes('--ui-frame-radius:'))).toHaveLength(2)
+  })
+
   it('does not filter any group when ignoreFilter is set', async () => {
     const wrapper = await mountSuspended(CommandPalette, { props: { ...props, searchTerm: 'zzz', ignoreFilter: true } })
 

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { compile } from 'tailwindcss'
-import { controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlPyFromHeight, controlRadius, controlTrailingIcon } from '../../src/theme/utils/control-geometry'
+import { controlIconSize, controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlPyFromHeight, controlRadius, controlTrailingIcon } from '../../src/theme/utils/control-geometry'
 
 async function build(classes: string) {
   const compiler = await compile('@theme inline { --spacing: 0.25rem; --radius-md: calc(var(--ui-radius) * 1.5); }\n@tailwind utilities;')
@@ -79,6 +79,12 @@ describe('control geometry recipe', () => {
       expect(css).toContain('padding-inline: var(--px)')
     })
 
+    it('gates the optical padding on both `cap` and `lh`', async () => {
+      const css = await build(controlPadding)
+      expect(css).toContain('@supports (height:1cap) and (height:1lh)')
+      expect(css).not.toMatch(/@supports \(height:1cap\)\s*\{/)
+    })
+
     it('falls back to the upstream inline padding without `cap`', async () => {
       const { plain, enhanced } = declarations(await build(controlPadding), '--px')
       for (const { py, fallbackPx } of Object.values(sizes)) {
@@ -96,11 +102,21 @@ describe('control geometry recipe', () => {
 
   it('sizes icons to the line height and pulls them into the padding', async () => {
     for (const [icon, margin] of [[controlLeadingIcon, 'margin-inline-start'], [controlTrailingIcon, 'margin-inline-end']] as const) {
-      const [plainCss = '', enhancedCss = ''] = (await build(icon)).split('@supports (height:1cap)')
-      expect(plainCss).toContain('width: 1lh')
-      expect(plainCss).toContain('height: 1lh')
+      const css = await build(icon)
+      const [plainCss = '', enhancedCss = ''] = css.split('@supports (height:1cap) and (height:1lh)')
+      expect(plainCss).toContain('width: var(--ui-control-icon-size)')
+      expect(plainCss).toContain('height: var(--ui-control-icon-size)')
       expect(plainCss).not.toContain(margin)
+      expect(declarations(css, '--ui-control-icon-size').enhanced).toEqual(['1lh'])
       expect(enhancedCss).toContain(`${margin}: calc(var(--py) - var(--px))`)
+    }
+  })
+
+  it('keeps the upstream icon size per size without `lh`', async () => {
+    const upstream = { xs: 16, sm: 16, md: 20, lg: 20, xl: 24 }
+    for (const [size, iconPx] of Object.entries(upstream)) {
+      const { plain } = declarations(await build(controlIconSize[size as keyof typeof upstream]), '--ui-control-icon-size')
+      expect(px(plain[0]!, {})).toBe(iconPx)
     }
   })
 })
