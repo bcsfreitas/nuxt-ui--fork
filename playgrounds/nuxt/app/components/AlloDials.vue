@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DialRoot, useDialKit } from 'dialkit/vue'
+import { DialRoot, useDialKitController } from 'dialkit/vue'
 import 'dialkit/styles.css'
 
 const root = document.documentElement
@@ -11,7 +11,7 @@ const roundnessDefault = Number.parseFloat(getComputedStyle(root).getPropertyVal
 // Tailwind's weight ladder: every `font-*` weight utility reads one of these
 const weightVariables = ['thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black'].map(name => `--font-weight-${name}`)
 
-const values = useDialKit('Allo', {
+const dial = useDialKitController('Allo', {
   roundness: [roundnessDefault, 0, 100, 1],
   // Allo's opsz axis spans 9–32; the size only applies once "Automatic" is off
   opticalSize: {
@@ -22,8 +22,20 @@ const values = useDialKit('Allo', {
   weight: {
     automatic: true,
     weight: [400, 100, 900, 1]
+  },
+  // DialKit 2.2.1 has no Reset button of its own; back at the defaults, the watchers below remove every inline variable
+  reset: { type: 'action', label: 'Reset' }
+}, {
+  id: 'allo',
+  persist: true,
+  onAction: (action) => {
+    if (action === 'reset') {
+      dial.resetValues()
+    }
   }
-}, { id: 'allo', persist: true })
+})
+
+const values = dial.values
 
 // Writing on the root lets teleported overlays (menus, modals, toasts) follow too; at the default the inline value is removed so the stylesheet applies untouched
 watchEffect(() => {
