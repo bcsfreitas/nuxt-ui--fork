@@ -62,7 +62,7 @@ describe('FieldGroup', () => {
   ])
 
   it.each(sizes as string[])('publishes the corner of its size at size %s', async (size) => {
-    const wrapper = await mountSuspended(FieldGroup, { props: { size } })
+    const wrapper = await mountSuspended(FieldGroup, { props: { size: size as any } })
 
     const declarations = wrapper.classes().filter(name => name.includes('[--ui-field-group-radius:'))
     expect(declarations).toHaveLength(2)
@@ -71,12 +71,12 @@ describe('FieldGroup', () => {
 
   it.each(['horizontal', 'vertical'])('gives a Badge prefix the group corner in %s orientation', async (orientation) => {
     const wrapper = await mountSuspended(FieldGroup, {
-      props: { orientation, size: 'xl' },
+      props: { orientation: orientation as any, size: 'xl' },
       slots: {
         default: {
           components: { UBadge, UInput },
           template: `<UBadge size="lg" label="https://" /> <UInput />`
-        }
+        } as any
       }
     })
 

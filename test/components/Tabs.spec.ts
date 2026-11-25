@@ -131,7 +131,7 @@ describe('Tabs', () => {
     const wrapper = await mountSuspended(Tabs, { props: { ...props, ui: { leadingIcon: margin } } })
     const classes = wrapper.findAll('[data-slot="trigger"]')[1]!.get('[data-slot="leadingIcon"]').classes()
 
-    expect(classes.filter(name => /(^|:)ms-/.test(name))).toEqual([margin])
+    expect(classes.filter(name => /(?:^|:)ms-/.test(name))).toEqual([margin])
   })
 
   it('lets a consumer `rounded-*` trigger class replace the derived radius', async () => {

@@ -116,8 +116,8 @@ describe('Input', () => {
   it('lets `ui.leadingIcon` / `ui.trailingIcon` margins stand alone', async () => {
     const wrapper = await mountSuspended(Input, { props: { icon: 'i-lucide-search', trailingIcon: 'i-lucide-x', ui: { leadingIcon: 'ms-4', trailingIcon: 'me-0' } } })
 
-    expect(wrapper.get('[data-slot="leadingIcon"]').classes().filter(name => /(^|:)ms-/.test(name))).toEqual(['ms-4'])
-    expect(wrapper.get('[data-slot="trailingIcon"]').classes().filter(name => /(^|:)me-/.test(name))).toEqual(['me-0'])
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes().filter(name => /(?:^|:)ms-/.test(name))).toEqual(['ms-4'])
+    expect(wrapper.get('[data-slot="trailingIcon"]').classes().filter(name => /(?:^|:)me-/.test(name))).toEqual(['me-0'])
   })
 
   it('passes accessibility tests', async () => {

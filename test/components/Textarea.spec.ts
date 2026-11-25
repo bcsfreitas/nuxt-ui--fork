@@ -154,7 +154,7 @@ describe('Textarea', () => {
     const wrapper = await mountSuspended(Textarea, { props: { ui: { base: 'rounded-full' } } })
 
     const classes = wrapper.get('[data-slot="base"]').classes()
-    expect(classes.filter(name => /(^|:)rounded-/.test(name))).toEqual(['rounded-full'])
+    expect(classes.filter(name => /(?:^|:)rounded-/.test(name))).toEqual(['rounded-full'])
   })
 
   it('passes accessibility tests', async () => {
