@@ -192,6 +192,38 @@ describe('InputMenu', () => {
     expect(withMultiple.html()).toBe(autocomplete.html())
   })
 
+  describe('slot buttons', () => {
+    async function mountWithSlotButtons(props: Record<string, any> = {}) {
+      return mountSuspended({
+        components: { UButton, UInputMenu: InputMenu },
+        setup: () => ({ props }),
+        template: `<UInputMenu v-bind="props"><template #leading><UButton icon="i-lucide-plus" size="sm" /></template><template #trailing><UButton icon="i-lucide-x" size="sm" class="rounded-full" /></template></UInputMenu>`
+      })
+    }
+
+    it('publishes the field radius as the frame', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      expect(wrapper.get('[data-slot="root"]').classes()).toContain('[--ui-frame-radius:var(--radius-md)]')
+    })
+
+    it('hands the concentric radius to buttons in the leading and trailing slots', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      for (const slot of ['leading', 'trailing']) {
+        expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toEqual(expect.arrayContaining(['[&_:where(button,a)]:frame-shape-(--ui-button-radius)', '[&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]']))
+      }
+    })
+
+    it('lets a consumer radius class win on a slot button', async () => {
+      const wrapper = await mountWithSlotButtons()
+      const button = wrapper.get('[data-slot="trailing"] button')
+
+      expect(button.classes()).toContain('rounded-full')
+      expect(button.classes().join(' ')).not.toContain('--ui-button-frame-radius')
+    })
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(InputMenu, {
       props: {
