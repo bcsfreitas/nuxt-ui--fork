@@ -157,6 +157,36 @@ describe('PinInput', () => {
     })
   })
 
+  it.each(sizes as string[])('renders square cells with the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(PinInput, { props: { size: size as any, length: 2 } })
+
+    for (const cell of wrapper.findAll('[data-slot="base"]')) {
+      const classes = cell.classes()
+      expect(classes.some(name => name.startsWith('[--py:'))).toBe(true)
+      expect(classes).toContain('py-(--py)')
+      expect(classes).toContain('px-(--py)')
+      expect(classes).toContain('rounded-(--ui-pin-radius)')
+      expect(classes.some(name => name.startsWith('supports-[height:1lh]:[--ui-pin-radius:'))).toBe(true)
+      expect(classes).not.toContain('rounded-md')
+    }
+  })
+
+  it('lets a consumer `rounded-*` class replace the derived radius', async () => {
+    const wrapper = await mountSuspended(PinInput, { props: { length: 2, ui: { base: 'rounded-full' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toContain('rounded-full')
+    expect(classes).not.toContain('rounded-(--ui-pin-radius)')
+  })
+
+  it('lets a `ui.base` padding replace the derived padding', async () => {
+    const wrapper = await mountSuspended(PinInput, { props: { length: 2, ui: { base: 'px-0' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toContain('px-0')
+    expect(classes).not.toContain('px-(--py)')
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(PinInput, {
       props: {

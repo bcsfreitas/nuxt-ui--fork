@@ -1,27 +1,29 @@
 import type { ModuleOptions } from '../module'
+import { controlPy, controlRadius } from './utils/control-geometry'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
     root: 'relative inline-flex items-center gap-1.5',
-    base: ['rounded-md border-0 placeholder:text-dimmed text-center disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+    // Square cells: the inline padding equals the block padding
+    base: ['rounded-(--ui-pin-radius) py-(--py) px-(--py) border-0 placeholder:text-dimmed text-center disabled:cursor-not-allowed disabled:opacity-75', controlRadius('--ui-pin-radius'), options.theme.transitions && 'transition-colors'],
     separator: 'text-dimmed flex items-center justify-center'
   },
   variants: {
     size: {
       xs: {
-        base: 'size-6 text-sm/4'
+        base: `${controlPy.xs} size-6 text-sm/4`
       },
       sm: {
-        base: 'size-7 text-sm/4'
+        base: `${controlPy.sm} size-7 text-sm/4`
       },
       md: {
-        base: 'size-8 text-base/5'
+        base: `${controlPy.md} size-8 text-base/5`
       },
       lg: {
-        base: 'size-9 text-base/5'
+        base: `${controlPy.lg} size-9 text-base/5`
       },
       xl: {
-        base: 'size-10 text-base'
+        base: `${controlPy.xl} size-10 text-base`
       }
     },
     variant: {

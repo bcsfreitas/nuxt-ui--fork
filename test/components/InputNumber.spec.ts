@@ -76,6 +76,42 @@ describe('InputNumber', () => {
     expect(await axe(wrapper.element)).toHaveNoViolations()
   })
 
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(InputNumber, { props: { size: size as any } })
+
+    const root = wrapper.classes()
+    expect(root.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(root.some(name => name.startsWith('supports-[height:1lh]:[--ui-frame-radius:'))).toBe(true)
+
+    const base = wrapper.get('[data-slot="base"]').classes()
+    expect(base).toContain('py-(--py)')
+    expect(base).toContain('px-(--px)')
+    expect(base).toContain('rounded-(--ui-frame-radius)')
+    expect(base).not.toContain('rounded-md')
+  })
+
+  it.each(['increment', 'decrement'])('keeps the %s button concentric with the field', async (slot) => {
+    const wrapper = await mountSuspended(InputNumber)
+
+    expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toContain('[&_:where(button,a)]:frame-shape-(--ui-button-radius)')
+  })
+
+  it('lets a consumer `rounded-*` class replace the derived radius', async () => {
+    const wrapper = await mountSuspended(InputNumber, { props: { ui: { base: 'rounded-full' } } })
+
+    const base = wrapper.get('[data-slot="base"]').classes()
+    expect(base).toContain('rounded-full')
+    expect(base).not.toContain('rounded-(--ui-frame-radius)')
+  })
+
+  it('lets a `ui.base` padding replace the derived padding', async () => {
+    const wrapper = await mountSuspended(InputNumber, { props: { increment: false, decrement: false, ui: { base: 'px-4' } } })
+
+    const base = wrapper.get('[data-slot="base"]').classes()
+    expect(base).toContain('px-4')
+    expect(base).not.toContain('px-(--px)')
+  })
+
   describe('emits', () => {
     test('update:modelValue event', async () => {
       const wrapper = await mountSuspended(InputNumber)
