@@ -5,14 +5,19 @@ import 'dialkit/styles.css'
 const root = document.documentElement
 const colorMode = useColorMode()
 
-// The stylesheet default seeds the dial, so the library stays the single source of truth
-const roundnessDefault = Number.parseFloat(getComputedStyle(root).getPropertyValue('--ui-font-roundness')) || 50
+// The manual amount starts at the stylesheet default, so turning Automatic off changes nothing until the slider moves
+const stylesheetRoundness = Number.parseFloat(getComputedStyle(root).getPropertyValue('--ui-font-roundness'))
+const roundnessDefault = Number.isFinite(stylesheetRoundness) ? stylesheetRoundness : 50
 
 // Tailwind's weight ladder: every `font-*` weight utility reads one of these
 const weightVariables = ['thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black'].map(name => `--font-weight-${name}`)
 
 const dial = useDialKitController('Allo', {
-  roundness: [roundnessDefault, 0, 100, 1],
+  // Automatic leaves the library's roundness untouched, so a saved panel can't pin an old default
+  roundness: {
+    automatic: true,
+    amount: [roundnessDefault, 0, 100, 1]
+  },
   // Allo's opsz axis spans 9–32; the size only applies once "Automatic" is off
   opticalSize: {
     automatic: true,
@@ -37,14 +42,14 @@ const dial = useDialKitController('Allo', {
 
 const values = dial.values
 
-// Writing on the root lets teleported overlays (menus, modals, toasts) follow too; at the default the inline value is removed so the stylesheet applies untouched
+// Writing on the root lets teleported overlays (menus, modals, toasts) follow too; Automatic removes the inline value so the stylesheet applies untouched
 watchEffect(() => {
-  const roundness = values.value.roundness
+  const { automatic, amount } = values.value.roundness
 
-  if (roundness === roundnessDefault) {
+  if (automatic) {
     root.style.removeProperty('--ui-font-roundness')
   } else {
-    root.style.setProperty('--ui-font-roundness', String(roundness))
+    root.style.setProperty('--ui-font-roundness', String(amount))
   }
 })
 
