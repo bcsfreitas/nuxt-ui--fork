@@ -156,11 +156,10 @@ describe('Select', () => {
   })
 
   describe('slot buttons', () => {
-    async function mountWithSlotButtons(props: Record<string, any> = {}) {
+    async function mountWithSlotButtons() {
       return mountSuspended({
         components: { UButton, USelect: Select },
-        setup: () => ({ props }),
-        template: `<USelect v-bind="props"><template #leading><UButton icon="i-lucide-plus" size="sm" /></template><template #trailing><UButton icon="i-lucide-x" size="sm" class="rounded-full" /></template></USelect>`
+        template: `<USelect><template #leading><UButton icon="i-lucide-plus" size="sm" /></template><template #trailing><UButton icon="i-lucide-x" size="sm" class="rounded-full" /></template></USelect>`
       })
     }
 

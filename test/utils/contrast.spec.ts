@@ -190,8 +190,7 @@ function luminance(color: Oklab): number {
 function contrast(mode: string, foreground: string, background: string, neutral: typeof NEUTRALS[number]): number {
   const tokens = tokensFor(mode)
   const palette = colors[neutral] as Record<string, string>
-  const [high, low] = [luminance(resolve(foreground, tokens, palette)), luminance(resolve(background, tokens, palette))].sort((a, b) => b - a) as [number, number]
-  return (high + 0.05) / (low + 0.05)
+  return ratio(resolve(foreground, tokens, palette), resolve(background, tokens, palette))
 }
 
 function toSrgb(color: Oklab): number[] {

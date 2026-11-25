@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest'
-import { tv } from 'tailwind-variants'
 import commandPalette from '../../src/theme/command-palette'
 import contextMenu from '../../src/theme/context-menu'
 import dropdownMenu from '../../src/theme/dropdown-menu'
@@ -14,19 +13,7 @@ import pinInput from '../../src/theme/pin-input'
 import select from '../../src/theme/select'
 import selectMenu from '../../src/theme/select-menu'
 import textarea from '../../src/theme/textarea'
-
-const options = { theme: { colors: ['primary', 'error'], transitions: true } } as any
-
-type Theme = object | ((options: any) => object)
-
-function slots(theme: Theme, variants: Record<string, unknown> = {}, extra: Record<string, string> = {}): Record<string, string[]> {
-  const config = typeof theme === 'function' ? theme(options) : theme
-  const result = tv(config as any)(variants) as Record<string, (props?: any) => string> | string
-  if (typeof result === 'string') {
-    return { base: result.split(' ') }
-  }
-  return Object.fromEntries(Object.entries(result).map(([slot, fn]) => [slot, (fn({ class: extra[slot] }) ?? '').split(' ')]))
-}
+import { themeSlots as slots } from './theme-slots'
 
 describe('menu highlight', () => {
   it.each([
