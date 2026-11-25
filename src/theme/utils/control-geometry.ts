@@ -9,13 +9,23 @@
 
 type CustomProperty = `--${string}`
 
-// Block padding per size on the Button scale (heights 24/28/32/36/40 with Button's text sizes)
+type ControlSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+// Block padding and text line height per size on the Button scale (heights 24/28/32/36/40)
+const controlScale = {
+  xs: { py: '--spacing(1)', lineHeight: '1rem' },
+  sm: { py: '--spacing(1.5)', lineHeight: '1rem' },
+  md: { py: '--spacing(1.5)', lineHeight: '1.25rem' },
+  lg: { py: '--spacing(2)', lineHeight: '1.25rem' },
+  xl: { py: '--spacing(2)', lineHeight: '1.5rem' }
+} as const satisfies Record<ControlSize, { py: string, lineHeight: string }>
+
 export const controlPy = {
-  xs: '[--py:--spacing(1)]',
-  sm: '[--py:--spacing(1.5)]',
-  md: '[--py:--spacing(1.5)]',
-  lg: '[--py:--spacing(2)]',
-  xl: '[--py:--spacing(2)]'
+  xs: `[--py:${controlScale.xs.py}]`,
+  sm: `[--py:${controlScale.sm.py}]`,
+  md: `[--py:${controlScale.md.py}]`,
+  lg: `[--py:${controlScale.lg.py}]`,
+  xl: `[--py:${controlScale.xl.py}]`
 } as const
 
 /**
@@ -67,4 +77,14 @@ export const controlTrailingIcon = `${controlIcon} me-(--ui-control-icon-inset) 
  */
 export function controlRadius(variable: CustomProperty) {
   return `[${variable}:var(--radius-md)] supports-[height:1lh]:[${variable}:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))]`
+}
+
+/**
+ * Declares the corner of a Button-scale `size` in `variable`, written with that size's padding and
+ * line height as fixed lengths instead of `--py` / `1lh`. For an element that doesn't carry the
+ * size itself (a FieldGroup publishing its controls' corner to a Badge prefix).
+ */
+export function controlRadiusAt(variable: CustomProperty, size: ControlSize) {
+  const { py, lineHeight } = controlScale[size]
+  return `[${variable}:var(--radius-md)] supports-[height:1lh]:[${variable}:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(${lineHeight}_-_1rem)_/_4_+_${py})]`
 }

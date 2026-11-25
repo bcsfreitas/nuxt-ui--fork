@@ -91,6 +91,10 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     square: true,
     class: controlPaddingSquare
+  }, {
+    // A prefix/suffix in a FieldGroup takes the group corner so both ends of the bar match. Repeats the gated form to replace the badge's own
+    fieldGroup: ['horizontal', 'vertical'],
+    class: '[--ui-badge-radius:var(--ui-field-group-radius,var(--radius-md))] supports-[height:1lh]:[--ui-badge-radius:var(--ui-field-group-radius,var(--radius-md))]'
   }],
   defaultVariants: {
     color: 'primary',

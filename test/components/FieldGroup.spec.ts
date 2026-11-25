@@ -4,7 +4,7 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { renderEach } from '../component-render'
 import FieldGroup from '../../src/runtime/components/FieldGroup.vue'
 import buttonTheme from '#build/ui/button'
-import { UInput, UButton, USelect, USelectMenu } from '#components'
+import { UBadge, UInput, UButton, USelect, USelectMenu } from '#components'
 
 describe('FieldGroup', () => {
   const sizes = Object.keys(buttonTheme.variants.size) as any
@@ -60,6 +60,33 @@ describe('FieldGroup', () => {
       }]
     )
   ])
+
+  it.each(sizes as string[])('publishes the corner of its size at size %s', async (size) => {
+    const wrapper = await mountSuspended(FieldGroup, { props: { size } })
+
+    const declarations = wrapper.classes().filter(name => name.includes('[--ui-field-group-radius:'))
+    expect(declarations).toHaveLength(2)
+    expect(declarations).toContain('[--ui-field-group-radius:var(--radius-md)]')
+  })
+
+  it.each(['horizontal', 'vertical'])('gives a Badge prefix the group corner in %s orientation', async (orientation) => {
+    const wrapper = await mountSuspended(FieldGroup, {
+      props: { orientation, size: 'xl' },
+      slots: {
+        default: {
+          components: { UBadge, UInput },
+          template: `<UBadge size="lg" label="https://" /> <UInput />`
+        }
+      }
+    })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toContain('rounded-(--ui-badge-radius)')
+    expect(classes.filter(name => name.includes('[--ui-badge-radius:'))).toEqual([
+      '[--ui-badge-radius:var(--ui-field-group-radius,var(--radius-md))]',
+      'supports-[height:1lh]:[--ui-badge-radius:var(--ui-field-group-radius,var(--radius-md))]'
+    ])
+  })
 
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(FieldGroup, {

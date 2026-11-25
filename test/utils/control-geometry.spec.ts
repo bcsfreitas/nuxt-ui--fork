@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { compile } from 'tailwindcss'
-import { controlIconSize, controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlPyFromHeight, controlRadius, controlTrailingIcon } from '../../src/theme/utils/control-geometry'
+import { controlIconSize, controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlPyFromHeight, controlRadius, controlRadiusAt, controlTrailingIcon } from '../../src/theme/utils/control-geometry'
 
 async function build(classes: string) {
   const compiler = await compile('@theme inline { --spacing: 0.25rem; --radius-md: calc(var(--ui-radius) * 1.5); }\n@tailwind utilities;')
@@ -62,6 +62,15 @@ describe('control geometry recipe', () => {
       const { enhanced } = declarations(await build(controlRadius('--ui-control-radius')), '--ui-control-radius')
       for (const { py, lh } of Object.values(sizes)) {
         expect(px(enhanced[0]!, { 'var(--ui-radius)': 0, 'var(--py)': py, '1lh': lh })).toBe(0)
+      }
+    })
+
+    it('gives the same corner as a fixed length per size, for an element without that size', async () => {
+      for (const [size, { radius }] of Object.entries(sizes)) {
+        const { plain, enhanced } = declarations(await build(controlRadiusAt('--ui-field-group-radius', size as keyof typeof sizes)), '--ui-field-group-radius')
+        expect(plain).toEqual(['var(--radius-md)'])
+        expect(px(enhanced[0]!, { 'var(--ui-radius)': 4 })).toBe(radius)
+        expect(px(enhanced[0]!, { 'var(--ui-radius)': 0 })).toBe(0)
       }
     })
 
