@@ -85,4 +85,45 @@ describe('Tabs', () => {
     expect(classes).toContain('ring-0')
     expect(classes).not.toContain('ring')
   })
+
+  it.each(sizes as string[])('gives link triggers the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'link', size: size as any } })
+    const trigger = wrapper.findAll('[data-slot="trigger"]')[1]!
+    const classes = trigger.classes()
+
+    expect(classes).toContain('py-(--py)')
+    expect(classes).toContain('px-(--px)')
+    expect(classes).toContain('rounded-(--ui-tabs-trigger-radius)')
+    expect(classes.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(classes.some(name => name.startsWith('supports-[height:1lh]:[--ui-tabs-trigger-radius:'))).toBe(true)
+    expect(trigger.get('[data-slot="leadingIcon"]').classes()).toContain('size-[1lh]')
+  })
+
+  it.each(sizes as string[])('keeps the pill trigger on the concentric segment at size %s', async (size) => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'pill', size: size as any } })
+    const trigger = wrapper.findAll('[data-slot="trigger"]')[1]!
+    const classes = trigger.classes()
+
+    expect(classes).toContain('rounded-(--ui-frame-shape-radius)')
+    expect(classes).toContain('frame-shape-md')
+    expect(classes).not.toContain('rounded-(--ui-tabs-trigger-radius)')
+    expect(classes).toContain('px-(--px)')
+    expect(trigger.get('[data-slot="leadingIcon"]').classes()).toContain('size-[1lh]')
+  })
+
+  it('lets a consumer `rounded-*` trigger class replace the derived radius', async () => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'link', ui: { trigger: 'rounded-full' } } })
+    const classes = wrapper.find('[data-slot="trigger"]').classes()
+
+    expect(classes).toContain('rounded-full')
+    expect(classes).not.toContain('rounded-(--ui-tabs-trigger-radius)')
+  })
+
+  it('lets a `ui.trigger` padding replace the derived padding', async () => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'link', ui: { trigger: 'px-4' } } })
+    const classes = wrapper.find('[data-slot="trigger"]').classes()
+
+    expect(classes).toContain('px-4')
+    expect(classes).not.toContain('px-(--px)')
+  })
 })
