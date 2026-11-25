@@ -14,24 +14,25 @@ const roundnessDefault = Number.isFinite(stylesheetRoundness) ? stylesheetRoundn
 // Tailwind's weight ladder: every `font-*` weight utility reads one of these
 const weightVariables = ['thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black'].map(name => `--font-weight-${name}`)
 
+// DialKit turns each key into its label, so the keys are the words the designer reads
 const dial = useDialKitController('Allo', {
   // Automatic leaves the library's roundness untouched, so a saved panel can't pin an old default
-  roundness: {
-    automatic: true,
-    amount: [roundnessDefault, 0, 100, 1]
+  'Roundness': {
+    Automatic: true,
+    Amount: [roundnessDefault, 0, 100, 1]
   },
-  // Allo's opsz axis spans 9–32; the size only applies once "Automatic" is off
-  opticalSize: {
-    automatic: true,
-    size: [14, 9, 32, 1]
+  // Allo's opsz axis spans 9–32 and matches the text's size in px; the size only applies once Automatic is off
+  'Optical size': {
+    'Automatic': true,
+    'Size (px)': [14, 9, 32, 1]
   },
-  // Allo's wght axis spans 100–900; the weight only applies once "Automatic" is off
-  weight: {
-    automatic: true,
-    weight: [400, 100, 900, 1]
+  // Allo's wght axis spans 100–900; the value only applies once Automatic is off
+  'Weight': {
+    Automatic: true,
+    Value: [400, 100, 900, 1]
   },
   // DialKit 2.2.1 has no Reset button of its own; back at the defaults, the watchers below remove every inline variable
-  reset: { type: 'action', label: 'Reset' }
+  'reset': { type: 'action', label: 'Reset' }
 }, {
   id: panelId,
   persist: true,
@@ -61,9 +62,9 @@ function reset() {
 
 function sliders(current: typeof values.value) {
   return {
-    roundness: [current.roundness.automatic, current.roundness.amount],
-    opticalSize: [current.opticalSize.automatic, current.opticalSize.size],
-    weight: [current.weight.automatic, current.weight.weight]
+    'Roundness': [current.Roundness.Automatic, current.Roundness.Amount],
+    'Optical size': [current['Optical size'].Automatic, current['Optical size']['Size (px)']],
+    'Weight': [current.Weight.Automatic, current.Weight.Value]
   } as const
 }
 
@@ -79,14 +80,14 @@ watch([version, values], ([nowVersion, now], [beforeVersion, before]) => {
     const [wasAutomatic, previousAmount] = previous[group as keyof typeof previous]
 
     if (automatic && wasAutomatic && amount !== previousAmount) {
-      dial.setValue(`${group}.automatic`, false)
+      dial.setValue(`${group}.Automatic`, false)
     }
   }
 })
 
 // Writing on the root lets teleported overlays (menus, modals, toasts) follow too; Automatic removes the inline value so the stylesheet applies untouched
 watchEffect(() => {
-  const { automatic, amount } = values.value.roundness
+  const { Automatic: automatic, Amount: amount } = values.value.Roundness
 
   if (automatic) {
     root.style.removeProperty('--ui-font-roundness')
@@ -97,7 +98,7 @@ watchEffect(() => {
 
 // Automatic removes the variable, so the browser keeps picking opsz from each text's font size
 watchEffect(() => {
-  const { automatic, size } = values.value.opticalSize
+  const { 'Automatic': automatic, 'Size (px)': size } = values.value['Optical size']
 
   if (automatic) {
     root.style.removeProperty('--ui-font-optical-size')
@@ -116,7 +117,7 @@ function removeWeight() {
 
 // One weight for all text: the ladder variables cover `font-*` utilities, the root weight covers inherited text, and `--allo-dial-weight` pins `b`/`strong` (see main.css); automatic removes it all
 watchEffect(() => {
-  const { automatic, weight } = values.value.weight
+  const { Automatic: automatic, Value: weight } = values.value.Weight
 
   if (automatic) {
     removeWeight()
