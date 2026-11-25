@@ -206,13 +206,13 @@ describe('EditorToolbar', () => {
       const wrapper = await mountSuspended(EditorToolbar, { props: { ...props, layout } })
 
       const toolbar = wrapper.find('[role=toolbar]')
-      expect(toolbar.classes()).toEqual(expect.arrayContaining(['bg-default', 'border', 'border-default', 'rounded-(--ui-frame-radius)']))
+      expect(toolbar.classes()).toEqual(expect.arrayContaining(['bg-(--ui-toolbar-bg)', 'border', 'border-(--ui-toolbar-border)', 'dark:[--ui-toolbar-bg:var(--ui-bg-elevated)]', 'dark:[--ui-toolbar-border:var(--ui-border-accented)]', 'rounded-(--ui-frame-radius)']))
 
       const buttons = toolbar.findAll('button')
       expect(buttons.length).toBeGreaterThan(0)
       for (const button of buttons) {
         expect(button.classes()).toContain('rounded-(--ui-frame-shape-radius)')
-        expect(button.classes()).not.toContain('rounded-(--ui-button-radius)')
+        expect(button.classes()).not.toContain('rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]')
         expect(button.classes().join(' ')).not.toMatch(restSurface)
       }
     })
@@ -223,8 +223,8 @@ describe('EditorToolbar', () => {
       const toolbar = wrapper.find('[role=toolbar]')
       expect(toolbar.classes().join(' ')).not.toContain('frame')
       for (const button of toolbar.findAll('button')) {
-        expect(button.classes()).toContain('rounded-(--ui-button-radius)')
-        expect(button.classes().join(' ')).not.toContain('frame')
+        expect(button.classes()).toContain('rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]')
+        expect(button.classes().join(' ')).not.toContain('frame-shape')
       }
     })
 
