@@ -31,9 +31,9 @@ export default (options: Required<ModuleOptions>) => ({
     },
     variant: {
       pill: {
-        list: 'bg-elevated rounded-lg',
-        trigger: [`grow`, ssr('before:content-[\'\']', 'before:absolute', 'before:inset-0', 'before:rounded-md', 'before:shadow-xs', 'before:-z-10', 'isolate')],
-        indicator: 'rounded-md shadow-xs'
+        list: 'bg-elevated rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-lg)] [--ui-frame-inset:--spacing(1)]',
+        trigger: [`grow frame-shape-md rounded-(--ui-frame-shape-radius)`, ssr('before:content-[\'\']', 'before:absolute', 'before:inset-0', 'before:rounded-(--ui-frame-shape-radius)', 'before:shadow-xs', 'before:-z-10', 'isolate')],
+        indicator: 'frame-shape-md rounded-(--ui-frame-shape-radius) shadow-xs'
       },
       link: {
         list: 'border-default',
@@ -122,8 +122,9 @@ export default (options: Required<ModuleOptions>) => ({
     color: 'neutral',
     variant: 'pill',
     class: {
-      indicator: 'bg-inverted',
-      trigger: [`data-[state=active]:text-inverted outline-inverted/25 focus-visible:outline-3`, ssr('before:bg-inverted')]
+      list: '[--ui-tabs-segment-bg:var(--ui-bg)] [--ui-tabs-segment-shadow:var(--shadow-xs)] dark:[--ui-tabs-segment-bg:var(--ui-bg-accented)] dark:[--ui-tabs-segment-shadow:inset_0_0_0_1px_color-mix(in_oklab,var(--ui-text-highlighted)_10%,transparent)]',
+      indicator: 'bg-(--ui-tabs-segment-bg) shadow-(--ui-tabs-segment-shadow)',
+      trigger: [`data-[state=active]:text-highlighted outline-inverted/25 focus-visible:outline-3`, ssr('before:bg-(--ui-tabs-segment-bg)', 'before:shadow-(--ui-tabs-segment-shadow)')]
     }
   }, ...(options.theme.colors || []).map((color: string) => ({
     color,
