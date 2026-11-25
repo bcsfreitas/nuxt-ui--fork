@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { DialRoot, useDialKitController } from 'dialkit/vue'
+import { DialRoot, DialStore, useDialKitController } from 'dialkit/vue'
 import 'dialkit/styles.css'
 
 const root = document.documentElement
 const colorMode = useColorMode()
+const panelId = 'allo'
 
 // The manual amount starts at the stylesheet default, so turning Automatic off changes nothing until the slider moves
 const stylesheetRoundness = Number.parseFloat(getComputedStyle(root).getPropertyValue('--ui-font-roundness'))
@@ -31,16 +32,56 @@ const dial = useDialKitController('Allo', {
   // DialKit 2.2.1 has no Reset button of its own; back at the defaults, the watchers below remove every inline variable
   reset: { type: 'action', label: 'Reset' }
 }, {
-  id: 'allo',
+  id: panelId,
   persist: true,
   onAction: (action) => {
     if (action === 'reset') {
-      dial.resetValues()
+      reset()
     }
   }
 })
 
 const values = dial.values
+
+// Version switches and Reset move sliders too; only a move the user makes should switch Automatic off
+const version = ref(DialStore.getActivePresetId(panelId))
+const stopVersion = DialStore.subscribe(panelId, () => {
+  version.value = DialStore.getActivePresetId(panelId)
+})
+let resetting = false
+
+function reset() {
+  resetting = true
+  dial.resetValues()
+  nextTick(() => {
+    resetting = false
+  })
+}
+
+function sliders(current: typeof values.value) {
+  return {
+    roundness: [current.roundness.automatic, current.roundness.amount],
+    opticalSize: [current.opticalSize.automatic, current.opticalSize.size],
+    weight: [current.weight.automatic, current.weight.weight]
+  } as const
+}
+
+// Moving a slider while its Automatic is on switches Automatic off, so the move shows at once
+watch([version, values], ([nowVersion, now], [beforeVersion, before]) => {
+  if (resetting || nowVersion !== beforeVersion) {
+    return
+  }
+
+  const previous = sliders(before)
+
+  for (const [group, [automatic, amount]] of Object.entries(sliders(now))) {
+    const [wasAutomatic, previousAmount] = previous[group as keyof typeof previous]
+
+    if (automatic && wasAutomatic && amount !== previousAmount) {
+      dial.setValue(`${group}.automatic`, false)
+    }
+  }
+})
 
 // Writing on the root lets teleported overlays (menus, modals, toasts) follow too; Automatic removes the inline value so the stylesheet applies untouched
 watchEffect(() => {
@@ -92,6 +133,7 @@ watchEffect(() => {
 })
 
 onBeforeUnmount(() => {
+  stopVersion()
   root.style.removeProperty('--ui-font-roundness')
   root.style.removeProperty('--ui-font-optical-size')
   removeWeight()
