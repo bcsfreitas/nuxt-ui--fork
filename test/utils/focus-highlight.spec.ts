@@ -18,11 +18,11 @@ const options = { theme: { colors: ['primary', 'error'], transitions: true } } a
 
 type Theme = object | ((options: any) => object)
 
-function slots(theme: Theme, variants: Record<string, unknown> = {}, extra: Record<string, string> = {}) {
+function slots(theme: Theme, variants: Record<string, unknown> = {}, extra: Record<string, string> = {}): Record<string, string[]> {
   const config = typeof theme === 'function' ? theme(options) : theme
   const result = tv(config as any)(variants) as Record<string, (props?: any) => string> | string
   if (typeof result === 'string') {
-    return { base: result }
+    return { base: result.split(' ') }
   }
   return Object.fromEntries(Object.entries(result).map(([slot, fn]) => [slot, (fn({ class: extra[slot] }) ?? '').split(' ')]))
 }
@@ -38,7 +38,7 @@ describe('menu highlight', () => {
     ['Select', select],
     ['SelectMenu', selectMenu]
   ])('%s paints highlighted items with the highlight token', (_, theme) => {
-    const item = slots(theme).item as string[]
+    const item = slots(theme).item!
 
     expect(item.some(cls => /^data-highlighted:(?:not-data-disabled:)?before:bg-\(--ui-bg-highlight\)$/.test(cls))).toBe(true)
     expect(item.some(cls => cls.endsWith('before:bg-elevated/50'))).toBe(false)
@@ -64,7 +64,7 @@ describe('focus ring', () => {
     ['PinInput', pinInput],
     ['Select', select]
   ])('%s draws a 2px focus ring in the focus color', (_, theme) => {
-    const base = slots(theme, { color: 'primary', variant: 'outline' }).base as string[]
+    const base = slots(theme, { color: 'primary', variant: 'outline' }).base!
 
     expect(base).toContain('focus-visible:ring-2')
     expect(base).toContain('focus-visible:ring-focus-primary')
@@ -80,7 +80,7 @@ describe('focus ring', () => {
   })
 
   it('a consumer ring color replaces the focus color', () => {
-    const base = slots(input, { color: 'primary', variant: 'outline' }, { base: 'focus-visible:ring-error' }).base as string[]
+    const base = slots(input, { color: 'primary', variant: 'outline' }, { base: 'focus-visible:ring-error' }).base!
 
     expect(base).toContain('focus-visible:ring-error')
     expect(base).not.toContain('focus-visible:ring-focus-primary')
