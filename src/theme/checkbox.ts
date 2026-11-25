@@ -13,7 +13,7 @@ export default (options: Required<ModuleOptions>) => ({
   slots: {
     root: 'relative flex items-start',
     container: 'flex items-center',
-    base: 'rounded-sm ring ring-inset ring-accented overflow-hidden focus-visible:outline-none',
+    base: 'rounded-sm ring ring-inset ring-control overflow-hidden focus-visible:outline-none',
     indicator: 'flex items-center justify-center size-full text-inverted',
     icon: 'shrink-0',
     wrapper: 'w-full',
