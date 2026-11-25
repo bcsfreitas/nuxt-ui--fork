@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'pathe'
+import { compile } from 'tailwindcss'
 import colors from 'tailwindcss/colors'
 import { describe, it, expect } from 'vitest'
 
@@ -308,8 +309,30 @@ describe('focus ring', () => {
     expect(tokensFor(mode)['--ui-focus-ring-mix']).toBe('0%')
   })
 
-  it('defines the ring utility on the mix token', () => {
-    expect(css).toMatch(/@utility ring-focus-\* \{[^}]*--tw-ring-color: color-mix\(in oklab, --value\(--ring-color-\*, --color-\*\), var\(--ui-text-highlighted\) var\(--ui-focus-ring-mix, 0%\)\);/)
+  describe('ring-focus utility', () => {
+    const utility = css.match(/@utility ring-focus-\* \{[^}]*\}/)![0]
+
+    async function build(candidates: string[]) {
+      const compiler = await compile(`@theme inline { --color-primary: var(--ui-primary); --ring-color-inverted: var(--ui-border-inverted); }\n${utility}\n@tailwind utilities;`)
+      return compiler.build(candidates)
+    }
+
+    it.each([
+      ['ring-focus-primary', 'var(--ui-primary)'],
+      ['ring-focus-inverted', 'var(--ui-border-inverted)']
+    ])('compiles %s to the plain color with the mix behind a feature query', async (candidate, color) => {
+      const output = await build([candidate])
+      const [fallback, enhanced] = output.split('@supports')
+
+      expect(fallback).toContain(`.${candidate} {`)
+      expect(fallback).toContain(`--tw-ring-color: ${color};`)
+      expect(enhanced).toMatch(/^ \(color: color-mix\(in lab, red, red\)\) \{/)
+      expect(enhanced).toContain(`--tw-ring-color: color-mix(in oklab, ${color}, var(--ui-text-highlighted) var(--ui-focus-ring-mix, 0%));`)
+    })
+
+    it('emits nothing for an unknown color', async () => {
+      expect(await build(['ring-focus-unknown'])).not.toContain('ring-focus-unknown')
+    })
   })
 
   describe.each(NEUTRALS)('with %s as neutral', (neutral) => {
