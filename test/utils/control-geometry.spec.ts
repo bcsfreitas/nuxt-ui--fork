@@ -79,6 +79,12 @@ describe('control geometry recipe', () => {
       expect(css).toContain('padding-inline: var(--px)')
     })
 
+    it('gates the optical padding on both `cap` and `lh`', async () => {
+      const css = await build(controlPadding)
+      expect(css).toContain('@supports (height:1cap) and (height:1lh)')
+      expect(css).not.toMatch(/@supports \(height:1cap\)\s*\{/)
+    })
+
     it('falls back to the upstream inline padding without `cap`', async () => {
       const { plain, enhanced } = declarations(await build(controlPadding), '--px')
       for (const { py, fallbackPx } of Object.values(sizes)) {
@@ -96,7 +102,7 @@ describe('control geometry recipe', () => {
 
   it('sizes icons to the line height and pulls them into the padding', async () => {
     for (const [icon, margin] of [[controlLeadingIcon, 'margin-inline-start'], [controlTrailingIcon, 'margin-inline-end']] as const) {
-      const [plainCss = '', enhancedCss = ''] = (await build(icon)).split('@supports (height:1cap)')
+      const [plainCss = '', enhancedCss = ''] = (await build(icon)).split('@supports (height:1cap) and (height:1lh)')
       expect(plainCss).toContain('width: 1lh')
       expect(plainCss).toContain('height: 1lh')
       expect(plainCss).not.toContain(margin)

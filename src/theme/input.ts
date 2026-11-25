@@ -1,16 +1,16 @@
 import type { ModuleOptions } from '../module'
 import { fieldGroupVariantWithRoot } from './field-group'
-import { controlPadding, controlPy, controlRadius } from './utils/control-geometry'
+import { controlEnhanced, controlPadding, controlPy, controlRadius } from './utils/control-geometry'
 
 /**
  * The field frame: the element that holds the size's `--py` and is an ancestor of both the text and the
  * leading/trailing slots (`root`, or `base` in themes without a root). It publishes the growing corner
  * to slot buttons (`--ui-frame-radius`), the slots' inline inset (icon `--py` from the edge, upstream
- * `--py + 1` without `cap`) and the text's padding next to an icon (inset, icon at `1lh`, then `--py`).
+ * `--py + 1` without `cap` / `lh`) and the text's padding next to an icon (inset, icon at `1lh`, then `--py`).
  */
-export const fieldFrame = `${controlRadius('--ui-frame-radius')} [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)]`
+export const fieldFrame = `${controlRadius('--ui-frame-radius')} [--ui-field-inset:calc(var(--py)_+_--spacing(1))] ${controlEnhanced}:[--ui-field-inset:var(--py)] ${controlEnhanced}:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)]`
 
-// Per size: `--py` and the upstream text padding next to an icon, kept for browsers without `cap`
+// Per size: `--py` and the upstream text padding next to an icon, kept for browsers without `cap` / `lh`
 export const fieldFrameSize = {
   xs: `${controlPy.xs} [--ui-field-icon-padding:--spacing(7)]`,
   sm: `${controlPy.sm} [--ui-field-icon-padding:--spacing(8)]`,

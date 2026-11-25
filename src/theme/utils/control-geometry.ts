@@ -27,16 +27,22 @@ export function controlPyFromHeight(height: string) {
   return `[--py:calc((${height}_-_1lh)_/_2)]`
 }
 
-// Optical inline padding `--py + (1lh - 1cap) / 2` centres the cap height; without `cap`, `--py + --spacing(1)` is the upstream padding
-export const controlPadding = 'py-(--py) px-(--px) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)]'
+/**
+ * Variant gating every value that reads both `cap` and `lh` (the optical padding and what depends on it).
+ * Firefox 97–119 has `cap` but not `lh`: gated on `cap` alone, the value would be invalid there and drop to 0.
+ */
+export const controlEnhanced = 'supports-[(height:1cap)_and_(height:1lh)]'
 
-// Square / icon-only control. Repeats the `supports-[...]` form: a compound variant is emitted after the base's enhanced `--px` and must override it too
-export const controlPaddingSquare = '[--px:var(--py)] supports-[height:1cap]:[--px:var(--py)]'
+// Optical inline padding `--py + (1lh - 1cap) / 2` centres the cap height; without `cap` / `lh`, `--py + --spacing(1)` is the upstream padding
+export const controlPadding = `py-(--py) px-(--px) [--px:calc(var(--py)_+_--spacing(1))] ${controlEnhanced}:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)]`
+
+// Square / icon-only control. Repeats the enhanced form: a compound variant is emitted after the base's enhanced `--px` and must override it too
+export const controlPaddingSquare = `[--px:var(--py)] ${controlEnhanced}:[--px:var(--py)]`
 
 // Icons at the line height, pulled into the inline padding so they sit `--py` from every edge
-export const controlLeadingIcon = 'shrink-0 size-[1lh] supports-[height:1cap]:ms-[calc(var(--py)_-_var(--px))]'
+export const controlLeadingIcon = `shrink-0 size-[1lh] ${controlEnhanced}:ms-[calc(var(--py)_-_var(--px))]`
 
-export const controlTrailingIcon = 'shrink-0 size-[1lh] supports-[height:1cap]:me-[calc(var(--py)_-_var(--px))]'
+export const controlTrailingIcon = `shrink-0 size-[1lh] ${controlEnhanced}:me-[calc(var(--py)_-_var(--px))]`
 
 /**
  * Declares the corner in `variable`: `--ui-radius + (1lh - 1rem) / 4 + --py`, concentric with a

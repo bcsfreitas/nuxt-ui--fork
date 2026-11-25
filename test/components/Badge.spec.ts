@@ -57,7 +57,7 @@ describe('Badge', () => {
     expect(classes.filter(name => name.startsWith('[--py:'))).toHaveLength(1)
     // The size's own fallback padding and the optical one both survive the merge
     expect(classes.filter(name => name.startsWith('[--px:--spacing('))).toHaveLength(1)
-    expect(classes).toContain('supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)]')
+    expect(classes).toContain('supports-[(height:1cap)_and_(height:1lh)]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)]')
     expect(classes.some(name => name.startsWith('supports-[height:1lh]:[--ui-badge-radius:'))).toBe(true)
     expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-[1lh]')
     expect(wrapper.get('[data-slot="trailingIcon"]').classes()).toContain('size-[1lh]')
@@ -85,7 +85,7 @@ describe('Badge', () => {
 
     const classes = wrapper.classes()
     expect(classes).toContain('[--px:var(--py)]')
-    expect(classes).toContain('supports-[height:1cap]:[--px:var(--py)]')
+    expect(classes).toContain('supports-[(height:1cap)_and_(height:1lh)]:[--px:var(--py)]')
     expect(classes.some(name => name.startsWith('[--px:--spacing('))).toBe(false)
   })
 
