@@ -1,13 +1,14 @@
 import { defuFn } from 'defu'
 import type { ModuleOptions } from '../module'
-import input from './input'
+import input, { fieldFrame, fieldFrameSize } from './input'
 import { fieldGroupVariant } from './field-group'
 
 export default (options: Required<ModuleOptions>) => {
   return defuFn({
     slots: {
       root: () => undefined,
-      base: () => ['group relative inline-flex items-center rounded-md select-none', options.theme.transitions && 'transition-colors'],
+      // The field is the frame (no root): it holds `--py` and publishes the radius its slot buttons follow
+      base: () => ['group relative inline-flex items-center rounded-(--ui-frame-radius) select-none', fieldFrame, options.theme.transitions && 'transition-colors'],
       segment: ['rounded-sm text-center outline-hidden data-placeholder:text-dimmed data-[segment=literal]:text-muted data-invalid:text-error data-disabled:cursor-not-allowed data-disabled:opacity-75', options.theme.transitions && 'transition-colors'],
       separatorIcon: 'shrink-0 size-4 text-muted'
     },
@@ -15,23 +16,23 @@ export default (options: Required<ModuleOptions>) => {
       ...fieldGroupVariant,
       size: {
         xs: {
-          base: (prev: string) => [prev, 'gap-0.25'],
+          base: (prev: string) => [prev, fieldFrameSize.xs, 'gap-0.25'],
           segment: 'not-data-[segment=literal]:w-8'
         },
         sm: {
-          base: (prev: string) => [prev, 'gap-0.5'],
+          base: (prev: string) => [prev, fieldFrameSize.sm, 'gap-0.5'],
           segment: 'not-data-[segment=literal]:w-8'
         },
         md: {
-          base: (prev: string) => [prev, 'gap-0.5'],
+          base: (prev: string) => [prev, fieldFrameSize.md, 'gap-0.5'],
           segment: 'not-data-[segment=literal]:w-9'
         },
         lg: {
-          base: (prev: string) => [prev, 'gap-0.75'],
+          base: (prev: string) => [prev, fieldFrameSize.lg, 'gap-0.75'],
           segment: 'not-data-[segment=literal]:w-9'
         },
         xl: {
-          base: (prev: string) => [prev, 'gap-0.75'],
+          base: (prev: string) => [prev, fieldFrameSize.xl, 'gap-0.75'],
           segment: 'not-data-[segment=literal]:w-10'
         }
       },
