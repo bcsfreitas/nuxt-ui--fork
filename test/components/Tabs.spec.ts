@@ -127,6 +127,13 @@ describe('Tabs', () => {
     expect(classes).not.toContain('size-(--ui-control-icon-size)')
   })
 
+  it.each([['ms-0'], ['ms-4']])('lets a `ui.leadingIcon` margin `%s` replace the icon pull-in', async (margin) => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, ui: { leadingIcon: margin } } })
+    const classes = wrapper.findAll('[data-slot="trigger"]')[1]!.get('[data-slot="leadingIcon"]').classes()
+
+    expect(classes.filter(name => /(^|:)ms-/.test(name))).toEqual([margin])
+  })
+
   it('lets a consumer `rounded-*` trigger class replace the derived radius', async () => {
     const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'link', ui: { trigger: 'rounded-full' } } })
     const classes = wrapper.find('[data-slot="trigger"]').classes()

@@ -106,9 +106,10 @@ describe('control geometry recipe', () => {
       const [plainCss = '', enhancedCss = ''] = css.split('@supports (height:1cap) and (height:1lh)')
       expect(plainCss).toContain('width: var(--ui-control-icon-size)')
       expect(plainCss).toContain('height: var(--ui-control-icon-size)')
-      expect(plainCss).not.toContain(margin)
+      expect(plainCss).toContain(`${margin}: var(--ui-control-icon-inset)`)
+      expect(enhancedCss).not.toContain(margin)
       expect(declarations(css, '--ui-control-icon-size').enhanced).toEqual(['1lh'])
-      expect(enhancedCss).toContain(`${margin}: calc(var(--py) - var(--px))`)
+      expect(declarations(css, '--ui-control-icon-inset')).toEqual({ plain: ['0px'], enhanced: ['calc(var(--py) - var(--px))'] })
     }
   })
 

@@ -51,10 +51,12 @@ export const controlIconSize = {
 // Icon at the line height, read through `--ui-control-icon-size` so a consumer `size-*` still wins and old browsers keep the size's fallback
 export const controlIcon = 'shrink-0 size-(--ui-control-icon-size) supports-[height:1lh]:[--ui-control-icon-size:1lh]'
 
-// Icons pulled into the inline padding so they sit `--py` from every edge
-export const controlLeadingIcon = `${controlIcon} ${controlEnhanced}:ms-[calc(var(--py)_-_var(--px))]`
+// Pull-in toward the edge so the icon sits `--py` from every edge, 0 without `cap` / `lh`. Read by a plain margin utility so a consumer `ms-*` / `me-*` still wins
+const controlIconInset = `[--ui-control-icon-inset:0px] ${controlEnhanced}:[--ui-control-icon-inset:calc(var(--py)_-_var(--px))]`
 
-export const controlTrailingIcon = `${controlIcon} ${controlEnhanced}:me-[calc(var(--py)_-_var(--px))]`
+export const controlLeadingIcon = `${controlIcon} ms-(--ui-control-icon-inset) ${controlIconInset}`
+
+export const controlTrailingIcon = `${controlIcon} me-(--ui-control-icon-inset) ${controlIconInset}`
 
 /**
  * Declares the corner in `variable`: `--ui-radius + (1lh - 1rem) / 4 + --py`, concentric with a

@@ -133,7 +133,7 @@ export default {
 }
 ```
 
-- Read the radius with a plain `rounded-(--var)`, never a `supports-[...]:rounded-*`: tailwind-merge only drops conflicts with the same variant, so a consumer `rounded-full` would lose.
+- Read the radius with a plain `rounded-(--var)`, never a `supports-[...]:rounded-*`: tailwind-merge only drops conflicts with the same variant, so a consumer `rounded-full` would lose. The icon pull-in works the same way: `controlLeadingIcon` / `controlTrailingIcon` read `--ui-control-icon-inset` with a plain `ms-(--var)` / `me-(--var)`, so a consumer `ms-0` wins.
 - A compound variant that overrides an enhanced variable repeats its `supports-[...]:` form (`controlPaddingSquare` does).
 - Values that read both `cap` and `lh` are gated on both (`controlEnhanced`): Firefox 97–119 has `cap` without `lh`.
 - Icons read `--ui-control-icon-size`: each size declares the upstream box on the padded element (`controlIconSize.md`, or a literal `[--ui-control-icon-size:--spacing(4)]` off the Button scale), so browsers without `lh` keep it.

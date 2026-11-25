@@ -190,6 +190,20 @@ describe('Button', () => {
     expect(classes).not.toContain('size-(--ui-control-icon-size)')
   })
 
+  it.each([['ms-0'], ['ms-4']])('lets a `ui.leadingIcon` margin `%s` replace the icon pull-in', async (margin) => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', icon: 'i-lucide-rocket', ui: { leadingIcon: margin } } })
+
+    const classes = wrapper.get('[data-slot="leadingIcon"]').classes()
+    expect(classes.filter(name => /(^|:)ms-/.test(name))).toEqual([margin])
+  })
+
+  it('lets a `ui.trailingIcon` margin replace the icon pull-in', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', trailingIcon: 'i-lucide-arrow-right', ui: { trailingIcon: 'me-0' } } })
+
+    const classes = wrapper.get('[data-slot="trailingIcon"]').classes()
+    expect(classes.filter(name => /(^|:)me-/.test(name))).toEqual(['me-0'])
+  })
+
   it('replaces a slot class through a `:ui` function', async () => {
     const wrapper = await mountSuspended(Button, {
       props: {
