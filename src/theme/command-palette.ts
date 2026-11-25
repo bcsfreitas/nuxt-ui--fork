@@ -2,17 +2,17 @@ import type { ModuleOptions } from '../module'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
-    root: 'flex flex-col min-h-0 min-w-0 divide-y divide-default',
-    input: '',
+    root: 'flex flex-col min-h-0 min-w-0 divide-y divide-default [--ui-frame-radius:var(--radius-lg)]',
+    input: '[--ui-frame-radius:var(--radius-lg)]',
     close: '',
     back: 'p-0',
     content: 'relative overflow-hidden flex flex-col focus:outline-none',
     footer: 'p-1',
     viewport: 'relative scroll-py-1 overflow-y-auto flex-1 focus:outline-none',
-    group: 'p-1 isolate',
+    group: 'p-1 [--ui-frame-inset:calc(--spacing(1)+1px)] isolate',
     empty: 'text-center text-muted',
     label: 'font-semibold text-highlighted',
-    item: 'group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75',
+    item: 'group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px frame-shape-md before:rounded-(--ui-frame-shape-radius) data-disabled:cursor-not-allowed data-disabled:opacity-75',
     itemLeadingIcon: 'shrink-0',
     itemLeadingAvatar: 'shrink-0',
     itemLeadingAvatarSize: '',
@@ -33,7 +33,7 @@ export default (options: Required<ModuleOptions>) => ({
   variants: {
     virtualize: {
       true: {
-        viewport: 'p-1 isolate'
+        viewport: 'p-1 [--ui-frame-inset:calc(--spacing(1)+1px)] isolate'
       },
       false: {
         viewport: 'divide-y divide-default'
