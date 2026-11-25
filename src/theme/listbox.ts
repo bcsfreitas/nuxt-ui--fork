@@ -11,7 +11,7 @@ export default (options: Required<ModuleOptions>) => ({
     empty: 'text-center text-muted',
     loading: 'flex items-center justify-center text-muted',
     loadingIcon: 'animate-spin shrink-0',
-    item: ['group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75 text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-elevated/50', options.theme.transitions && 'transition-colors before:transition-colors'],
+    item: ['group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75 text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-(--ui-bg-highlight)', options.theme.transitions && 'transition-colors before:transition-colors'],
     itemLeadingIcon: ['shrink-0 text-dimmed group-data-highlighted:not-group-data-disabled:text-default', options.theme.transitions && 'transition-colors'],
     itemLeadingAvatar: 'shrink-0',
     itemLeadingAvatarSize: '',

@@ -87,6 +87,16 @@ const STRENGTHENED = ['--ui-border-control', '--ui-border', '--ui-border-muted',
 
 const NEUTRALS = ['slate', 'gray', 'zinc', 'neutral', 'stone'] as const
 
+/**
+ * Chromatic Tailwind palettes a theme color (primary, error...) can point at.
+ */
+const PALETTES = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'] as const
+
+/**
+ * Menu highlight drawn at 50% elevated outside high contrast, as `bg-elevated/50` was.
+ */
+const HIGHLIGHT_NORMAL = 'color-mix(in oklab, var(--ui-bg-elevated) 50%, transparent)'
+
 function tokensFor(mode: string): Tokens {
   return Object.assign({}, ...MODES[mode]!.map((key) => {
     expect(blocks, `missing rule \`${key}\` in index.css`).toHaveProperty([key])
@@ -183,6 +193,49 @@ function contrast(mode: string, foreground: string, background: string, neutral:
   return (high + 0.05) / (low + 0.05)
 }
 
+function toSrgb(color: Oklab): number[] {
+  return oklabToLinearSrgb(color).map(v => v <= 0.0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - 0.055)
+}
+
+function ratio(a: Oklab, b: Oklab): number {
+  const [high, low] = [luminance(a), luminance(b)].sort((x, y) => y - x) as [number, number]
+  return (high + 0.05) / (low + 0.05)
+}
+
+/**
+ * Paints `--ui-bg-highlight` over a background token the way the browser does: a translucent
+ * `color-mix(in oklab, <color> N%, transparent)` is composited in sRGB.
+ */
+function highlight(mode: string, background: string, neutral: typeof NEUTRALS[number]): Oklab {
+  const tokens = tokensFor(mode)
+  const palette = colors[neutral] as Record<string, string>
+  const value = tokens['--ui-bg-highlight']!
+  const translucent = value.match(/^color-mix\(in oklab, (.+) ([\d.]+)%, transparent\)$/)
+  if (!translucent) return resolve(value, tokens, palette)
+  const alpha = Number(translucent[2]) / 100
+  const [front, under] = [toSrgb(resolve(translucent[1]!, tokens, palette)), toSrgb(resolve(background, tokens, palette))]
+  return srgbToOklab(front.map((v, i) => v * alpha + under[i]! * (1 - alpha)))
+}
+
+function highlightOn(mode: string, background: string, neutral: typeof NEUTRALS[number]): number {
+  return ratio(highlight(mode, background, neutral), resolve(background, tokensFor(mode), colors[neutral] as Record<string, string>))
+}
+
+/**
+ * Focus ring of an input-like field: the theme color pulled toward `--ui-text-highlighted`
+ * by `--ui-focus-ring-mix`, as the `ring-focus-*` utility does. Theme colors use shade 500
+ * in light and 400 in dark.
+ */
+function focusRing(mode: string, palette: typeof PALETTES[number], neutral: typeof NEUTRALS[number]): Oklab {
+  const tokens = tokensFor(mode)
+  const neutrals = colors[neutral] as Record<string, string>
+  const shades = colors[palette] as Record<string, string>
+  const color = resolve(shades[mode.startsWith('dark') ? '400' : '500']!, tokens, neutrals)
+  const text = resolve('--ui-text-highlighted', tokens, neutrals)
+  const amount = Number(tokens['--ui-focus-ring-mix']?.match(/^([\d.]+)%$/)?.[1] ?? Number.NaN) / 100
+  return color.map((v, i) => v * (1 - amount) + text[i]! * amount) as Oklab
+}
+
 describe('control edge contrast', () => {
   it('resolves known WCAG pairs', () => {
     expect(contrast('light', 'black', 'white', 'slate')).toBeCloseTo(21, 1)
@@ -225,5 +278,48 @@ describe('high contrast tokens', () => {
   it('gives the light raised surface a hairline edge', () => {
     expect(blocks[':root, :host, .light']?.['--ui-shadow-raised']).toBe('var(--shadow-card)')
     expect(blocks['@media (prefers-contrast: more) :root, :host, .light']?.['--ui-shadow-raised']).toBe('var(--shadow-card-raised)')
+  })
+})
+
+describe('menu highlight', () => {
+  it.each(['light', 'dark'])('keeps the 50%% elevated highlight in %s', (mode) => {
+    expect(tokensFor(mode)['--ui-bg-highlight']).toBe(HIGHLIGHT_NORMAL)
+  })
+
+  describe.each(NEUTRALS)('with %s as neutral', (neutral) => {
+    it.each(['light-hc', 'dark-hc'])('%s: highlight is at least 1.3:1 on the menu', (mode) => {
+      expect(highlightOn(mode, '--ui-bg', neutral)).toBeGreaterThanOrEqual(1.3)
+    })
+
+    it.each(['light-hc', 'dark-hc'])('%s: muted text keeps 4.5:1 on the highlight', (mode) => {
+      const text = resolve('--ui-text-muted', tokensFor(mode), colors[neutral] as Record<string, string>)
+
+      expect(ratio(text, highlight(mode, '--ui-bg', neutral))).toBeGreaterThanOrEqual(4.5)
+    })
+
+    it.each(HC_PAIRS)('%s: high contrast highlight is stronger', (normal, hc) => {
+      expect(highlightOn(hc, '--ui-bg', neutral)).toBeGreaterThan(highlightOn(normal, '--ui-bg', neutral))
+    })
+  })
+})
+
+describe('focus ring', () => {
+  it.each(['light', 'dark'])('keeps the plain theme color in %s', (mode) => {
+    expect(tokensFor(mode)['--ui-focus-ring-mix']).toBe('0%')
+  })
+
+  it('defines the ring utility on the mix token', () => {
+    expect(css).toMatch(/@utility ring-focus-\* \{[^}]*--tw-ring-color: color-mix\(in oklab, --value\(--ring-color-\*, --color-\*\), var\(--ui-text-highlighted\) var\(--ui-focus-ring-mix, 0%\)\);/)
+  })
+
+  describe.each(NEUTRALS)('with %s as neutral', (neutral) => {
+    it.each(PALETTES.flatMap(palette => (['light-hc', 'dark-hc'] as const).flatMap(mode => ['--ui-bg', '--ui-bg-elevated'].map(background => [mode, palette, background] as const))))('%s: %s ring beats the rest edge on %s', (mode, palette, background) => {
+      const tokens = tokensFor(mode)
+      const neutrals = colors[neutral] as Record<string, string>
+      const back = resolve(background, tokens, neutrals)
+      const rest = ratio(resolve('--ui-border-control', tokens, neutrals), back)
+
+      expect(ratio(focusRing(mode, palette, neutral), back)).toBeGreaterThan(rest)
+    })
   })
 })
