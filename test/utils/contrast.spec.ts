@@ -313,13 +313,22 @@ describe('focus ring', () => {
   })
 
   describe.each(NEUTRALS)('with %s as neutral', (neutral) => {
-    it.each(PALETTES.flatMap(palette => (['light-hc', 'dark-hc'] as const).flatMap(mode => ['--ui-bg', '--ui-bg-elevated'].map(background => [mode, palette, background] as const))))('%s: %s ring beats the rest edge on %s', (mode, palette, background) => {
+    it.each(PALETTES.flatMap(palette => (['light-hc', 'dark-hc'] as const).flatMap(mode => ['--ui-bg', '--ui-bg-elevated'].map(background => [mode, palette, background] as const))))('%s: %s focus and highlight ring beats the rest edge on %s', (mode, palette, background) => {
       const tokens = tokensFor(mode)
       const neutrals = colors[neutral] as Record<string, string>
       const back = resolve(background, tokens, neutrals)
       const rest = ratio(resolve('--ui-border-control', tokens, neutrals), back)
 
       expect(ratio(focusRing(mode, palette, neutral), back)).toBeGreaterThan(rest)
+    })
+
+    it.each((['light-hc', 'dark-hc'] as const).flatMap(mode => ['--ui-bg', '--ui-bg-elevated'].map(background => [mode, background] as const)))('%s: neutral focus and highlight ring beats the rest edge on %s', (mode, background) => {
+      const tokens = tokensFor(mode)
+      const neutrals = colors[neutral] as Record<string, string>
+      const back = resolve(background, tokens, neutrals)
+      const ring = resolve(`color-mix(in oklab, var(--ui-border-inverted), var(--ui-text-highlighted) ${tokens['--ui-focus-ring-mix']})`, tokens, neutrals)
+
+      expect(ratio(ring, back)).toBeGreaterThan(ratio(resolve('--ui-border-control', tokens, neutrals), back))
     })
   })
 })

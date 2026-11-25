@@ -7,6 +7,7 @@ import editorSuggestionMenu from '../../src/theme/editor-suggestion-menu'
 import input from '../../src/theme/input'
 import inputMenu from '../../src/theme/input-menu'
 import inputNumber from '../../src/theme/input-number'
+import inputTags from '../../src/theme/input-tags'
 import listbox from '../../src/theme/listbox'
 import navigationMenu from '../../src/theme/navigation-menu'
 import pinInput from '../../src/theme/pin-input'
@@ -77,6 +78,29 @@ describe('focus ring', () => {
 
   it('InputMenu with tags rings the wrapper in the focus color', () => {
     expect(slots(inputMenu, { color: 'error', variant: 'outline', multiple: true }).base).toContain('has-focus-visible:ring-focus-error')
+  })
+
+  it.each([
+    ['Input', input],
+    ['Textarea', textarea],
+    ['InputNumber', inputNumber],
+    ['InputMenu', inputMenu],
+    ['InputTags', inputTags],
+    ['PinInput', pinInput],
+    ['Select', select],
+    ['SelectMenu', selectMenu]
+  ])('%s paints the highlight ring in the focus color', (_, theme) => {
+    const base = slots(theme, { color: 'error', variant: 'outline', highlight: true }).base!
+
+    expect(base).toContain('ring-focus-error')
+    expect(base).not.toContain('ring-error')
+  })
+
+  it('neutral highlighted fields use the inverted focus color', () => {
+    const base = slots(input, { color: 'neutral', variant: 'outline', highlight: true }).base!
+
+    expect(base).toContain('ring-focus-inverted')
+    expect(base).not.toContain('ring-inverted')
   })
 
   it('a consumer ring color replaces the focus color', () => {
