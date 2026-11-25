@@ -5,9 +5,9 @@ import input from './input'
 export default (options: Required<ModuleOptions>) => {
   return defu({
     slots: {
-      // Slot buttons sit at the top of the slot, so the top padding is their distance to the field's corner
-      leading: 'absolute start-0 flex items-start [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
-      trailing: 'absolute end-0 flex items-start [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]'
+      // Slot buttons sit at the top of the slot, so `--ui-frame-inset` is both the slot's inset and their distance to the field's corner
+      leading: 'absolute start-0 inset-y-(--ui-frame-inset) flex items-start [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
+      trailing: 'absolute end-0 inset-y-(--ui-frame-inset) flex items-start [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]'
     },
     variants: {
       autoresize: {
@@ -17,24 +17,24 @@ export default (options: Required<ModuleOptions>) => {
       },
       size: {
         xs: {
-          leading: 'ps-2 inset-y-1 [--ui-frame-inset:--spacing(1)]',
-          trailing: 'pe-2 inset-y-1 [--ui-frame-inset:--spacing(1)]'
+          leading: 'ps-2 [--ui-frame-inset:--spacing(1)]',
+          trailing: 'pe-2 [--ui-frame-inset:--spacing(1)]'
         },
         sm: {
-          leading: 'ps-2.5 inset-y-1.5 [--ui-frame-inset:--spacing(1.5)]',
-          trailing: 'pe-2.5 inset-y-1.5 [--ui-frame-inset:--spacing(1.5)]'
+          leading: 'ps-2.5 [--ui-frame-inset:--spacing(1.5)]',
+          trailing: 'pe-2.5 [--ui-frame-inset:--spacing(1.5)]'
         },
         md: {
-          leading: 'ps-2.5 inset-y-1.5 [--ui-frame-inset:--spacing(1.5)]',
-          trailing: 'pe-2.5 inset-y-1.5 [--ui-frame-inset:--spacing(1.5)]'
+          leading: 'ps-2.5 [--ui-frame-inset:--spacing(1.5)]',
+          trailing: 'pe-2.5 [--ui-frame-inset:--spacing(1.5)]'
         },
         lg: {
-          leading: 'ps-3 inset-y-2 [--ui-frame-inset:--spacing(2)]',
-          trailing: 'pe-3 inset-y-2 [--ui-frame-inset:--spacing(2)]'
+          leading: 'ps-3 [--ui-frame-inset:--spacing(2)]',
+          trailing: 'pe-3 [--ui-frame-inset:--spacing(2)]'
         },
         xl: {
-          leading: 'ps-3 inset-y-2 [--ui-frame-inset:--spacing(2)]',
-          trailing: 'pe-3 inset-y-2 [--ui-frame-inset:--spacing(2)]'
+          leading: 'ps-3 [--ui-frame-inset:--spacing(2)]',
+          trailing: 'pe-3 [--ui-frame-inset:--spacing(2)]'
         }
       }
     }
