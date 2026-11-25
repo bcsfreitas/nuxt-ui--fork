@@ -13,6 +13,10 @@ export default (options: Required<ModuleOptions>) => {
       autoresize: {
         true: {
           base: 'resize-none'
+        },
+        // The native resize handle is drawn square in the bottom-end corner and cuts a rounder curve: keep that corner at `rounded-md` while resizable
+        false: {
+          base: 'rounded-ee-(--ui-textarea-resize-radius) [--ui-textarea-resize-radius:min(var(--ui-frame-radius),var(--radius-md))] [&.resize-none]:[--ui-textarea-resize-radius:var(--ui-frame-radius)]'
         }
       }
     }

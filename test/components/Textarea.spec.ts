@@ -130,6 +130,33 @@ describe('Textarea', () => {
     expect(classes).not.toContain('px-(--px)')
   })
 
+  it('keeps the resize handle corner at `rounded-md` while resizable', async () => {
+    const wrapper = await mountSuspended(Textarea)
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining([
+      'rounded-(--ui-frame-radius)',
+      'rounded-ee-(--ui-textarea-resize-radius)',
+      '[--ui-textarea-resize-radius:min(var(--ui-frame-radius),var(--radius-md))]',
+      '[&.resize-none]:[--ui-textarea-resize-radius:var(--ui-frame-radius)]'
+    ]))
+  })
+
+  it('keeps the full corner with autoresize', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { autoresize: true } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toContain('resize-none')
+    expect(classes.some(name => name.includes('rounded-ee-'))).toBe(false)
+  })
+
+  it('lets a consumer `rounded-*` class replace the resize handle corner', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { ui: { base: 'rounded-full' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes.filter(name => /(^|:)rounded-/.test(name))).toEqual(['rounded-full'])
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(Textarea, {
       props: {
