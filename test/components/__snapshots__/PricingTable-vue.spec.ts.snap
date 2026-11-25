@@ -28,7 +28,7 @@ exports[`PricingTable > renders with as correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -200,7 +200,7 @@ exports[`PricingTable > renders with as correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -317,7 +317,7 @@ exports[`PricingTable > renders with caption correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -489,7 +489,7 @@ exports[`PricingTable > renders with caption correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -606,7 +606,7 @@ exports[`PricingTable > renders with caption slot correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -778,7 +778,7 @@ exports[`PricingTable > renders with caption slot correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -895,7 +895,7 @@ exports[`PricingTable > renders with class correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -1067,7 +1067,7 @@ exports[`PricingTable > renders with class correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -1666,7 +1666,7 @@ exports[`PricingTable > renders with tier-billing slot correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -1838,7 +1838,7 @@ exports[`PricingTable > renders with tier-billing slot correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -1952,7 +1952,7 @@ exports[`PricingTable > renders with tier-button slot correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -2115,7 +2115,7 @@ exports[`PricingTable > renders with tier-button slot correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -2226,7 +2226,7 @@ exports[`PricingTable > renders with tier-description slot correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">Tier description slot</div>
@@ -2398,7 +2398,7 @@ exports[`PricingTable > renders with tier-description slot correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">Tier description slot</div>
@@ -2515,7 +2515,7 @@ exports[`PricingTable > renders with tier-discount slot correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -2687,7 +2687,7 @@ exports[`PricingTable > renders with tier-discount slot correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -2804,7 +2804,7 @@ exports[`PricingTable > renders with tier-price slot correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -2976,7 +2976,7 @@ exports[`PricingTable > renders with tier-price slot correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -3093,7 +3093,7 @@ exports[`PricingTable > renders with tier-title slot correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Tier title slot</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Tier title slot</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -3265,7 +3265,7 @@ exports[`PricingTable > renders with tier-title slot correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Tier title slot</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Tier title slot</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -3382,7 +3382,7 @@ exports[`PricingTable > renders with tiers and sections correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -3554,7 +3554,7 @@ exports[`PricingTable > renders with tiers and sections correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -3671,7 +3671,7 @@ exports[`PricingTable > renders with ui correctly 1`] = `
         <th scope="col" data-slot="tier" class="p-6 text-start font-normal align-top h-full bg-elevated/50 border-x border-t border-default rounded-t-lg">
           <div data-slot="tierWrapper" class="flex flex-col md:h-full">
             <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+              <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
               <!--v-if--></span>
             </div>
             <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>
@@ -3843,7 +3843,7 @@ exports[`PricingTable > renders with ui correctly 1`] = `
     <li data-slot="item" class="p-6 flex flex-col border border-default rounded-lg bg-elevated/50">
       <div data-slot="tierWrapper" class="flex flex-col md:h-full">
         <div data-slot="tierTitleWrapper" class="flex items-center gap-3">
-          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
+          <div data-slot="tierTitle" class="text-lg font-semibold text-highlighted">Pro</div><span data-slot="tierBadge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary/10 text-primary ring ring-inset ring-primary/25 truncate"><!--v-if--><span data-slot="label" class="truncate">Most popular</span>
           <!--v-if--></span>
         </div>
         <div data-slot="tierDescription" class="text-sm font-normal text-muted mt-1">For medium and large teams</div>

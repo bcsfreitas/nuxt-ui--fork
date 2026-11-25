@@ -6,7 +6,7 @@ exports[`BlogPosts > renders with as correctly 1`] = `
     <!--v-if-->
     <div data-slot="header" class="relative overflow-hidden aspect-[16/9] w-full pointer-events-none"><img alt="Image alt" src="https://picsum.photos/640/360" data-slot="image" class="object-cover object-top w-full h-full"></div>
     <div data-slot="body" class="min-w-0 flex-1 flex flex-col p-4 sm:p-6">
-      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
         <!--v-if--></span><time datetime="2024-12-13T09:32:32.598Z" data-slot="date" class="text-sm text-toned">Dec 13, 2024</time>
       </div>
       <h2 data-slot="title" class="text-xl text-pretty font-semibold text-highlighted">Title</h2>
@@ -32,7 +32,7 @@ exports[`BlogPosts > renders with class correctly 1`] = `
     <!--v-if-->
     <div data-slot="header" class="relative overflow-hidden aspect-[16/9] w-full pointer-events-none"><img alt="Image alt" src="https://picsum.photos/640/360" data-slot="image" class="object-cover object-top w-full h-full"></div>
     <div data-slot="body" class="min-w-0 flex-1 flex flex-col p-4 sm:p-6">
-      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
         <!--v-if--></span><time datetime="2024-12-13T09:32:32.598Z" data-slot="date" class="text-sm text-toned">Dec 13, 2024</time>
       </div>
       <h2 data-slot="title" class="text-xl text-pretty font-semibold text-highlighted">Title</h2>
@@ -60,7 +60,7 @@ exports[`BlogPosts > renders with orientation vertical correctly 1`] = `
     <!--v-if-->
     <div data-slot="header" class="relative overflow-hidden aspect-[16/9] w-full pointer-events-none"><img alt="Image alt" src="https://picsum.photos/640/360" data-slot="image" class="object-cover object-top w-full h-full"></div>
     <div data-slot="body" class="min-w-0 flex-1 flex flex-col justify-center p-4 sm:p-6 lg:px-0">
-      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
         <!--v-if--></span><time datetime="2024-12-13T09:32:32.598Z" data-slot="date" class="text-sm text-toned">Dec 13, 2024</time>
       </div>
       <h2 data-slot="title" class="text-xl text-pretty font-semibold text-highlighted">Title</h2>
@@ -86,7 +86,7 @@ exports[`BlogPosts > renders with posts correctly 1`] = `
     <!--v-if-->
     <div data-slot="header" class="relative overflow-hidden aspect-[16/9] w-full pointer-events-none"><img alt="Image alt" src="https://picsum.photos/640/360" data-slot="image" class="object-cover object-top w-full h-full"></div>
     <div data-slot="body" class="min-w-0 flex-1 flex flex-col p-4 sm:p-6">
-      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+      <div data-slot="meta" class="flex items-center gap-2 mb-2"><span data-slot="badge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 ring ring-inset ring-accented text-default bg-elevated"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
         <!--v-if--></span><time datetime="2024-12-13T09:32:32.598Z" data-slot="date" class="text-sm text-toned">Dec 13, 2024</time>
       </div>
       <h2 data-slot="title" class="text-xl text-pretty font-semibold text-highlighted">Title</h2>

@@ -1,14 +1,16 @@
 import type { ModuleOptions } from '../module'
 import { fieldGroupVariant } from './field-group'
+import { controlLeadingIcon, controlPadding, controlPaddingSquare, controlRadius, controlTrailingIcon } from './utils/control-geometry'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
-    base: 'font-medium inline-flex items-center',
+    base: ['rounded-(--ui-badge-radius)', controlRadius('--ui-badge-radius'), 'font-medium inline-flex items-center', controlPadding],
     label: 'truncate',
-    leadingIcon: 'shrink-0',
-    leadingAvatar: 'shrink-0',
+    leadingIcon: controlLeadingIcon,
+    // Line-height box, read from the badge's absolute line heights below; the size's plain value is the upstream avatar for browsers without `lh`
+    leadingAvatar: 'shrink-0 size-(--ui-badge-avatar-size) supports-[height:1lh]:[--ui-badge-avatar-size:1lh]',
     leadingAvatarSize: '',
-    trailingIcon: 'shrink-0'
+    trailingIcon: controlTrailingIcon
   },
   variants: {
     ...fieldGroupVariant,
@@ -22,36 +24,32 @@ export default (options: Required<ModuleOptions>) => ({
       soft: '',
       subtle: ''
     },
+    // Each size keeps its upstream block padding as `--py`; the plain `--px` / radius are the fallback for browsers without `cap` / `lh`
     size: {
       xs: {
-        base: 'text-[8px]/3 px-1 py-0.5 gap-1 rounded-sm',
-        leadingIcon: 'size-3',
-        leadingAvatarSize: '3xs',
-        trailingIcon: 'size-3'
+        base: '[--py:--spacing(0.5)] [--px:--spacing(1)] [--ui-badge-radius:var(--radius-sm)] text-[8px]/3 gap-1',
+        leadingAvatar: '[--ui-badge-avatar-size:--spacing(4)]',
+        leadingAvatarSize: '3xs'
       },
       sm: {
-        base: 'text-[10px]/3 px-1.5 py-1 gap-1 rounded-sm',
-        leadingIcon: 'size-3',
-        leadingAvatarSize: '3xs',
-        trailingIcon: 'size-3'
+        base: '[--py:--spacing(1)] [--px:--spacing(1.5)] [--ui-badge-radius:var(--radius-sm)] text-[10px]/3 gap-1',
+        leadingAvatar: '[--ui-badge-avatar-size:--spacing(4)]',
+        leadingAvatarSize: '3xs'
       },
       md: {
-        base: 'text-xs px-2 py-1 gap-1 rounded-md',
-        leadingIcon: 'size-4',
-        leadingAvatarSize: '3xs',
-        trailingIcon: 'size-4'
+        base: '[--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1',
+        leadingAvatar: '[--ui-badge-avatar-size:--spacing(4)]',
+        leadingAvatarSize: '3xs'
       },
       lg: {
-        base: 'text-sm px-2 py-1 gap-1.5 rounded-md',
-        leadingIcon: 'size-5',
-        leadingAvatarSize: '2xs',
-        trailingIcon: 'size-5'
+        base: '[--py:--spacing(1)] [--px:--spacing(2)] text-sm/5 gap-1.5',
+        leadingAvatar: '[--ui-badge-avatar-size:--spacing(5)]',
+        leadingAvatarSize: '2xs'
       },
       xl: {
-        base: 'text-base px-2.5 py-1 gap-1.5 rounded-md',
-        leadingIcon: 'size-6',
-        leadingAvatarSize: '2xs',
-        trailingIcon: 'size-6'
+        base: '[--py:--spacing(1)] [--px:--spacing(2.5)] text-base/6 gap-1.5',
+        leadingAvatar: '[--ui-badge-avatar-size:--spacing(5)]',
+        leadingAvatarSize: '2xs'
       }
     },
     square: {
@@ -91,25 +89,8 @@ export default (options: Required<ModuleOptions>) => ({
     variant: 'subtle',
     class: 'ring ring-inset ring-accented text-default bg-elevated'
   }, {
-    size: 'xs',
     square: true,
-    class: 'p-0.5'
-  }, {
-    size: 'sm',
-    square: true,
-    class: 'p-1'
-  }, {
-    size: 'md',
-    square: true,
-    class: 'p-1'
-  }, {
-    size: 'lg',
-    square: true,
-    class: 'p-1'
-  }, {
-    size: 'xl',
-    square: true,
-    class: 'p-1'
+    class: controlPaddingSquare
   }],
   defaultVariants: {
     color: 'primary',
