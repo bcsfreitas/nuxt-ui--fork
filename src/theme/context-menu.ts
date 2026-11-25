@@ -31,7 +31,7 @@ export default (options: Required<ModuleOptions>) => ({
         itemLeadingIcon: 'text-default'
       },
       false: {
-        item: ['text-default data-highlighted:text-highlighted data-[state=open]:text-highlighted data-highlighted:before:bg-(--ui-bg-highlight) data-[state=open]:before:bg-(--ui-bg-highlight)', options.theme.transitions && 'transition-colors before:transition-colors'],
+        item: ['text-default data-highlighted:text-highlighted data-[state=open]:text-highlighted data-highlighted:before:bg-highlight data-[state=open]:before:bg-highlight', options.theme.transitions && 'transition-colors before:transition-colors'],
         itemLeadingIcon: ['text-dimmed group-data-highlighted:text-default group-data-[state=open]:text-default', options.theme.transitions && 'transition-colors']
       }
     },

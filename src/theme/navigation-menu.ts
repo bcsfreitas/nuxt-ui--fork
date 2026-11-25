@@ -87,7 +87,7 @@ export default (options: Required<ModuleOptions>) => ({
       false: {
         link: 'text-muted',
         linkLeadingIcon: 'text-dimmed',
-        childLink: ['hover:before:bg-(--ui-bg-highlight) text-default hover:text-highlighted', options.theme.transitions && 'transition-colors before:transition-colors'],
+        childLink: ['hover:before:bg-highlight text-default hover:text-highlighted', options.theme.transitions && 'transition-colors before:transition-colors'],
         childLinkIcon: ['text-dimmed group-hover:text-default', options.theme.transitions && 'transition-colors']
       }
     },
@@ -154,7 +154,7 @@ export default (options: Required<ModuleOptions>) => ({
     active: false,
     variant: 'pill',
     class: {
-      link: ['hover:text-highlighted hover:before:bg-(--ui-bg-highlight)', options.theme.transitions && 'transition-colors before:transition-colors'],
+      link: ['hover:text-highlighted hover:before:bg-highlight', options.theme.transitions && 'transition-colors before:transition-colors'],
       linkLeadingIcon: ['group-hover:text-default', options.theme.transitions && 'transition-colors']
     }
   }, {
@@ -172,7 +172,7 @@ export default (options: Required<ModuleOptions>) => ({
     highlight: true,
     orientation: 'horizontal',
     class: {
-      link: 'data-[state=open]:before:bg-(--ui-bg-highlight)'
+      link: 'data-[state=open]:before:bg-highlight'
     }
   }, {
     disabled: false,
@@ -181,7 +181,7 @@ export default (options: Required<ModuleOptions>) => ({
     active: false,
     orientation: 'horizontal',
     class: {
-      link: 'data-[state=open]:before:bg-(--ui-bg-highlight)'
+      link: 'data-[state=open]:before:bg-highlight'
     }
   }, ...(options.theme.colors || []).map((color: string) => ({
     color,
@@ -212,7 +212,7 @@ export default (options: Required<ModuleOptions>) => ({
     highlight: true,
     disabled: false,
     class: {
-      link: ['hover:before:bg-(--ui-bg-highlight)', options.theme.transitions && 'before:transition-colors']
+      link: ['hover:before:bg-highlight', options.theme.transitions && 'before:transition-colors']
     }
   }, {
     disabled: false,

@@ -28,19 +28,26 @@ describe('menu highlight', () => {
   ])('%s paints highlighted items with the highlight token', (_, theme) => {
     const item = slots(theme).item!
 
-    expect(item.some(cls => /^data-highlighted:(?:not-data-disabled:)?before:bg-\(--ui-bg-highlight\)$/.test(cls))).toBe(true)
+    expect(item.some(cls => /^data-highlighted:(?:not-data-disabled:)?before:bg-highlight$/.test(cls))).toBe(true)
     expect(item.some(cls => cls.endsWith('before:bg-elevated/50'))).toBe(false)
+  })
+
+  it('a consumer background on highlighted items replaces the token', () => {
+    const item = slots(dropdownMenu, {}, { item: 'data-highlighted:before:bg-error/20' }).item!
+
+    expect(item).toContain('data-highlighted:before:bg-error/20')
+    expect(item).not.toContain('data-highlighted:before:bg-highlight')
   })
 
   it('DropdownMenu and ContextMenu also paint open submenus with the token', () => {
     for (const theme of [dropdownMenu, contextMenu]) {
-      expect(slots(theme).item).toContain('data-[state=open]:before:bg-(--ui-bg-highlight)')
+      expect(slots(theme).item).toContain('data-[state=open]:before:bg-highlight')
     }
   })
 
   it('NavigationMenu hovers links with the token', () => {
-    expect(slots(navigationMenu, { orientation: 'horizontal' }).link).toContain('hover:before:bg-(--ui-bg-highlight)')
-    expect(slots(navigationMenu, { orientation: 'horizontal' }).childLink).toContain('hover:before:bg-(--ui-bg-highlight)')
+    expect(slots(navigationMenu, { orientation: 'horizontal' }).link).toContain('hover:before:bg-highlight')
+    expect(slots(navigationMenu, { orientation: 'horizontal' }).childLink).toContain('hover:before:bg-highlight')
   })
 })
 
