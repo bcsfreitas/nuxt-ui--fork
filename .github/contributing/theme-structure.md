@@ -112,6 +112,33 @@ export default (options: Required<ModuleOptions>) => ({
 })
 ```
 
+## Control Geometry
+
+Controls on the Button size scale share one geometry recipe, `src/theme/utils/control-geometry.ts`. Each size sets only the block padding `--py`; the optical inline padding, the line-height icons and the growing radius derive from it, and browsers without `lh`/`cap` keep the upstream padding and `rounded-md`.
+
+```ts
+import { controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlRadius } from './utils/control-geometry'
+
+export default {
+  slots: {
+    base: ['rounded-(--ui-badge-radius)', controlRadius('--ui-badge-radius'), controlPadding],
+    leadingIcon: controlLeadingIcon
+  },
+  variants: {
+    size: {
+      md: { base: `${controlPy.md} text-sm` }
+    }
+  },
+  compoundVariants: [{ square: true, class: controlPaddingSquare }]
+}
+```
+
+- Read the radius with a plain `rounded-(--var)`, never a `supports-[...]:rounded-*`: tailwind-merge only drops conflicts with the same variant, so a consumer `rounded-full` would lose.
+- A compound variant that overrides an enhanced variable repeats its `supports-[...]:` form (`controlPaddingSquare` does).
+- A size whose old padding isn't `py + --spacing(1)` adds a plain `[--px:...]`: it replaces the fallback, the enhanced `--px` stays.
+- `controlRadius('--ui-frame-radius')` publishes the corner to nested frame shapes; declare it on the element that sets `--py`.
+- Fixed-height controls without padding derive `--py` with `controlPyFromHeight('--spacing(5)')`.
+
 ## Semantic Colors
 
 Always use semantic colors, never Tailwind palette colors:
