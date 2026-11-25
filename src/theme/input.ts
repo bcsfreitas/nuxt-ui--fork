@@ -1,6 +1,6 @@
 import type { ModuleOptions } from '../module'
 import { fieldGroupVariantWithRoot } from './field-group'
-import { controlEnhanced, controlPadding, controlPy, controlRadius } from './utils/control-geometry'
+import { controlEnhanced, controlIcon, controlIconSize, controlPadding, controlPy, controlRadius } from './utils/control-geometry'
 
 /**
  * The field frame: the element that holds the size's `--py` and is an ancestor of both the text and the
@@ -10,13 +10,13 @@ import { controlEnhanced, controlPadding, controlPy, controlRadius } from './uti
  */
 export const fieldFrame = `${controlRadius('--ui-frame-radius')} [--ui-field-inset:calc(var(--py)_+_--spacing(1))] ${controlEnhanced}:[--ui-field-inset:var(--py)] ${controlEnhanced}:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)]`
 
-// Per size: `--py` and the upstream text padding next to an icon, kept for browsers without `cap` / `lh`
+// Per size: `--py`, and the upstream icon box and text padding next to an icon, kept for browsers without `cap` / `lh`
 export const fieldFrameSize = {
-  xs: `${controlPy.xs} [--ui-field-icon-padding:--spacing(7)]`,
-  sm: `${controlPy.sm} [--ui-field-icon-padding:--spacing(8)]`,
-  md: `${controlPy.md} [--ui-field-icon-padding:--spacing(9)]`,
-  lg: `${controlPy.lg} [--ui-field-icon-padding:--spacing(10)]`,
-  xl: `${controlPy.xl} [--ui-field-icon-padding:--spacing(11)]`
+  xs: `${controlPy.xs} ${controlIconSize.xs} [--ui-field-icon-padding:--spacing(7)]`,
+  sm: `${controlPy.sm} ${controlIconSize.sm} [--ui-field-icon-padding:--spacing(8)]`,
+  md: `${controlPy.md} ${controlIconSize.md} [--ui-field-icon-padding:--spacing(9)]`,
+  lg: `${controlPy.lg} ${controlIconSize.lg} [--ui-field-icon-padding:--spacing(10)]`,
+  xl: `${controlPy.xl} ${controlIconSize.xl} [--ui-field-icon-padding:--spacing(11)]`
 } as const
 
 export default (options: Required<ModuleOptions>) => ({
@@ -25,11 +25,11 @@ export default (options: Required<ModuleOptions>) => ({
     base: ['w-full rounded-(--ui-frame-radius) border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
     // Slot buttons sit closest to the block edge (a button one size smaller leaves 2px), so their curve follows that gap
     leading: 'absolute inset-y-0 start-0 flex items-center ps-(--ui-field-inset) [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
-    leadingIcon: 'shrink-0 size-[1lh] text-dimmed',
+    leadingIcon: `${controlIcon} text-dimmed`,
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
     trailing: 'absolute inset-y-0 end-0 flex items-center pe-(--ui-field-inset) [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
-    trailingIcon: 'shrink-0 size-[1lh] text-dimmed'
+    trailingIcon: `${controlIcon} text-dimmed`
   },
   variants: {
     ...fieldGroupVariantWithRoot,

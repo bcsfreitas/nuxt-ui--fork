@@ -1,5 +1,5 @@
 import type { ModuleOptions } from '../module'
-import { controlLeadingIcon, controlPadding, controlPy, controlRadius } from './utils/control-geometry'
+import { controlIconSize, controlLeadingIcon, controlPadding, controlPy, controlRadius } from './utils/control-geometry'
 
 // Active-tab highlight shown before reka-ui's `TabsIndicator` mounts (SSR / pre-hydration).
 // reka-ui only renders the real indicator on the client (it needs DOM measurements), so we gate
@@ -56,24 +56,24 @@ export default (options: Required<ModuleOptions>) => ({
     },
     size: {
       xs: {
-        trigger: `${controlPy.xs} text-xs gap-1`,
+        trigger: `${controlPy.xs} ${controlIconSize.xs} text-xs gap-1`,
         leadingAvatarSize: '3xs'
       },
       sm: {
-        trigger: `${controlPy.sm} text-xs gap-1.5`,
+        trigger: `${controlPy.sm} ${controlIconSize.sm} text-xs gap-1.5`,
         leadingAvatarSize: '3xs'
       },
       md: {
         // Upstream md padding is wider than `--py + --spacing(1)`: keep it for browsers without `cap`
-        trigger: `${controlPy.md} [--px:--spacing(3)] text-sm gap-1.5`,
+        trigger: `${controlPy.md} ${controlIconSize.md} [--px:--spacing(3)] text-sm gap-1.5`,
         leadingAvatarSize: '2xs'
       },
       lg: {
-        trigger: `${controlPy.lg} text-sm gap-2`,
+        trigger: `${controlPy.lg} ${controlIconSize.lg} text-sm gap-2`,
         leadingAvatarSize: '2xs'
       },
       xl: {
-        trigger: `${controlPy.xl} text-base gap-2`,
+        trigger: `${controlPy.xl} ${controlIconSize.xl} text-base gap-2`,
         leadingAvatarSize: 'xs'
       }
     }

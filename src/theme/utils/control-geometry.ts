@@ -39,10 +39,22 @@ export const controlPadding = `py-(--py) px-(--px) [--px:calc(var(--py)_+_--spac
 // Square / icon-only control. Repeats the enhanced form: a compound variant is emitted after the base's enhanced `--px` and must override it too
 export const controlPaddingSquare = `[--px:var(--py)] ${controlEnhanced}:[--px:var(--py)]`
 
-// Icons at the line height, pulled into the inline padding so they sit `--py` from every edge
-export const controlLeadingIcon = `shrink-0 size-[1lh] ${controlEnhanced}:ms-[calc(var(--py)_-_var(--px))]`
+// Upstream icon box per size on the Button scale: declare it on the padded element, browsers without `lh` keep it
+export const controlIconSize = {
+  xs: '[--ui-control-icon-size:--spacing(4)]',
+  sm: '[--ui-control-icon-size:--spacing(4)]',
+  md: '[--ui-control-icon-size:--spacing(5)]',
+  lg: '[--ui-control-icon-size:--spacing(5)]',
+  xl: '[--ui-control-icon-size:--spacing(6)]'
+} as const
 
-export const controlTrailingIcon = `shrink-0 size-[1lh] ${controlEnhanced}:me-[calc(var(--py)_-_var(--px))]`
+// Icon at the line height, read through `--ui-control-icon-size` so a consumer `size-*` still wins and old browsers keep the size's fallback
+export const controlIcon = 'shrink-0 size-(--ui-control-icon-size) supports-[height:1lh]:[--ui-control-icon-size:1lh]'
+
+// Icons pulled into the inline padding so they sit `--py` from every edge
+export const controlLeadingIcon = `${controlIcon} ${controlEnhanced}:ms-[calc(var(--py)_-_var(--px))]`
+
+export const controlTrailingIcon = `${controlIcon} ${controlEnhanced}:me-[calc(var(--py)_-_var(--px))]`
 
 /**
  * Declares the corner in `variable`: `--ui-radius + (1lh - 1rem) / 4 + --py`, concentric with a

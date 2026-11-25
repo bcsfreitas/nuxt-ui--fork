@@ -1,6 +1,6 @@
 import type { ModuleOptions } from '../module'
 import { fieldGroupVariant } from './field-group'
-import { controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlRadius, controlTrailingIcon } from './utils/control-geometry'
+import { controlIconSize, controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlRadius, controlTrailingIcon } from './utils/control-geometry'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
@@ -28,23 +28,23 @@ export default (options: Required<ModuleOptions>) => ({
     },
     size: {
       xs: {
-        base: `${controlPy.xs} text-xs gap-1`,
+        base: `${controlPy.xs} ${controlIconSize.xs} text-xs gap-1`,
         leadingAvatarSize: '3xs'
       },
       sm: {
-        base: `${controlPy.sm} text-xs gap-1.5`,
+        base: `${controlPy.sm} ${controlIconSize.sm} text-xs gap-1.5`,
         leadingAvatarSize: '3xs'
       },
       md: {
-        base: `${controlPy.md} text-sm gap-1.5`,
+        base: `${controlPy.md} ${controlIconSize.md} text-sm gap-1.5`,
         leadingAvatarSize: '2xs'
       },
       lg: {
-        base: `${controlPy.lg} text-sm gap-2`,
+        base: `${controlPy.lg} ${controlIconSize.lg} text-sm gap-2`,
         leadingAvatarSize: '2xs'
       },
       xl: {
-        base: `${controlPy.xl} text-base gap-2`,
+        base: `${controlPy.xl} ${controlIconSize.xl} text-base gap-2`,
         leadingAvatarSize: 'xs'
       }
     },
