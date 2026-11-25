@@ -34,6 +34,40 @@ describe('Kbd', () => {
     expect(await axe(wrapper.element)).toHaveNoViolations()
   })
 
+  it.each(sizes as string[])('derives its block padding and radius from the fixed height at size %s', async (size) => {
+    const wrapper = await mountSuspended(Kbd, { props: { value: 'K', size: size as any } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('rounded-(--ui-kbd-radius)')
+    expect(classes.some(name => name.startsWith('[--py:calc((--spacing('))).toBe(true)
+    expect(classes.some(name => name.startsWith('supports-[height:1lh]:[--ui-kbd-radius:'))).toBe(true)
+    expect(classes).toContain('px-1')
+  })
+
+  it('keeps today\'s `rounded-sm` corner without `lh`', async () => {
+    const wrapper = await mountSuspended(Kbd, { props: { value: 'K' } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('[--ui-kbd-radius:var(--radius-sm)]')
+    expect(classes).not.toContain('[--ui-kbd-radius:var(--radius-md)]')
+  })
+
+  it('lets a consumer `rounded-*` class replace the derived radius', async () => {
+    const wrapper = await mountSuspended(Kbd, { props: { value: 'K', class: 'rounded-full' } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('rounded-full')
+    expect(classes).not.toContain('rounded-(--ui-kbd-radius)')
+  })
+
+  it('lets a `ui.base` radius replace the derived radius', async () => {
+    const wrapper = await mountSuspended(Kbd, { props: { value: 'K', ui: { base: 'rounded-none' } } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('rounded-none')
+    expect(classes).not.toContain('rounded-(--ui-kbd-radius)')
+  })
+
   it('hydrates platform-specific keys without mismatch after another Kbd has mounted', async () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const mounted = await mountSuspended(Kbd, { props: { value: 'meta' } })
