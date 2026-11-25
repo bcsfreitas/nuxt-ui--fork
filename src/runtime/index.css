@@ -88,6 +88,29 @@
     --ui-chart-5: var(--color-rose-400, oklch(71.2% 0.194 13.428));
     --ui-chart-6: var(--color-cyan-400, oklch(78.9% 0.154 211.53));
   }
+
+  /* When the OS asks for more contrast: control edges reach about 4.5:1, borders become visible, secondary text moves one step toward the main text */
+  @media (prefers-contrast: more) {
+    :root, :host, .light {
+      --ui-text-dimmed: var(--ui-color-neutral-500);
+      --ui-text-muted: var(--ui-color-neutral-600);
+
+      --ui-border: var(--ui-color-neutral-300);
+      --ui-border-muted: var(--ui-color-neutral-300);
+      --ui-border-accented: var(--ui-color-neutral-400);
+      --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-500) 75%, var(--ui-color-neutral-600));
+    }
+
+    .dark {
+      --ui-text-dimmed: var(--ui-color-neutral-400);
+      --ui-text-muted: var(--ui-color-neutral-300);
+
+      --ui-border: var(--ui-color-neutral-700);
+      --ui-border-muted: var(--ui-color-neutral-600);
+      --ui-border-accented: var(--ui-color-neutral-600);
+      --ui-border-control: color-mix(in oklab, var(--ui-color-neutral-400) 75%, var(--ui-color-neutral-500));
+    }
+  }
 }
 
 @utility roundness-* {
