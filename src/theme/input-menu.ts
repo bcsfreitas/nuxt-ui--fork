@@ -10,13 +10,13 @@ export default (options: Required<ModuleOptions>) => {
       trailing: 'group absolute inset-y-0 end-0 flex items-center disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
       trailingClear: 'p-0',
       arrow: 'fill-bg stroke-default',
-      content: 'max-h-[min(15rem,var(--reka-combobox-content-available-height,15rem))] w-(--reka-combobox-trigger-width) bg-default shadow-lg rounded-md ring ring-default overflow-hidden data-[state=open]:animate-[scale-in_100ms_var(--ease-out)] data-[state=closed]:animate-[scale-out_100ms_var(--ease-out)] origin-(--reka-combobox-content-transform-origin) pointer-events-auto flex flex-col',
+      content: 'max-h-[min(15rem,var(--reka-combobox-content-available-height,15rem))] w-(--reka-combobox-trigger-width) bg-default shadow-lg rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-xl)] ring ring-default overflow-hidden data-[state=open]:animate-[scale-in_100ms_var(--ease-out)] data-[state=closed]:animate-[scale-out_100ms_var(--ease-out)] origin-(--reka-combobox-content-transform-origin) pointer-events-auto flex flex-col',
       viewport: 'relative scroll-py-1 overflow-y-auto flex-1',
-      group: 'p-1 isolate',
+      group: 'p-1 [--ui-frame-inset:calc(--spacing(1)+1px)] isolate',
       empty: 'text-center text-muted',
       label: 'font-semibold text-highlighted',
       separator: '-mx-1 my-1 h-px bg-border',
-      item: ['group relative w-full flex items-start gap-1.5 p-1.5 text-sm select-none outline-none before:absolute before:z-[-1] before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75 text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-elevated/50', options.theme.transitions && 'transition-colors before:transition-colors'],
+      item: ['group relative w-full flex items-start gap-1.5 p-1.5 text-sm select-none outline-none before:absolute before:z-[-1] before:inset-px frame-shape-md before:rounded-(--ui-frame-shape-radius) data-disabled:cursor-not-allowed data-disabled:opacity-75 text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-elevated/50', options.theme.transitions && 'transition-colors before:transition-colors'],
       itemLeadingIcon: ['shrink-0 text-dimmed group-data-highlighted:not-group-data-disabled:text-default', options.theme.transitions && 'transition-colors'],
       itemLeadingAvatar: 'shrink-0',
       itemLeadingAvatarSize: '',
@@ -44,7 +44,7 @@ export default (options: Required<ModuleOptions>) => {
       },
       virtualize: {
         true: {
-          viewport: 'p-1 isolate'
+          viewport: 'p-1 [--ui-frame-inset:calc(--spacing(1)+1px)] isolate'
         },
         false: {
           viewport: 'divide-y divide-default'
