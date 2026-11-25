@@ -112,6 +112,35 @@ export default (options: Required<ModuleOptions>) => ({
 })
 ```
 
+## Control Geometry
+
+Controls on the Button size scale share one geometry recipe, `src/theme/utils/control-geometry.ts`. Each size sets only the block padding `--py`; the optical inline padding, the line-height icons and the growing radius derive from it, and browsers without `lh`/`cap` keep the upstream padding and `rounded-md`.
+
+```ts
+import { controlIconSize, controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlRadius } from './utils/control-geometry'
+
+export default {
+  slots: {
+    base: ['rounded-(--ui-badge-radius)', controlRadius('--ui-badge-radius'), controlPadding],
+    leadingIcon: controlLeadingIcon
+  },
+  variants: {
+    size: {
+      md: { base: `${controlPy.md} ${controlIconSize.md} text-sm` }
+    }
+  },
+  compoundVariants: [{ square: true, class: controlPaddingSquare }]
+}
+```
+
+- Read the radius with a plain `rounded-(--var)`, never a `supports-[...]:rounded-*`: tailwind-merge only drops conflicts with the same variant, so a consumer `rounded-full` would lose. The icon pull-in works the same way: `controlLeadingIcon` / `controlTrailingIcon` read `--ui-control-icon-inset` with a plain `ms-(--var)` / `me-(--var)`, so a consumer `ms-0` wins.
+- A compound variant that overrides an enhanced variable repeats its `supports-[...]:` form (`controlPaddingSquare` does).
+- Values that read both `cap` and `lh` are gated on both (`controlEnhanced`): Firefox 97–119 has `cap` without `lh`.
+- Icons read `--ui-control-icon-size`: each size declares the upstream box on the padded element (`controlIconSize.md`, or a literal `[--ui-control-icon-size:--spacing(4)]` off the Button scale), so browsers without `lh` keep it.
+- A size whose old padding isn't `py + --spacing(1)` adds a plain `[--px:...]`: it replaces the fallback, the enhanced `--px` stays.
+- `controlRadius('--ui-frame-radius')` publishes the corner to nested frame shapes; declare it on the element that sets `--py`.
+- Fixed-height controls without padding derive `--py` with `controlPyFromHeight('--spacing(5)')`.
+
 ## Semantic Colors
 
 Always use semantic colors, never Tailwind palette colors:

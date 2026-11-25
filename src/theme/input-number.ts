@@ -1,16 +1,18 @@
 import type { ModuleOptions } from '../module'
 import inputTheme from './input'
 import { fieldGroupVariantWithRoot } from './field-group'
+import { controlPadding, controlPy, controlRadius } from './utils/control-geometry'
 
 export default (options: Required<ModuleOptions>) => {
   const input = inputTheme(options)
 
   return {
     slots: {
-      root: 'relative inline-flex items-center',
-      base: ['w-full rounded-md border-0 placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
-      increment: 'absolute flex items-center',
-      decrement: 'absolute flex items-center'
+      root: ['relative inline-flex items-center', controlRadius('--ui-frame-radius')],
+      base: ['w-full rounded-(--ui-frame-radius) border-0 placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75', controlPadding, options.theme.transitions && 'transition-colors'],
+      // The buttons span the field's block edge to edge, so their curve follows the field's corner
+      increment: 'absolute flex items-center [--ui-frame-inset:0px] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
+      decrement: 'absolute flex items-center [--ui-frame-inset:0px] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]'
     },
     variants: {
       ...fieldGroupVariantWithRoot,
@@ -19,11 +21,26 @@ export default (options: Required<ModuleOptions>) => {
         neutral: ''
       },
       size: {
-        xs: 'px-2 py-1 text-sm/4 gap-1',
-        sm: 'px-2.5 py-1.5 text-sm/4 gap-1.5',
-        md: 'px-2.5 py-1.5 text-base/5 gap-1.5',
-        lg: 'px-3 py-2 text-base/5 gap-2',
-        xl: 'px-3 py-2 text-base gap-2'
+        xs: {
+          root: controlPy.xs,
+          base: 'text-sm/4 gap-1'
+        },
+        sm: {
+          root: controlPy.sm,
+          base: 'text-sm/4 gap-1.5'
+        },
+        md: {
+          root: controlPy.md,
+          base: 'text-base/5 gap-1.5'
+        },
+        lg: {
+          root: controlPy.lg,
+          base: 'text-base/5 gap-2'
+        },
+        xl: {
+          root: controlPy.xl,
+          base: 'text-base gap-2'
+        }
       },
       variant: {
         ...input.variants.variant
@@ -61,7 +78,7 @@ export default (options: Required<ModuleOptions>) => {
     compoundVariants: [...(options.theme.colors || []).map((color: string) => ({
       color,
       variant: ['outline', 'subtle'],
-      class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-${color}`
+      class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-focus-${color}`
     })), ...(options.theme.colors || []).map((color: string) => ({
       color,
       variant: ['soft', 'ghost'],
@@ -69,11 +86,11 @@ export default (options: Required<ModuleOptions>) => {
     })), ...(options.theme.colors || []).map((color: string) => ({
       color,
       highlight: true,
-      class: `ring ring-inset ring-${color}`
+      class: `ring ring-inset ring-focus-${color}`
     })), {
       color: 'neutral',
       variant: ['outline', 'subtle'],
-      class: 'outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+      class: 'outline-inverted/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-focus-inverted'
     }, {
       color: 'neutral',
       variant: ['soft', 'ghost'],
@@ -81,7 +98,7 @@ export default (options: Required<ModuleOptions>) => {
     }, {
       color: 'neutral',
       highlight: true,
-      class: 'ring ring-inset ring-inverted'
+      class: 'ring ring-inset ring-focus-inverted'
     }, {
       orientation: 'horizontal',
       decrement: false,

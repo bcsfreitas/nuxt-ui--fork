@@ -4,6 +4,7 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { renderEach } from '../component-render'
 import { flushPromises, mount } from '@vue/test-utils'
 import Textarea from '../../src/runtime/components/Textarea.vue'
+import UButton from '../../src/runtime/components/Button.vue'
 import theme from '#build/ui/textarea'
 import { renderForm } from '../utils/form'
 import type { FormInputEvents } from '../../src/module'
@@ -48,6 +49,113 @@ describe('Textarea', () => {
     ['with leading slot', { slots: { leading: () => 'Leading slot' } }],
     ['with trailing slot', { slots: { trailing: () => 'Trailing slot' } }]
   ])
+
+  describe('slot buttons', () => {
+    async function mountWithSlotButtons(props: Record<string, any> = {}) {
+      return mountSuspended({
+        components: { UButton, UTextarea: Textarea },
+        setup: () => ({ props }),
+        template: `<UTextarea v-bind="props"><template #leading><UButton icon="i-lucide-plus" size="sm" /></template><template #trailing><UButton icon="i-lucide-x" size="sm" class="rounded-full" /></template></UTextarea>`
+      })
+    }
+
+    it('publishes the field radius as the frame', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      expect(wrapper.get('[data-slot="root"]').classes()).toContain('[--ui-frame-radius:var(--radius-md)]')
+    })
+
+    it('hands the concentric radius to buttons in the leading and trailing slots', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      for (const slot of ['leading', 'trailing']) {
+        expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toEqual(expect.arrayContaining(['[&_:where(button,a)]:frame-shape-(--ui-button-radius)', '[&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]']))
+      }
+    })
+
+    it('lets a consumer radius class win on a slot button', async () => {
+      const wrapper = await mountWithSlotButtons()
+      const button = wrapper.get('[data-slot="trailing"] button')
+
+      expect(button.classes()).toContain('rounded-full')
+      expect(button.classes().join(' ')).not.toContain('--ui-button-frame-radius')
+    })
+
+    test.each([
+      ['xs', '[--ui-frame-inset:var(--py)]'],
+      ['sm', '[--ui-frame-inset:var(--py)]'],
+      ['md', '[--ui-frame-inset:var(--py)]'],
+      ['lg', '[--ui-frame-inset:var(--py)]'],
+      ['xl', '[--ui-frame-inset:var(--py)]']
+    ])('insets slot buttons from the top edge at size %s', async (size, inset) => {
+      const wrapper = await mountWithSlotButtons({ size })
+
+      for (const slot of ['leading', 'trailing']) {
+        const classes = wrapper.get(`[data-slot="${slot}"]`).classes()
+
+        expect(classes).toContain(inset)
+        expect(classes).toContain('inset-y-(--ui-frame-inset)')
+        expect(classes.filter(cls => cls.startsWith('inset-y-'))).toHaveLength(1)
+      }
+    })
+
+    test('a consumer inset moves the slot and the button curve together', async () => {
+      const wrapper = await mountWithSlotButtons({ ui: { leading: '[--ui-frame-inset:--spacing(3)]' } })
+      const classes = wrapper.get('[data-slot="leading"]').classes()
+
+      expect(classes).toContain('[--ui-frame-inset:--spacing(3)]')
+      expect(classes).not.toContain('[--ui-frame-inset:var(--py)]')
+      expect(classes).toContain('inset-y-(--ui-frame-inset)')
+    })
+  })
+
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(Textarea, { props: { icon: 'i-lucide-search', size: size as any } })
+
+    const frame = wrapper.classes()
+    expect(frame.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(frame).toContain('supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))]')
+    expect(wrapper.get('[data-slot="base"]').classes()).toEqual(expect.arrayContaining(['py-(--py)', 'px-(--px)', 'rounded-(--ui-frame-radius)', 'ps-(--ui-field-icon-padding)']))
+    expect(wrapper.get('[data-slot="leading"]').classes()).toContain('ps-(--ui-field-inset)')
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
+    expect(wrapper.get('[data-slot="leading"]').classes()).toContain('[--ui-frame-inset:var(--py)]')
+  })
+
+  it('lets a consumer `rounded-*` / padding class replace the derived geometry', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { ui: { base: 'rounded-full px-4' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining(['rounded-full', 'px-4']))
+    expect(classes).not.toContain('rounded-(--ui-frame-radius)')
+    expect(classes).not.toContain('px-(--px)')
+  })
+
+  it('keeps the resize handle corner at `rounded-md` while resizable', async () => {
+    const wrapper = await mountSuspended(Textarea)
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining([
+      'rounded-(--ui-frame-radius)',
+      'rounded-ee-(--ui-textarea-resize-radius)',
+      '[--ui-textarea-resize-radius:min(var(--ui-frame-radius),var(--radius-md))]',
+      '[&.resize-none]:[--ui-textarea-resize-radius:var(--ui-frame-radius)]'
+    ]))
+  })
+
+  it('keeps the full corner with autoresize', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { autoresize: true } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toContain('resize-none')
+    expect(classes.some(name => name.includes('rounded-ee-'))).toBe(false)
+  })
+
+  it('lets a consumer `rounded-*` class replace the resize handle corner', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { ui: { base: 'rounded-full' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes.filter(name => /(?:^|:)rounded-/.test(name))).toEqual(['rounded-full'])
+  })
 
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(Textarea, {

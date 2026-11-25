@@ -98,7 +98,7 @@ slots:
 
 ### Variant
 
-Use the `variant` prop to change the variant of the Card. Defaults to `shaded`, a card lifted off the page by a soft shadow instead of a border.
+Use the `variant` prop to change the variant of the Card. Defaults to `shaded`, a card lifted off the page by a soft shadow instead of a border. In dark mode, where a shadow does not show, it uses the elevated background with a hairline edge.
 
 ::component-code
 ---

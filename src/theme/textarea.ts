@@ -5,35 +5,18 @@ import input from './input'
 export default (options: Required<ModuleOptions>) => {
   return defu({
     slots: {
-      leading: 'absolute start-0 flex items-start',
-      trailing: 'absolute end-0 flex items-start'
+      // Slot buttons sit at the top of the slot, so `--ui-frame-inset` (the field's `--py`) is both the slot's inset and their distance to the field's corner
+      leading: 'absolute start-0 inset-y-(--ui-frame-inset) flex items-start ps-(--ui-field-inset) [--ui-frame-inset:var(--py)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
+      trailing: 'absolute end-0 inset-y-(--ui-frame-inset) flex items-start pe-(--ui-field-inset) [--ui-frame-inset:var(--py)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]'
     },
     variants: {
       autoresize: {
         true: {
           base: 'resize-none'
-        }
-      },
-      size: {
-        xs: {
-          leading: 'ps-2 inset-y-1',
-          trailing: 'pe-2 inset-y-1'
         },
-        sm: {
-          leading: 'ps-2.5 inset-y-1.5',
-          trailing: 'pe-2.5 inset-y-1.5'
-        },
-        md: {
-          leading: 'ps-2.5 inset-y-1.5',
-          trailing: 'pe-2.5 inset-y-1.5'
-        },
-        lg: {
-          leading: 'ps-3 inset-y-2',
-          trailing: 'pe-3 inset-y-2'
-        },
-        xl: {
-          leading: 'ps-3 inset-y-2',
-          trailing: 'pe-3 inset-y-2'
+        // The native resize handle is drawn square in the bottom-end corner and cuts a rounder curve: keep that corner at `rounded-md` while resizable
+        false: {
+          base: 'rounded-ee-(--ui-textarea-resize-radius) [--ui-textarea-resize-radius:min(var(--ui-frame-radius),var(--radius-md))] [&.resize-none]:[--ui-textarea-resize-radius:var(--ui-frame-radius)]'
         }
       }
     }

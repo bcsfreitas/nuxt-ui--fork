@@ -1,14 +1,16 @@
 import type { ModuleOptions } from '../module'
 import { fieldGroupVariant } from './field-group'
+import { controlIconSize, controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlRadius, controlTrailingIcon } from './utils/control-geometry'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
-    base: ['rounded-(--ui-button-radius) [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:calc(var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+    // A parent frame (Input slots) hands its concentric radius through `--ui-button-frame-radius`, so a consumer `rounded-*` class still wins
+    base: ['rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]', controlRadius('--ui-button-radius'), 'font-medium inline-flex items-center', controlPadding, 'disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75', options.theme.transitions && 'transition-colors'],
     label: 'truncate',
-    leadingIcon: 'shrink-0 size-[1lh] supports-[height:1cap]:ms-[calc(var(--py)_-_var(--px))]',
+    leadingIcon: controlLeadingIcon,
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
-    trailingIcon: 'shrink-0 size-[1lh] supports-[height:1cap]:me-[calc(var(--py)_-_var(--px))]'
+    trailingIcon: controlTrailingIcon
   },
   variants: {
     ...fieldGroupVariant,
@@ -26,23 +28,23 @@ export default (options: Required<ModuleOptions>) => ({
     },
     size: {
       xs: {
-        base: '[--py:--spacing(1)] text-xs gap-1',
+        base: `${controlPy.xs} ${controlIconSize.xs} text-xs gap-1`,
         leadingAvatarSize: '3xs'
       },
       sm: {
-        base: '[--py:--spacing(1.5)] text-xs gap-1.5',
+        base: `${controlPy.sm} ${controlIconSize.sm} text-xs gap-1.5`,
         leadingAvatarSize: '3xs'
       },
       md: {
-        base: '[--py:--spacing(1.5)] text-sm gap-1.5',
+        base: `${controlPy.md} ${controlIconSize.md} text-sm gap-1.5`,
         leadingAvatarSize: '2xs'
       },
       lg: {
-        base: '[--py:--spacing(2)] text-sm gap-2',
+        base: `${controlPy.lg} ${controlIconSize.lg} text-sm gap-2`,
         leadingAvatarSize: '2xs'
       },
       xl: {
-        base: '[--py:--spacing(2)] text-base gap-2',
+        base: `${controlPy.xl} ${controlIconSize.xl} text-base gap-2`,
         leadingAvatarSize: 'xs'
       }
     },
@@ -104,7 +106,7 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     color: 'neutral',
     variant: 'outline',
-    class: 'ring ring-inset ring-accented text-default bg-default hover:bg-elevated active:bg-elevated disabled:bg-default aria-disabled:bg-default outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+    class: 'ring ring-inset ring-control text-default bg-default hover:bg-elevated active:bg-elevated disabled:bg-default aria-disabled:bg-default outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
   }, {
     color: 'neutral',
     variant: 'soft',
@@ -112,7 +114,7 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     color: 'neutral',
     variant: 'subtle',
-    class: 'ring ring-inset ring-accented text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+    class: 'ring ring-inset ring-control text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
   }, {
     color: 'neutral',
     variant: 'ghost',
@@ -123,7 +125,7 @@ export default (options: Required<ModuleOptions>) => ({
     class: 'text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3'
   }, {
     square: true,
-    class: '[--px:var(--py)] supports-[height:1cap]:[--px:var(--py)]'
+    class: controlPaddingSquare
   }, {
     loading: true,
     leading: true,
