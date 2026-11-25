@@ -71,5 +71,9 @@ provide('components', components)
 
       <UDashboardSearch :groups="groups" :fuse="{ resultLimit: 100 }" />
     </UDashboardGroup>
+
+    <ClientOnly>
+      <AlloDials />
+    </ClientOnly>
   </UApp>
 </template>
