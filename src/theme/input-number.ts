@@ -69,7 +69,7 @@ export default (options: Required<ModuleOptions>) => {
     })), ...(options.theme.colors || []).map((color: string) => ({
       color,
       highlight: true,
-      class: `ring ring-inset ring-${color}`
+      class: `ring ring-inset ring-focus-${color}`
     })), {
       color: 'neutral',
       variant: ['outline', 'subtle'],
@@ -81,7 +81,7 @@ export default (options: Required<ModuleOptions>) => {
     }, {
       color: 'neutral',
       highlight: true,
-      class: 'ring ring-inset ring-inverted'
+      class: 'ring ring-inset ring-focus-inverted'
     }, {
       orientation: 'horizontal',
       decrement: false,

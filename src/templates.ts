@@ -262,6 +262,7 @@ export function getTemplates(options: ModuleOptions, uiConfig: Record<string, an
   --background-color-elevated: var(--ui-bg-elevated);
   --background-color-accented: var(--ui-bg-accented);
   --background-color-inverted: var(--ui-bg-inverted);
+  --background-color-highlight: var(--ui-bg-highlight);
   --background-color-border: var(--ui-border);
   --border-color-default: var(--ui-border);
   --border-color-muted: var(--ui-border-muted);

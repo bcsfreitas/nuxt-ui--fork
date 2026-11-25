@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest'
-import { tv } from 'tailwind-variants'
 import badge from '../../src/theme/badge'
 import button from '../../src/theme/button'
 import card from '../../src/theme/card'
@@ -9,22 +8,10 @@ import radioGroup from '../../src/theme/radio-group'
 import separator from '../../src/theme/separator'
 import switchTheme from '../../src/theme/switch'
 import table from '../../src/theme/table'
+import { themeSlots as slots } from './theme-slots'
 
-const options = { theme: { colors: ['primary', 'error'], transitions: true } } as any
-
-type Theme = object | ((options: any) => object)
-
-function slots(theme: Theme, variants: Record<string, unknown> = {}) {
-  const config = typeof theme === 'function' ? theme(options) : theme
-  const result = tv(config as any)(variants) as Record<string, (props?: any) => string> | string
-  if (typeof result === 'string') {
-    return { base: result }
-  }
-  return Object.fromEntries(Object.entries(result).map(([slot, fn]) => [slot, fn()]))
-}
-
-function classes(theme: Theme, variants: Record<string, unknown> = {}) {
-  return Object.values(slots(theme, variants)).join(' ').split(/\s+/)
+function classes(...args: Parameters<typeof slots>) {
+  return Object.values(slots(...args)).flat()
 }
 
 describe('control edge', () => {
@@ -32,7 +19,7 @@ describe('control edge', () => {
     ['Checkbox', checkbox],
     ['RadioGroup', radioGroup]
   ])('%s draws its unchecked edge with the control token', (_, theme) => {
-    const base = slots(theme).base!.split(' ')
+    const base = slots(theme).base!
 
     expect(base).toContain('ring-control')
     expect(base).not.toContain('ring-accented')
@@ -42,28 +29,28 @@ describe('control edge', () => {
     ['Checkbox', checkbox],
     ['RadioGroup', radioGroup]
   ])('%s lets the highlight color replace the control edge', (_, theme) => {
-    const base = slots(theme, { color: 'error', highlight: true }).base!.split(' ')
+    const base = slots(theme, { color: 'error', highlight: true }).base!
 
     expect(base).toContain('ring-error')
     expect(base).not.toContain('ring-control')
   })
 
   it('Switch draws its unchecked track edge with the control token', () => {
-    const base = slots(switchTheme).base!.split(' ')
+    const base = slots(switchTheme).base!
 
     expect(base).toContain('border-transparent')
     expect(base).toContain('data-[state=unchecked]:border-control')
   })
 
   it('Switch keeps the highlight ring next to the control edge', () => {
-    const base = slots(switchTheme, { color: 'error', highlight: true }).base!.split(' ')
+    const base = slots(switchTheme, { color: 'error', highlight: true }).base!
 
     expect(base).toContain('ring-error')
     expect(base).toContain('data-[state=unchecked]:border-control')
   })
 
   it.each(['outline', 'subtle'])('neutral %s Button uses the control edge', (variant) => {
-    const base = slots(button, { color: 'neutral', variant }).base!.split(' ')
+    const base = slots(button, { color: 'neutral', variant }).base!
 
     expect(base).toContain('ring-control')
     expect(base).not.toContain('ring-accented')
@@ -75,7 +62,7 @@ describe('control edge', () => {
   })
 
   it('colored outline Button keeps its own color edge', () => {
-    const base = slots(button, { color: 'primary', variant: 'outline' }).base!.split(' ')
+    const base = slots(button, { color: 'primary', variant: 'outline' }).base!
 
     expect(base).toContain('ring-primary/50')
     expect(base).not.toContain('ring-control')

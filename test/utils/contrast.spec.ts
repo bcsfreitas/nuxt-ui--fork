@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'pathe'
+import { compile } from 'tailwindcss'
 import colors from 'tailwindcss/colors'
 import { describe, it, expect } from 'vitest'
 
@@ -189,8 +190,7 @@ function luminance(color: Oklab): number {
 function contrast(mode: string, foreground: string, background: string, neutral: typeof NEUTRALS[number]): number {
   const tokens = tokensFor(mode)
   const palette = colors[neutral] as Record<string, string>
-  const [high, low] = [luminance(resolve(foreground, tokens, palette)), luminance(resolve(background, tokens, palette))].sort((a, b) => b - a) as [number, number]
-  return (high + 0.05) / (low + 0.05)
+  return ratio(resolve(foreground, tokens, palette), resolve(background, tokens, palette))
 }
 
 function toSrgb(color: Oklab): number[] {
@@ -308,18 +308,49 @@ describe('focus ring', () => {
     expect(tokensFor(mode)['--ui-focus-ring-mix']).toBe('0%')
   })
 
-  it('defines the ring utility on the mix token', () => {
-    expect(css).toMatch(/@utility ring-focus-\* \{[^}]*--tw-ring-color: color-mix\(in oklab, --value\(--ring-color-\*, --color-\*\), var\(--ui-text-highlighted\) var\(--ui-focus-ring-mix, 0%\)\);/)
+  describe('ring-focus utility', () => {
+    const utility = css.match(/@utility ring-focus-\* \{[^}]*\}/)![0]
+
+    async function build(candidates: string[]) {
+      const compiler = await compile(`@theme inline { --color-primary: var(--ui-primary); --ring-color-inverted: var(--ui-border-inverted); }\n${utility}\n@tailwind utilities;`)
+      return compiler.build(candidates)
+    }
+
+    it.each([
+      ['ring-focus-primary', 'var(--ui-primary)'],
+      ['ring-focus-inverted', 'var(--ui-border-inverted)']
+    ])('compiles %s to the plain color with the mix behind a feature query', async (candidate, color) => {
+      const output = await build([candidate])
+      const [fallback, enhanced] = output.split('@supports')
+
+      expect(fallback).toContain(`.${candidate} {`)
+      expect(fallback).toContain(`--tw-ring-color: ${color};`)
+      expect(enhanced).toMatch(/^ \(color: color-mix\(in lab, red, red\)\) \{/)
+      expect(enhanced).toContain(`--tw-ring-color: color-mix(in oklab, ${color}, var(--ui-text-highlighted) var(--ui-focus-ring-mix, 0%));`)
+    })
+
+    it('emits nothing for an unknown color', async () => {
+      expect(await build(['ring-focus-unknown'])).not.toContain('ring-focus-unknown')
+    })
   })
 
   describe.each(NEUTRALS)('with %s as neutral', (neutral) => {
-    it.each(PALETTES.flatMap(palette => (['light-hc', 'dark-hc'] as const).flatMap(mode => ['--ui-bg', '--ui-bg-elevated'].map(background => [mode, palette, background] as const))))('%s: %s ring beats the rest edge on %s', (mode, palette, background) => {
+    it.each(PALETTES.flatMap(palette => (['light-hc', 'dark-hc'] as const).flatMap(mode => ['--ui-bg', '--ui-bg-elevated'].map(background => [mode, palette, background] as const))))('%s: %s focus and highlight ring beats the rest edge on %s', (mode, palette, background) => {
       const tokens = tokensFor(mode)
       const neutrals = colors[neutral] as Record<string, string>
       const back = resolve(background, tokens, neutrals)
       const rest = ratio(resolve('--ui-border-control', tokens, neutrals), back)
 
       expect(ratio(focusRing(mode, palette, neutral), back)).toBeGreaterThan(rest)
+    })
+
+    it.each((['light-hc', 'dark-hc'] as const).flatMap(mode => ['--ui-bg', '--ui-bg-elevated'].map(background => [mode, background] as const)))('%s: neutral focus and highlight ring beats the rest edge on %s', (mode, background) => {
+      const tokens = tokensFor(mode)
+      const neutrals = colors[neutral] as Record<string, string>
+      const back = resolve(background, tokens, neutrals)
+      const ring = resolve(`color-mix(in oklab, var(--ui-border-inverted), var(--ui-text-highlighted) ${tokens['--ui-focus-ring-mix']})`, tokens, neutrals)
+
+      expect(ratio(ring, back)).toBeGreaterThan(ratio(resolve('--ui-border-control', tokens, neutrals), back))
     })
   })
 })

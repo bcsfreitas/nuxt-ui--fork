@@ -91,8 +91,21 @@ describe('Textarea', () => {
       const wrapper = await mountWithSlotButtons({ size })
 
       for (const slot of ['leading', 'trailing']) {
-        expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toContain(inset)
+        const classes = wrapper.get(`[data-slot="${slot}"]`).classes()
+
+        expect(classes).toContain(inset)
+        expect(classes).toContain('inset-y-(--ui-frame-inset)')
+        expect(classes.filter(cls => cls.startsWith('inset-y-'))).toHaveLength(1)
       }
+    })
+
+    test('a consumer inset moves the slot and the button curve together', async () => {
+      const wrapper = await mountWithSlotButtons({ ui: { leading: '[--ui-frame-inset:--spacing(3)]' } })
+      const classes = wrapper.get('[data-slot="leading"]').classes()
+
+      expect(classes).toContain('[--ui-frame-inset:--spacing(3)]')
+      expect(classes).not.toContain('[--ui-frame-inset:--spacing(1.5)]')
+      expect(classes).toContain('inset-y-(--ui-frame-inset)')
     })
   })
 

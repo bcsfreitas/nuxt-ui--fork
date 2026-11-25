@@ -55,7 +55,7 @@ export default (options: Required<ModuleOptions>) => ({
         itemLeadingIcon: 'text-default'
       },
       false: {
-        item: ['text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-(--ui-bg-highlight)', options.theme.transitions && 'transition-colors before:transition-colors'],
+        item: ['text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-highlight', options.theme.transitions && 'transition-colors before:transition-colors'],
         itemLeadingIcon: ['text-dimmed group-data-highlighted:not-group-data-disabled:text-default', options.theme.transitions && 'transition-colors']
       }
     }
