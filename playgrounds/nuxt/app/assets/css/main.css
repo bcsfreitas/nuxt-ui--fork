@@ -21,6 +21,14 @@
   --color-green-950: #052E16;
 }
 
+/* The Allo panel's weight dial sets `--allo-dial-weight` on the root; `b`/`strong` otherwise compute a relative `bolder` */
+@layer base {
+  b,
+  strong {
+    font-weight: var(--allo-dial-weight, bolder);
+  }
+}
+
 html.dark .shiki span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
