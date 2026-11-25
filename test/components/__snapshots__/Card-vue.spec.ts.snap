@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Card > renders with as correctly 1`] = `
-"<section data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<section data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -9,7 +9,7 @@ exports[`Card > renders with as correctly 1`] = `
 `;
 
 exports[`Card > renders with as object correctly 1`] = `
-"<section data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<section data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <div data-slot="header" class="p-4 sm:px-6">
     <h3 data-slot="title" class="text-highlighted font-semibold">Title</h3>
     <!--v-if-->
@@ -20,7 +20,7 @@ exports[`Card > renders with as object correctly 1`] = `
 `;
 
 exports[`Card > renders with class correctly 1`] = `
-"<div data-slot="root" class="overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)] rounded-xl">
+"<div data-slot="root" class="overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)] rounded-xl">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -28,7 +28,7 @@ exports[`Card > renders with class correctly 1`] = `
 `;
 
 exports[`Card > renders with default slot correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <!--v-if-->
   <div data-slot="body" class="p-4 sm:p-6">Default slot</div>
   <!--v-if-->
@@ -36,7 +36,7 @@ exports[`Card > renders with default slot correctly 1`] = `
 `;
 
 exports[`Card > renders with description correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <div data-slot="header" class="p-4 sm:px-6">
     <!--v-if-->
     <div data-slot="description" class="mt-1 text-muted text-sm">Description</div>
@@ -47,7 +47,7 @@ exports[`Card > renders with description correctly 1`] = `
 `;
 
 exports[`Card > renders with description slot correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <div data-slot="header" class="p-4 sm:px-6">
     <!--v-if-->
     <div data-slot="description" class="mt-1 text-muted text-sm">Description slot</div>
@@ -58,7 +58,7 @@ exports[`Card > renders with description slot correctly 1`] = `
 `;
 
 exports[`Card > renders with footer slot correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <!--v-if-->
   <!--v-if-->
   <div data-slot="footer" class="p-4 sm:px-6">Footer slot</div>
@@ -66,7 +66,7 @@ exports[`Card > renders with footer slot correctly 1`] = `
 `;
 
 exports[`Card > renders with header slot correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <div data-slot="header" class="p-4 sm:px-6">Header slot</div>
   <!--v-if-->
   <!--v-if-->
@@ -74,7 +74,7 @@ exports[`Card > renders with header slot correctly 1`] = `
 `;
 
 exports[`Card > renders with title and description correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <div data-slot="header" class="p-4 sm:px-6">
     <div data-slot="title" class="text-highlighted font-semibold">Title</div>
     <div data-slot="description" class="mt-1 text-muted text-sm">Description</div>
@@ -85,7 +85,7 @@ exports[`Card > renders with title and description correctly 1`] = `
 `;
 
 exports[`Card > renders with title correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <div data-slot="header" class="p-4 sm:px-6">
     <div data-slot="title" class="text-highlighted font-semibold">Title</div>
     <!--v-if-->
@@ -96,7 +96,7 @@ exports[`Card > renders with title correctly 1`] = `
 `;
 
 exports[`Card > renders with title slot correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <div data-slot="header" class="p-4 sm:px-6">
     <div data-slot="title" class="text-highlighted font-semibold">Title slot</div>
     <!--v-if-->
@@ -107,7 +107,7 @@ exports[`Card > renders with title slot correctly 1`] = `
 `;
 
 exports[`Card > renders with ui correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -123,7 +123,7 @@ exports[`Card > renders with variant outline correctly 1`] = `
 `;
 
 exports[`Card > renders with variant shaded correctly 1`] = `
-"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]">
+"<div data-slot="root" class="rounded-4xl overflow-hidden bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->

@@ -149,12 +149,12 @@ export default (options: Required<ModuleOptions>) => {
       color,
       multiple: true,
       variant: ['outline', 'subtle'],
-      class: `has-focus-visible:outline-3 has-focus-visible:ring-${color}`
+      class: `has-focus-visible:outline-3 has-focus-visible:ring-2 has-focus-visible:ring-${color}`
     })), {
       color: 'neutral',
       multiple: true,
       variant: ['outline', 'subtle'],
-      class: 'has-focus-visible:outline-3 has-focus-visible:ring-inverted'
+      class: 'has-focus-visible:outline-3 has-focus-visible:ring-2 has-focus-visible:ring-inverted'
     }]
   }, input(options))
 }

@@ -2,6 +2,7 @@ import type { ModuleOptions } from '../module'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
+    // The frame radius follows the Modal (`rounded-lg`) the palette usually sits in; set `--ui-frame-radius` when embedding it elsewhere
     root: 'flex flex-col min-h-0 min-w-0 divide-y divide-default [--ui-frame-radius:var(--radius-lg)]',
     input: '[--ui-frame-radius:var(--radius-lg)]',
     close: '',

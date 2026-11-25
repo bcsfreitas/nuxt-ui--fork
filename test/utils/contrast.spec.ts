@@ -74,13 +74,16 @@ const CASES: [string, string, string, number][] = [
   ['dark-hc', '--ui-border-control', '--ui-bg-muted', 4.5],
   ['dark-hc', '--ui-border-control', '--ui-bg-elevated', 4.5],
   ['dark-hc', '--ui-text-muted', '--ui-bg', 4.5],
-  ['dark-hc', '--ui-text-muted', '--ui-bg-muted', 4.5]
+  ['dark-hc', '--ui-text-muted', '--ui-bg-muted', 4.5],
+  ['light-hc', '--ui-border-accented', '--ui-bg', 2],
+  ['light-hc', '--ui-bg-elevated', '--ui-bg', 1.2],
+  ['dark-hc', '--ui-bg-elevated', '--ui-bg', 1.3]
 ]
 
 /**
  * Tokens that high contrast must make stronger against the default background.
  */
-const STRENGTHENED = ['--ui-border-control', '--ui-border', '--ui-border-muted', '--ui-border-accented', '--ui-text-dimmed', '--ui-text-muted']
+const STRENGTHENED = ['--ui-border-control', '--ui-border', '--ui-border-muted', '--ui-border-accented', '--ui-text-dimmed', '--ui-text-muted', '--ui-bg-elevated', '--ui-bg-accented']
 
 const NEUTRALS = ['slate', 'gray', 'zinc', 'neutral', 'stone'] as const
 
@@ -217,5 +220,10 @@ describe('high contrast tokens', () => {
     expect(light).toBeDefined()
     // The light block also matches the root in dark mode, so the dark block must win on every token it sets
     expect(Object.keys(dark ?? {}).sort()).toEqual(Object.keys(light ?? {}).sort())
+  })
+
+  it('gives the light raised surface a hairline edge', () => {
+    expect(blocks[':root, :host, .light']?.['--ui-shadow-raised']).toBe('var(--shadow-card)')
+    expect(blocks['@media (prefers-contrast: more) :root, :host, .light']?.['--ui-shadow-raised']).toBe('var(--shadow-card-raised)')
   })
 })
