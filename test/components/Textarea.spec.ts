@@ -4,6 +4,7 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { renderEach } from '../component-render'
 import { flushPromises, mount } from '@vue/test-utils'
 import Textarea from '../../src/runtime/components/Textarea.vue'
+import UButton from '../../src/runtime/components/Button.vue'
 import theme from '#build/ui/textarea'
 import { renderForm } from '../utils/form'
 import type { FormInputEvents } from '../../src/module'
@@ -48,6 +49,52 @@ describe('Textarea', () => {
     ['with leading slot', { slots: { leading: () => 'Leading slot' } }],
     ['with trailing slot', { slots: { trailing: () => 'Trailing slot' } }]
   ])
+
+  describe('slot buttons', () => {
+    async function mountWithSlotButtons(props: Record<string, any> = {}) {
+      return mountSuspended({
+        components: { UButton, UTextarea: Textarea },
+        setup: () => ({ props }),
+        template: `<UTextarea v-bind="props"><template #leading><UButton icon="i-lucide-plus" size="sm" /></template><template #trailing><UButton icon="i-lucide-x" size="sm" class="rounded-full" /></template></UTextarea>`
+      })
+    }
+
+    it('publishes the field radius as the frame', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      expect(wrapper.get('[data-slot="root"]').classes()).toContain('[--ui-frame-radius:var(--radius-md)]')
+    })
+
+    it('hands the concentric radius to buttons in the leading and trailing slots', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      for (const slot of ['leading', 'trailing']) {
+        expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toEqual(expect.arrayContaining(['[&_:where(button,a)]:frame-shape-(--ui-button-radius)', '[&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]']))
+      }
+    })
+
+    it('lets a consumer radius class win on a slot button', async () => {
+      const wrapper = await mountWithSlotButtons()
+      const button = wrapper.get('[data-slot="trailing"] button')
+
+      expect(button.classes()).toContain('rounded-full')
+      expect(button.classes().join(' ')).not.toContain('--ui-button-frame-radius')
+    })
+
+    test.each([
+      ['xs', '[--ui-frame-inset:--spacing(1)]'],
+      ['sm', '[--ui-frame-inset:--spacing(1.5)]'],
+      ['md', '[--ui-frame-inset:--spacing(1.5)]'],
+      ['lg', '[--ui-frame-inset:--spacing(2)]'],
+      ['xl', '[--ui-frame-inset:--spacing(2)]']
+    ])('insets slot buttons from the top edge at size %s', async (size, inset) => {
+      const wrapper = await mountWithSlotButtons({ size })
+
+      for (const slot of ['leading', 'trailing']) {
+        expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toContain(inset)
+      }
+    })
+  })
 
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(Textarea, {

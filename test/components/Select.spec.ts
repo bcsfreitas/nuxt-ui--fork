@@ -4,6 +4,7 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { renderEach } from '../component-render'
 import { flushPromises, mount } from '@vue/test-utils'
 import Select from '../../src/runtime/components/Select.vue'
+import UButton from '../../src/runtime/components/Button.vue'
 import theme from '#build/ui/input'
 import { renderForm } from '../utils/form'
 import type { FormInputEvents } from '../../src/module'
@@ -151,6 +152,38 @@ describe('Select', () => {
 
     test('finds the item inside groups', () => {
       expect(renderTriggerSlots({ items: [[{ label: 'Status', type: 'label' }, ...items.slice(0, 2)], items.slice(2)], modelValue: 'done' }).default).toStrictEqual(items[3])
+    })
+  })
+
+  describe('slot buttons', () => {
+    async function mountWithSlotButtons(props: Record<string, any> = {}) {
+      return mountSuspended({
+        components: { UButton, USelect: Select },
+        setup: () => ({ props }),
+        template: `<USelect v-bind="props"><template #leading><UButton icon="i-lucide-plus" size="sm" /></template><template #trailing><UButton icon="i-lucide-x" size="sm" class="rounded-full" /></template></USelect>`
+      })
+    }
+
+    it('publishes the field radius as the frame', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      expect(wrapper.get('button[data-slot="base"]').classes()).toContain('[--ui-frame-radius:var(--radius-md)]')
+    })
+
+    it('hands the concentric radius to buttons in the leading and trailing slots', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      for (const slot of ['leading', 'trailing']) {
+        expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toEqual(expect.arrayContaining(['[&_:where(button,a)]:frame-shape-(--ui-button-radius)', '[&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]']))
+      }
+    })
+
+    it('lets a consumer radius class win on a slot button', async () => {
+      const wrapper = await mountWithSlotButtons()
+      const button = wrapper.get('[data-slot="trailing"] button')
+
+      expect(button.classes()).toContain('rounded-full')
+      expect(button.classes().join(' ')).not.toContain('--ui-button-frame-radius')
     })
   })
 
