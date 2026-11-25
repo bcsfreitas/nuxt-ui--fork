@@ -5,7 +5,7 @@ exports[`ChatPrompt > renders with as correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -28,7 +28,7 @@ exports[`ChatPrompt > renders with attachment correctly 1`] = `
         </button></div><span style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; word-wrap: normal; top: -1px; left: -1px;" aria-live="polite"></span>
     </div>
   </div>
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -50,7 +50,7 @@ exports[`ChatPrompt > renders with class correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -63,7 +63,7 @@ exports[`ChatPrompt > renders with error correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" disabled="" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" disabled="" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -86,7 +86,7 @@ exports[`ChatPrompt > renders with files correctly 1`] = `
         </button></div><span style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; word-wrap: normal; top: -1px; left: -1px;" aria-live="polite"></span>
     </div>
   </div>
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -99,7 +99,7 @@ exports[`ChatPrompt > renders with files slot correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <div data-slot="files" class="flex flex-wrap items-center gap-1.5 mt-0.5">Files slot</div>
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -112,7 +112,7 @@ exports[`ChatPrompt > renders with footer slot correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -125,7 +125,7 @@ exports[`ChatPrompt > renders with header slot correctly 1`] = `
   <div data-slot="header" class="flex items-center gap-1.5">Header slot</div>
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -138,7 +138,7 @@ exports[`ChatPrompt > renders with placeholder correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Placeholder" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Placeholder" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -178,7 +178,7 @@ exports[`ChatPrompt > renders with queue correctly 1`] = `
     </ul>
   </div>
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -191,7 +191,7 @@ exports[`ChatPrompt > renders with queue slot correctly 1`] = `
   <!--v-if-->
   <div data-slot="queue" class="absolute inset-x-[max(--spacing(2.5),calc(var(--ui-radius)*2))] -z-1 flex flex-col px-1 rounded-t-lg border border-b-0 border-default bg-elevated/50 backdrop-blur-sm overflow-hidden bottom-[calc(100%+1px)]">Queue slot</div>
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -204,7 +204,7 @@ exports[`ChatPrompt > renders with ui correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -217,7 +217,7 @@ exports[`ChatPrompt > renders with variant naked correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -230,7 +230,7 @@ exports[`ChatPrompt > renders with variant outline correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -243,7 +243,7 @@ exports[`ChatPrompt > renders with variant soft correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -256,7 +256,7 @@ exports[`ChatPrompt > renders with variant subtle correctly 1`] = `
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
-  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-1.5 text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
+  <div data-slot="body" class="relative inline-flex [--ui-frame-radius:var(--radius-md)] supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] [--ui-field-inset:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--ui-field-inset:var(--py)] supports-[height:1cap]:[--ui-field-icon-padding:calc(var(--py)_*_2_+_1lh)] [--py:--spacing(1.5)] [--ui-field-icon-padding:--spacing(9)] items-start gap-1.5"><textarea rows="1" placeholder="Type your message here…" class="w-full border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75 transition-colors py-(--py) [--px:calc(var(--py)_+_--spacing(1))] supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] text-base/5 gap-1.5 text-highlighted bg-transparent focus:outline-none resize-none px-0 rounded-none" data-slot="base" value=""></textarea>
     <!--v-if-->
     <!--v-if-->
   </div>

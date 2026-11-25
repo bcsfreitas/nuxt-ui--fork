@@ -7,7 +7,7 @@ export default (options: Required<ModuleOptions>) => {
   return defuFn({
     slots: {
       base: () => ['rounded-(--ui-frame-radius)', options.theme.transitions && 'transition-colors'],
-      trailing: 'group absolute inset-y-0 end-0 flex items-center [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)] disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
+      trailing: 'group absolute inset-y-0 end-0 flex items-center pe-(--ui-field-inset) [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)] disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
       trailingClear: 'p-0',
       arrow: 'fill-bg stroke-default',
       content: 'max-h-[min(15rem,var(--reka-combobox-content-available-height,15rem))] w-(--reka-combobox-trigger-width) bg-default shadow-lg rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-xl)] ring ring-default overflow-hidden data-[state=open]:animate-[scale-in_100ms_var(--ease-out)] data-[state=closed]:animate-[scale-out_100ms_var(--ease-out)] origin-(--reka-combobox-content-transform-origin) pointer-events-auto flex flex-col',

@@ -1,14 +1,14 @@
 import { defuFn } from 'defu'
 import type { ModuleOptions } from '../module'
-import input from './input'
+import input, { fieldFrame, fieldFrameSize } from './input'
 import { fieldGroupVariantWithHiddenInput } from './field-group'
 
 export default (options: Required<ModuleOptions>) => {
   return defuFn({
     slots: {
       root: () => undefined,
-      // The trigger is the field (Select has no root), so it publishes the radius its slot buttons follow
-      base: () => ['relative group rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-md)] inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+      // The trigger is the field (Select has no root), so it is the frame: it holds `--py` and publishes the radius its slot buttons follow
+      base: () => ['relative group rounded-(--ui-frame-radius) inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75', fieldFrame, options.theme.transitions && 'transition-colors'],
       value: 'truncate pointer-events-none',
       placeholder: 'truncate text-dimmed',
       arrow: 'fill-bg stroke-default',
@@ -39,6 +39,7 @@ export default (options: Required<ModuleOptions>) => {
       }),
       size: {
         xs: {
+          base: (prev: string) => [prev, fieldFrameSize.xs],
           label: 'p-1 text-[10px]/3 gap-1',
           item: 'p-1 text-xs gap-1',
           itemLeadingIcon: 'size-4',
@@ -49,6 +50,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-2 text-xs'
         },
         sm: {
+          base: (prev: string) => [prev, fieldFrameSize.sm],
           label: 'p-1.5 text-[10px]/3 gap-1.5',
           item: 'p-1.5 text-xs gap-1.5',
           itemLeadingIcon: 'size-4',
@@ -59,6 +61,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-2.5 text-xs'
         },
         md: {
+          base: (prev: string) => [prev, fieldFrameSize.md],
           label: 'p-1.5 text-xs gap-1.5',
           item: 'p-1.5 text-sm gap-1.5',
           itemLeadingIcon: 'size-5',
@@ -69,6 +72,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-2.5 text-sm'
         },
         lg: {
+          base: (prev: string) => [prev, fieldFrameSize.lg],
           label: 'p-2 text-xs gap-2',
           item: 'p-2 text-sm gap-2',
           itemLeadingIcon: 'size-5',
@@ -79,6 +83,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-3 text-sm'
         },
         xl: {
+          base: (prev: string) => [prev, fieldFrameSize.xl],
           label: 'p-2 text-sm gap-2',
           item: 'p-2 text-base gap-2',
           itemLeadingIcon: 'size-6',
