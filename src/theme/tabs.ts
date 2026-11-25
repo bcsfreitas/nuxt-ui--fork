@@ -1,4 +1,5 @@
 import type { ModuleOptions } from '../module'
+import { controlLeadingIcon, controlPadding, controlPy, controlRadius } from './utils/control-geometry'
 
 // Active-tab highlight shown before reka-ui's `TabsIndicator` mounts (SSR / pre-hydration).
 // reka-ui only renders the real indicator on the client (it needs DOM measurements), so we gate
@@ -11,8 +12,8 @@ export default (options: Required<ModuleOptions>) => ({
     root: 'flex items-center gap-2',
     list: 'relative flex p-1 group',
     indicator: 'absolute transition-[translate,width] duration-200 ease-out motion-reduce:transition-none',
-    trigger: ['group relative inline-flex items-center min-w-0 data-[state=inactive]:text-muted hover:data-[state=inactive]:not-disabled:text-default font-medium rounded-md disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
-    leadingIcon: 'shrink-0',
+    trigger: ['group relative inline-flex items-center min-w-0 data-[state=inactive]:text-muted hover:data-[state=inactive]:not-disabled:text-default font-medium rounded-md', controlPadding, 'disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+    leadingIcon: controlLeadingIcon,
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
     label: 'truncate',
@@ -38,7 +39,7 @@ export default (options: Required<ModuleOptions>) => ({
       link: {
         list: 'border-default',
         indicator: 'rounded-full',
-        trigger: ssr('after:content-[\'\']', 'after:absolute', 'after:rounded-full')
+        trigger: ['rounded-(--ui-tabs-trigger-radius)', controlRadius('--ui-tabs-trigger-radius'), ssr('after:content-[\'\']', 'after:absolute', 'after:rounded-full')]
       }
     },
     orientation: {
@@ -55,28 +56,24 @@ export default (options: Required<ModuleOptions>) => ({
     },
     size: {
       xs: {
-        trigger: 'px-2 py-1 text-xs gap-1',
-        leadingIcon: 'size-4',
+        trigger: `${controlPy.xs} text-xs gap-1`,
         leadingAvatarSize: '3xs'
       },
       sm: {
-        trigger: 'px-2.5 py-1.5 text-xs gap-1.5',
-        leadingIcon: 'size-4',
+        trigger: `${controlPy.sm} text-xs gap-1.5`,
         leadingAvatarSize: '3xs'
       },
       md: {
-        trigger: 'px-3 py-1.5 text-sm gap-1.5',
-        leadingIcon: 'size-5',
+        // Upstream md padding is wider than `--py + --spacing(1)`: keep it for browsers without `cap`
+        trigger: `${controlPy.md} [--px:--spacing(3)] text-sm gap-1.5`,
         leadingAvatarSize: '2xs'
       },
       lg: {
-        trigger: 'px-3 py-2 text-sm gap-2',
-        leadingIcon: 'size-5',
+        trigger: `${controlPy.lg} text-sm gap-2`,
         leadingAvatarSize: '2xs'
       },
       xl: {
-        trigger: 'px-3 py-2 text-base gap-2',
-        leadingIcon: 'size-6',
+        trigger: `${controlPy.xl} text-base gap-2`,
         leadingAvatarSize: 'xs'
       }
     }
