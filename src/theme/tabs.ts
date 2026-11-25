@@ -31,7 +31,7 @@ export default (options: Required<ModuleOptions>) => ({
     },
     variant: {
       pill: {
-        list: 'bg-elevated rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-lg)] [--ui-frame-inset:--spacing(1)]',
+        list: 'bg-elevated ring ring-inset ring-accented rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-lg)] [--ui-frame-inset:--spacing(1)]',
         trigger: [`grow frame-shape-md rounded-(--ui-frame-shape-radius)`, ssr('before:content-[\'\']', 'before:absolute', 'before:inset-0', 'before:rounded-(--ui-frame-shape-radius)', 'before:shadow-xs', 'before:-z-10', 'isolate')],
         indicator: 'frame-shape-md rounded-(--ui-frame-shape-radius) shadow-xs'
       },
