@@ -2,6 +2,7 @@
 import { useMediaQuery } from '@vueuse/core'
 import { DialRoot, DialStore, useDialKitController } from 'dialkit/vue'
 import 'dialkit/styles.css'
+import { useColorMode } from '#imports'
 
 const root = document.documentElement
 const colorMode = useColorMode()
