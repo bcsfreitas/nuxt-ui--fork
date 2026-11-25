@@ -11,6 +11,9 @@ const panelId = 'allo'
 const stylesheetRoundness = Number.parseFloat(getComputedStyle(root).getPropertyValue('--ui-font-roundness'))
 const roundnessDefault = Number.isFinite(stylesheetRoundness) ? stylesheetRoundness : 50
 
+// Where each manual slider starts; every Automatic starts on
+const manualDefaults = { 'Roundness': roundnessDefault, 'Optical size': 14, 'Weight': 400 }
+
 // Tailwind's weight ladder: every `font-*` weight utility reads one of these
 const weightVariables = ['thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black'].map(name => `--font-weight-${name}`)
 
@@ -19,17 +22,17 @@ const dial = useDialKitController('Allo', {
   // Automatic leaves the library's roundness untouched, so a saved panel can't pin an old default
   'Roundness': {
     Automatic: true,
-    Amount: [roundnessDefault, 0, 100, 1]
+    Amount: [manualDefaults.Roundness, 0, 100, 1]
   },
   // Allo's opsz axis spans 9–32 and matches the text's size in px; the size only applies once Automatic is off
   'Optical size': {
     'Automatic': true,
-    'Size (px)': [14, 9, 32, 1]
+    'Size (px)': [manualDefaults['Optical size'], 9, 32, 1]
   },
   // Allo's wght axis spans 100–900; the value only applies once Automatic is off
   'Weight': {
     Automatic: true,
-    Value: [400, 100, 900, 1]
+    Value: [manualDefaults.Weight, 100, 900, 1]
   },
   // DialKit 2.2.1 has no Reset button of its own; back at the defaults, the watchers below remove every inline variable
   'reset': { type: 'action', label: 'Reset' }
@@ -52,8 +55,17 @@ const stopVersion = DialStore.subscribe(panelId, () => {
 })
 let resetting = false
 
+function atDefaults() {
+  return Object.entries(sliders(dial.getValues())).every(([group, [automatic, amount]]) => automatic && amount === manualDefaults[group as keyof typeof manualDefaults])
+}
+
+// Reset overwrites V1 (DialKit's base version), so a tuned V1 is first kept as a "Before reset" version; edits on any version stay in it
 function reset() {
   resetting = true
+  DialStore.clearActivePreset(panelId)
+  if (!atDefaults()) {
+    DialStore.savePreset(panelId, 'Before reset')
+  }
   dial.resetValues()
   nextTick(() => {
     resetting = false
