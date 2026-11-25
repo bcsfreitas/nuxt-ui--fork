@@ -148,6 +148,33 @@ describe('Button', () => {
     expect(await axe(wrapper.element)).toHaveNoViolations()
   })
 
+  it.each(sizes)('carries the shared geometry recipe at size %s', async (size: string) => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', size, icon: 'i-lucide-rocket' } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('py-(--py)')
+    expect(classes).toContain('px-(--px)')
+    expect(classes).toContain('rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]')
+    expect(classes.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-[1lh]')
+  })
+
+  it('lets a consumer `rounded-*` class replace the derived radius', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', class: 'rounded-full' } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('rounded-full')
+    expect(classes.some(name => name.startsWith('rounded-['))).toBe(false)
+  })
+
+  it('lets a `ui.base` padding replace the derived padding', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', ui: { base: 'px-4' } } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('px-4')
+    expect(classes).not.toContain('px-(--px)')
+  })
+
   it('replaces a slot class through a `:ui` function', async () => {
     const wrapper = await mountSuspended(Button, {
       props: {
