@@ -2,12 +2,12 @@ import type { ModuleOptions } from '../module'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
-    content: 'min-w-32 max-h-(--reka-context-menu-content-available-height) bg-default shadow-lg rounded-md ring ring-default overflow-hidden data-[state=open]:animate-[scale-in_100ms_var(--ease-out)] data-[state=closed]:animate-[scale-out_100ms_var(--ease-out)] origin-(--reka-context-menu-content-transform-origin) flex flex-col',
+    content: 'min-w-32 max-h-(--reka-context-menu-content-available-height) bg-default shadow-lg rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-xl)] ring ring-default overflow-hidden data-[state=open]:animate-[scale-in_100ms_var(--ease-out)] data-[state=closed]:animate-[scale-out_100ms_var(--ease-out)] origin-(--reka-context-menu-content-transform-origin) flex flex-col',
     viewport: 'relative divide-y divide-default scroll-py-1 overflow-y-auto flex-1',
-    group: 'p-1 isolate',
+    group: 'p-1 [--ui-frame-inset:calc(--spacing(1)+1px)] isolate',
     label: 'w-full flex items-center font-semibold text-highlighted',
     separator: '-mx-1 my-1 h-px bg-border',
-    item: 'group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75',
+    item: 'group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px frame-shape-md before:rounded-(--ui-frame-shape-radius) data-disabled:cursor-not-allowed data-disabled:opacity-75',
     itemLeadingIcon: 'shrink-0',
     itemLeadingAvatar: 'shrink-0',
     itemLeadingAvatarSize: '',
