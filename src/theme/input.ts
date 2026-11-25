@@ -6,11 +6,11 @@ export default (options: Required<ModuleOptions>) => ({
     root: 'relative inline-flex items-center [--ui-frame-radius:var(--radius-md)]',
     base: ['w-full rounded-(--ui-frame-radius) border-0 appearance-none placeholder:text-dimmed disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
     // Slot buttons sit closest to the block edge (a button one size smaller leaves 2px), so their curve follows that gap
-    leading: 'absolute inset-y-0 start-0 flex items-center [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:rounded-(--ui-frame-shape-radius)',
+    leading: 'absolute inset-y-0 start-0 flex items-center [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
     leadingIcon: 'shrink-0 text-dimmed',
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
-    trailing: 'absolute inset-y-0 end-0 flex items-center [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:rounded-(--ui-frame-shape-radius)',
+    trailing: 'absolute inset-y-0 end-0 flex items-center [--ui-frame-inset:--spacing(0.5)] [&_:where(button,a)]:frame-shape-(--ui-button-radius) [&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]',
     trailingIcon: 'shrink-0 text-dimmed'
   },
   variants: {
