@@ -27,7 +27,7 @@ exports[`Theme > renders with theme applied to alert correctly 1`] = `
 `;
 
 exports[`Theme > renders with theme applied to badge correctly 1`] = `
-"<span data-slot="base" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 bg-primary text-inverted rounded-[1.234rem]"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+"<span data-slot="base" class="[--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary text-inverted rounded-[1.234rem]"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
 <!--v-if--></span>"
 `;
 
@@ -43,7 +43,7 @@ exports[`Theme > renders with theme applied to multiple component types correctl
   <!--v-if--><span data-slot="label" class="truncate">Button</span>
   <!--v-if-->
 </button>
-<span data-slot="base" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 bg-primary text-inverted rounded-[1.234rem]"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+<span data-slot="base" class="[--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary text-inverted rounded-[1.234rem]"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
 <!--v-if--></span>"
 `;
 

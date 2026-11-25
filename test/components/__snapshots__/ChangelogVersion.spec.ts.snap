@@ -106,7 +106,7 @@ exports[`ChangelogVersion > renders with badge correctly 1`] = `
   </div>
   <div data-slot="container" class="flex flex-col mx-auto max-w-2xl">
     <div data-slot="header" class="">
-      <div data-slot="meta" class="flex items-center gap-3 mb-2"><span data-slot="badge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md text-inverted bg-inverted"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+      <div data-slot="meta" class="flex items-center gap-3 mb-2"><span data-slot="badge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 text-inverted bg-inverted"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
         <!--v-if--></span>
         <!--v-if-->
       </div>
@@ -129,7 +129,7 @@ exports[`ChangelogVersion > renders with badge object correctly 1`] = `
   </div>
   <div data-slot="container" class="flex flex-col mx-auto max-w-2xl">
     <div data-slot="header" class="">
-      <div data-slot="meta" class="flex items-center gap-3 mb-2"><span data-slot="badge" class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded-md bg-primary text-inverted"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
+      <div data-slot="meta" class="flex items-center gap-3 mb-2"><span data-slot="badge" class="rounded-(--ui-badge-radius) [--ui-badge-radius:var(--radius-md)] supports-[height:1lh]:[--ui-badge-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) supports-[height:1cap]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] [--py:--spacing(1)] [--px:--spacing(2)] text-xs/4 gap-1 bg-primary text-inverted"><!--v-if--><span data-slot="label" class="truncate">Badge</span>
         <!--v-if--></span>
         <!--v-if-->
       </div>
