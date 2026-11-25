@@ -148,8 +148,8 @@ describe('Button', () => {
     expect(await axe(wrapper.element)).toHaveNoViolations()
   })
 
-  it.each(sizes)('carries the shared geometry recipe at size %s', async (size: any) => {
-    const wrapper = await mountSuspended(Button, { props: { label: 'Button', size, icon: 'i-lucide-rocket' } })
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', size: size as any, icon: 'i-lucide-rocket' } })
 
     const classes = wrapper.classes()
     expect(classes).toContain('py-(--py)')
