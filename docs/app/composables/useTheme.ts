@@ -182,7 +182,7 @@ export function useTheme() {
     // fonts hydrate unvalidated from localStorage, re-assert SAFE_NAME at
     // the sink so a tampered name can't break out of the quoted string
     const prefs = fontPrefs.value
-    const safeFont = prefs.sans && SAFE_NAME.test(prefs.sans) ? prefs.sans : 'Public Sans'
+    const safeFont = prefs.sans && SAFE_NAME.test(prefs.sans) ? prefs.sans : THEME_DEFAULTS.font
     const parts = [`:root { --font-sans: '${safeFont}', sans-serif; }`]
     // The stacks themselves, so `font-serif` / `font-mono` follow the theme.
     if (prefs.serif && SAFE_NAME.test(prefs.serif)) parts.push(`:root { --font-serif: '${prefs.serif}', serif; }`)
@@ -233,7 +233,7 @@ export function useTheme() {
     return parts.length ? parts.join(' ') : ':root {}'
   })
 
-  /** Google Fonts stylesheet link for a family (Public Sans is bundled). */
+  /** Google Fonts stylesheet link for a family (Allo ships with the library). */
   function fontLink(name: string) {
     return {
       rel: 'stylesheet' as const,
@@ -245,7 +245,7 @@ export function useTheme() {
   const link = computed(() => {
     // Same guard as fontStyle's, so a name the stylesheet refuses can't still
     // cost a Google Fonts request.
-    const names = new Set([fontPrefs.value.sans, fontPrefs.value.serif, fontPrefs.value.mono].filter((name): name is string => !!name && name !== 'Public Sans' && SAFE_NAME.test(name)))
+    const names = new Set([fontPrefs.value.sans, fontPrefs.value.serif, fontPrefs.value.mono].filter((name): name is string => !!name && name !== THEME_DEFAULTS.font && SAFE_NAME.test(name)))
     return [...names].map(fontLink)
   })
 

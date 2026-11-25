@@ -1,23 +1,24 @@
 import { defuFn } from 'defu'
 import type { ModuleOptions } from '../module'
-import input from './input'
+import input, { fieldFrame, fieldFrameSize } from './input'
 import { fieldGroupVariantWithHiddenInput } from './field-group'
 
 export default (options: Required<ModuleOptions>) => {
   return defuFn({
     slots: {
       root: () => undefined,
-      base: () => ['relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+      // The trigger is the field (Select has no root), so it is the frame: it holds `--py` and publishes the radius its slot buttons follow
+      base: () => ['relative group rounded-(--ui-frame-radius) inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75', fieldFrame, options.theme.transitions && 'transition-colors'],
       value: 'truncate pointer-events-none',
       placeholder: 'truncate text-dimmed',
       arrow: 'fill-bg stroke-default',
-      content: 'max-h-[min(15rem,var(--reka-select-content-available-height,15rem))] w-(--reka-select-trigger-width) bg-default shadow-lg rounded-md ring ring-default overflow-hidden origin-(--reka-select-content-transform-origin) pointer-events-auto data-[state=closed]:pointer-events-none! flex flex-col',
+      content: 'max-h-[min(15rem,var(--reka-select-content-available-height,15rem))] w-(--reka-select-trigger-width) bg-default shadow-lg rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-xl)] ring ring-default overflow-hidden origin-(--reka-select-content-transform-origin) pointer-events-auto data-[state=closed]:pointer-events-none! flex flex-col',
       viewport: 'relative divide-y divide-default scroll-py-1 overflow-y-auto flex-1',
-      group: 'p-1 isolate',
+      group: 'p-1 [--ui-frame-inset:calc(--spacing(1)+1px)] isolate',
       empty: 'text-center text-muted',
       label: 'font-semibold text-highlighted',
       separator: '-mx-1 my-1 h-px bg-border',
-      item: ['group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75 text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-elevated/50', options.theme.transitions && 'transition-colors before:transition-colors'],
+      item: ['group relative w-full flex items-start select-none outline-none before:absolute before:z-[-1] before:inset-px frame-shape-md before:rounded-(--ui-frame-shape-radius) data-disabled:cursor-not-allowed data-disabled:opacity-75 text-default data-highlighted:not-data-disabled:text-highlighted data-highlighted:not-data-disabled:before:bg-highlight', options.theme.transitions && 'transition-colors before:transition-colors'],
       itemLeadingIcon: ['shrink-0 text-dimmed group-data-highlighted:not-group-data-disabled:text-default', options.theme.transitions && 'transition-colors'],
       itemLeadingAvatar: 'shrink-0',
       itemLeadingAvatarSize: '',
@@ -38,6 +39,7 @@ export default (options: Required<ModuleOptions>) => {
       }),
       size: {
         xs: {
+          base: (prev: string) => [prev, fieldFrameSize.xs],
           label: 'p-1 text-[10px]/3 gap-1',
           item: 'p-1 text-xs gap-1',
           itemLeadingIcon: 'size-4',
@@ -48,6 +50,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-2 text-xs'
         },
         sm: {
+          base: (prev: string) => [prev, fieldFrameSize.sm],
           label: 'p-1.5 text-[10px]/3 gap-1.5',
           item: 'p-1.5 text-xs gap-1.5',
           itemLeadingIcon: 'size-4',
@@ -58,6 +61,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-2.5 text-xs'
         },
         md: {
+          base: (prev: string) => [prev, fieldFrameSize.md],
           label: 'p-1.5 text-xs gap-1.5',
           item: 'p-1.5 text-sm gap-1.5',
           itemLeadingIcon: 'size-5',
@@ -68,6 +72,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-2.5 text-sm'
         },
         lg: {
+          base: (prev: string) => [prev, fieldFrameSize.lg],
           label: 'p-2 text-xs gap-2',
           item: 'p-2 text-sm gap-2',
           itemLeadingIcon: 'size-5',
@@ -78,6 +83,7 @@ export default (options: Required<ModuleOptions>) => {
           empty: 'p-3 text-sm'
         },
         xl: {
+          base: (prev: string) => [prev, fieldFrameSize.xl],
           label: 'p-2 text-sm gap-2',
           item: 'p-2 text-base gap-2',
           itemLeadingIcon: 'size-6',

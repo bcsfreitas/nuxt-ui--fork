@@ -24,6 +24,7 @@ export type FontCategory = 'Sans' | 'Serif' | 'Mono'
  * through the catalog search.
  */
 export const FONTS: Array<{ name: string, category: FontCategory }> = [
+  { name: 'Allo', category: 'Sans' },
   { name: 'Public Sans', category: 'Sans' },
   { name: 'Inter', category: 'Sans' },
   { name: 'DM Sans', category: 'Sans' },
@@ -155,10 +156,10 @@ export function toolbarPanelClass(vertical?: boolean): string[] {
 /** Tailwind's stock weight ladder, set steps are absences at these values. */
 export const FONT_WEIGHT_DEFAULTS = { normal: 400, medium: 500, semibold: 600, bold: 700 } as const
 
-// Families whose preview faces are already requested, Public Sans is
-// bundled. Module-level so the controls, the preset menu and every search
+// Families whose preview faces are already requested, Allo ships with
+// the library. Module-level so the controls, the preset menu and every search
 // batch share one ledger and no family is fetched twice.
-const loadedFontPreviews = new Set<string>(['Public Sans'])
+const loadedFontPreviews = new Set<string>(['Allo'])
 
 /**
  * Load the listed families (Google Fonts, 400/700 only) so pickers can

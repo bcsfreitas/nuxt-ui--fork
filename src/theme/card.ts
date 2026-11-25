@@ -1,6 +1,6 @@
 export default {
   slots: {
-    root: 'rounded-lg overflow-hidden',
+    root: 'rounded-4xl overflow-hidden',
     header: 'p-4 sm:px-6',
     title: 'text-highlighted font-semibold',
     description: 'mt-1 text-muted text-sm',
@@ -22,10 +22,14 @@ export default {
       },
       subtle: {
         root: 'bg-elevated/50 ring ring-default divide-y divide-default'
+      },
+      shaded: {
+        // Raised in both themes: light keeps the soft shadow, dark gets the elevated background plus a hairline edge
+        root: 'bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--ui-shadow-raised)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]'
       }
     }
   },
   defaultVariants: {
-    variant: 'outline'
+    variant: 'shaded'
   }
 }

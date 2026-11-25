@@ -1,14 +1,16 @@
 import type { ModuleOptions } from '../module'
 import { fieldGroupVariant } from './field-group'
+import { controlIconSize, controlLeadingIcon, controlPadding, controlPaddingSquare, controlPy, controlRadius, controlTrailingIcon } from './utils/control-geometry'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
-    base: ['rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+    // A parent frame (Input slots) hands its concentric radius through `--ui-button-frame-radius`, so a consumer `rounded-*` class still wins
+    base: ['rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]', controlRadius('--ui-button-radius'), 'font-medium inline-flex items-center', controlPadding, 'disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75', options.theme.transitions && 'transition-colors'],
     label: 'truncate',
-    leadingIcon: 'shrink-0',
+    leadingIcon: controlLeadingIcon,
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
-    trailingIcon: 'shrink-0'
+    trailingIcon: controlTrailingIcon
   },
   variants: {
     ...fieldGroupVariant,
@@ -26,34 +28,24 @@ export default (options: Required<ModuleOptions>) => ({
     },
     size: {
       xs: {
-        base: 'px-2 py-1 text-xs gap-1',
-        leadingIcon: 'size-4',
-        leadingAvatarSize: '3xs',
-        trailingIcon: 'size-4'
+        base: `${controlPy.xs} ${controlIconSize.xs} text-xs gap-1`,
+        leadingAvatarSize: '3xs'
       },
       sm: {
-        base: 'px-2.5 py-1.5 text-xs gap-1.5',
-        leadingIcon: 'size-4',
-        leadingAvatarSize: '3xs',
-        trailingIcon: 'size-4'
+        base: `${controlPy.sm} ${controlIconSize.sm} text-xs gap-1.5`,
+        leadingAvatarSize: '3xs'
       },
       md: {
-        base: 'px-2.5 py-1.5 text-sm gap-1.5',
-        leadingIcon: 'size-5',
-        leadingAvatarSize: '2xs',
-        trailingIcon: 'size-5'
+        base: `${controlPy.md} ${controlIconSize.md} text-sm gap-1.5`,
+        leadingAvatarSize: '2xs'
       },
       lg: {
-        base: 'px-3 py-2 text-sm gap-2',
-        leadingIcon: 'size-5',
-        leadingAvatarSize: '2xs',
-        trailingIcon: 'size-5'
+        base: `${controlPy.lg} ${controlIconSize.lg} text-sm gap-2`,
+        leadingAvatarSize: '2xs'
       },
       xl: {
-        base: 'px-3 py-2 text-base gap-2',
-        leadingIcon: 'size-6',
-        leadingAvatarSize: 'xs',
-        trailingIcon: 'size-6'
+        base: `${controlPy.xl} ${controlIconSize.xl} text-base gap-2`,
+        leadingAvatarSize: 'xs'
       }
     },
     block: {
@@ -114,7 +106,7 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     color: 'neutral',
     variant: 'outline',
-    class: 'ring ring-inset ring-accented text-default bg-default hover:bg-elevated active:bg-elevated disabled:bg-default aria-disabled:bg-default outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+    class: 'ring ring-inset ring-control text-default bg-default hover:bg-elevated active:bg-elevated disabled:bg-default aria-disabled:bg-default outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
   }, {
     color: 'neutral',
     variant: 'soft',
@@ -122,7 +114,7 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     color: 'neutral',
     variant: 'subtle',
-    class: 'ring ring-inset ring-accented text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+    class: 'ring ring-inset ring-control text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
   }, {
     color: 'neutral',
     variant: 'ghost',
@@ -132,25 +124,8 @@ export default (options: Required<ModuleOptions>) => ({
     variant: 'link',
     class: 'text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3'
   }, {
-    size: 'xs',
     square: true,
-    class: 'p-1'
-  }, {
-    size: 'sm',
-    square: true,
-    class: 'p-1.5'
-  }, {
-    size: 'md',
-    square: true,
-    class: 'p-1.5'
-  }, {
-    size: 'lg',
-    square: true,
-    class: 'p-2'
-  }, {
-    size: 'xl',
-    square: true,
-    class: 'p-2'
+    class: controlPaddingSquare
   }, {
     loading: true,
     leading: true,

@@ -380,6 +380,9 @@ catalogs:
     ai:
       specifier: ^7.0.179
       version: 7.0.179
+    allo-font:
+      specifier: ^1.0.3
+      version: 1.0.3
     capture-website:
       specifier: ^5.1.0
       version: 5.1.0
@@ -395,6 +398,9 @@ catalogs:
     defu:
       specifier: ^6.1.7
       version: 6.1.7
+    dialkit:
+      specifier: 2.2.1
+      version: 2.2.1
     embla-carousel:
       specifier: ^8.6.0
       version: 8.6.0
@@ -461,6 +467,9 @@ catalogs:
     mlly:
       specifier: ^1.8.2
       version: 1.8.2
+    motion:
+      specifier: ^14.14.0
+      version: 14.14.0
     motion-v:
       specifier: ^2.13.0
       version: 2.13.0
@@ -703,6 +712,9 @@ importers:
       '@vueuse/shared':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.46(typescript@6.0.3))
+      allo-font:
+        specifier: 'catalog:'
+        version: 1.0.3
       colortranslator:
         specifier: 'catalog:'
         version: 5.0.0
@@ -1122,6 +1134,15 @@ importers:
       ai:
         specifier: 'catalog:'
         version: 7.0.179(zod@4.6.7)
+      dialkit:
+        specifier: 'catalog:'
+        version: 2.2.1(motion-v@2.13.0(@vueuse/core@14.4.0(vue@3.5.46(typescript@6.0.3)))(vue@3.5.46(typescript@6.0.3)))(motion@14.14.0)(vue@3.5.46(typescript@6.0.3))
+      motion:
+        specifier: 'catalog:'
+        version: 14.14.0
+      motion-v:
+        specifier: 'catalog:'
+        version: 2.13.0(@vueuse/core@14.4.0(vue@3.5.46(typescript@6.0.3)))(vue@3.5.46(typescript@6.0.3))
       nuxt:
         specifier: 'catalog:'
         version: 4.6.4(@babel/plugin-syntax-jsx@7.28.6(@babel/core@7.29.0(supports-color@10.2.2)))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.0(supports-color@10.2.2)))(@oxc-project/types@0.156.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.46)(acorn@8.18.0)(better-sqlite3@12.11.1)(confbox@0.3.2)(db0@0.3.4(better-sqlite3@12.11.1))(dotenv@17.4.2)(esbuild@0.28.2)(eslint@10.15.0(jiti@2.7.0)(supports-color@10.2.2))(giget@3.3.1)(ioredis@5.11.1(supports-color@10.2.2))(lightningcss@1.33.0)(meow@13.2.0)(mlly@1.8.2)(optionator@0.9.4)(oxc-parser@0.154.0)(rolldown@1.2.19)(rollup-plugin-visualizer@7.1.1(rolldown@1.2.19)(rollup@4.67.4))(rollup@4.67.4)(srvx@1.0.8)(supports-color@10.2.2)(terser@5.51.2)(typescript@6.0.3)(vite@8.3.8(@types/node@25.9.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))(vue-tsc@3.3.11(typescript@6.0.3))(yaml@2.9.1)
@@ -4642,6 +4663,9 @@ packages:
   alien-signals@3.2.1:
     resolution: {integrity: sha512-I8FjmltrfnDFoZedi5CG8DghVYNhzb/Ijluz7tCSJH0xpd0484Kowhbb1XDYOxfJpU1p5wnM2X54dA+IfGyD1g==}
 
+  allo-font@1.0.3:
+    resolution: {integrity: sha512-h1u1ukonlmfTYSRc+MPvrjJU/p12A5xmzXIw5YQXf1/VGNi00cnPJfTf1AxYZOHzXRxK2pBLV7GgxtOm7/f+DQ==}
+
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
@@ -5474,6 +5498,32 @@ packages:
 
   devtools-protocol@0.0.1608973:
     resolution: {integrity: sha512-Tpm17fxYzt+J7VrGdc1k8YdRqS3YV7se/M6KeemEqvUbq/n7At1rWVuXMxQgpWkdwSdIEKYbU//Bve+Shm4YNQ==}
+
+  dialkit@2.2.1:
+    resolution: {integrity: sha512-4PDVfRy4LtOZxr3LHTzJmdIqeonYbqc+/jaUOmll5jYof/alQLdFd5D7DIVSmBgygqsb21nkoYxnmUH5uvKd7A==}
+    peerDependencies:
+      motion: '>=11.0.0'
+      motion-v: '>=2.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+      solid-js: '>=1.6.0'
+      svelte: '>=5.8.0'
+      vue: '>=3.3.0'
+    peerDependenciesMeta:
+      motion:
+        optional: true
+      motion-v:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      solid-js:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
 
   diff3@0.0.3:
     resolution: {integrity: sha512-iSq8ngPOt0K53A6eVr4d5Kn6GNrM2nQZtC740pzIriHtn4pOQ2lyzEXQMBeVcWERN0ye7fhBsk9PbLLQOnUx/g==}
@@ -7133,6 +7183,20 @@ packages:
     peerDependencies:
       '@vueuse/core': '>=10.0.0'
       vue: '>=3.0.0'
+
+  motion@14.14.0:
+    resolution: {integrity: sha512-a306U6sV5VKq1abtzKiinB+UQjiY88jrsvQzWORP3WPv/DFANyoYVlPbdnmJPMEbusyPXB4GyQJVANaq/pSIYQ==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+      remix: ^3.1.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      remix:
+        optional: true
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -13894,6 +13958,8 @@ snapshots:
 
   alien-signals@3.2.1: {}
 
+  allo-font@1.0.3: {}
+
   ansi-regex@5.0.1: {}
 
   ansi-regex@6.2.2: {}
@@ -14698,6 +14764,12 @@ snapshots:
       dequal: 2.0.3
 
   devtools-protocol@0.0.1608973: {}
+
+  dialkit@2.2.1(motion-v@2.13.0(@vueuse/core@14.4.0(vue@3.5.46(typescript@6.0.3)))(vue@3.5.46(typescript@6.0.3)))(motion@14.14.0)(vue@3.5.46(typescript@6.0.3)):
+    optionalDependencies:
+      motion: 14.14.0
+      motion-v: 2.13.0(@vueuse/core@14.4.0(vue@3.5.46(typescript@6.0.3)))(vue@3.5.46(typescript@6.0.3))
+      vue: 3.5.46(typescript@6.0.3)
 
   diff3@0.0.3: {}
 
@@ -16767,6 +16839,11 @@ snapshots:
       - react
       - react-dom
       - remix
+
+  motion@14.14.0:
+    dependencies:
+      framer-motion: 14.14.0
+      tslib: 2.8.1
 
   mrmime@2.0.1: {}
 

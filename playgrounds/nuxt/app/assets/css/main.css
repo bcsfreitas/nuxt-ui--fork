@@ -8,8 +8,6 @@
 @source "../../../../../src";
 
 @theme static {
-  --font-sans: 'Public Sans', sans-serif;
-
   --color-green-50: #EFFDF5;
   --color-green-100: #D9FBE8;
   --color-green-200: #B3F5D1;
@@ -21,6 +19,14 @@
   --color-green-800: #016538;
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
+}
+
+/* The Allo panel's weight dial sets `--allo-dial-weight` on the root; `b`/`strong` otherwise compute a relative `bolder` */
+@layer base {
+  b,
+  strong {
+    font-weight: var(--allo-dial-weight, bolder);
+  }
 }
 
 html.dark .shiki span {

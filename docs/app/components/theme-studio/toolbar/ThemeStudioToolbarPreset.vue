@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { AvatarProps } from '@nuxt/ui'
 import type { ThemeDoc } from '../../../utils/theme/engine'
+import { THEME_DEFAULTS } from '../../../utils/theme/engine/types'
 import { themeIcons } from '../../../utils/theme/icons'
 import { themeChipStyle, loadFontPreviews, PRESET_ICONS } from '../../../utils/theme/studio'
 
@@ -55,7 +56,7 @@ const presetItems = computed(() => presets.map(preset => ({
     style: themeChipStyle(preset.doc),
     ui: { icon: 'text-(--chip-icon-light) dark:text-(--chip-icon-dark)' }
   } as AvatarProps,
-  font: preset.doc.font?.sans ?? 'Public Sans',
+  font: preset.doc.font?.sans ?? THEME_DEFAULTS.font,
   iconSamples: iconSamples(preset.doc),
   ui: {
     itemLeadingAvatar: 'self-center'

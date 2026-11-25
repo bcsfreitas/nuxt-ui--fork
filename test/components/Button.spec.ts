@@ -148,6 +148,62 @@ describe('Button', () => {
     expect(await axe(wrapper.element)).toHaveNoViolations()
   })
 
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', size: size as any, icon: 'i-lucide-rocket' } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('py-(--py)')
+    expect(classes).toContain('px-(--px)')
+    expect(classes).toContain('rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]')
+    expect(classes.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
+  })
+
+  it('lets a consumer `rounded-*` class replace the derived radius', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', class: 'rounded-full' } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('rounded-full')
+    expect(classes.some(name => name.startsWith('rounded-['))).toBe(false)
+  })
+
+  it('lets a `ui.base` padding replace the derived padding', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', ui: { base: 'px-4' } } })
+
+    const classes = wrapper.classes()
+    expect(classes).toContain('px-4')
+    expect(classes).not.toContain('px-(--px)')
+  })
+
+  it.each([['xs', 4], ['sm', 4], ['md', 5], ['lg', 5], ['xl', 6]])('keeps the upstream icon size as the fallback at size %s', async (size, spacing) => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', size: size as any, icon: 'i-lucide-rocket' } })
+
+    expect(wrapper.classes()).toContain(`[--ui-control-icon-size:--spacing(${spacing})]`)
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('supports-[height:1lh]:[--ui-control-icon-size:1lh]')
+  })
+
+  it('lets a `ui.leadingIcon` size replace the derived icon size', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', icon: 'i-lucide-rocket', ui: { leadingIcon: 'size-3' } } })
+
+    const classes = wrapper.get('[data-slot="leadingIcon"]').classes()
+    expect(classes).toContain('size-3')
+    expect(classes).not.toContain('size-(--ui-control-icon-size)')
+  })
+
+  it.each([['ms-0'], ['ms-4']])('lets a `ui.leadingIcon` margin `%s` replace the icon pull-in', async (margin) => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', icon: 'i-lucide-rocket', ui: { leadingIcon: margin } } })
+
+    const classes = wrapper.get('[data-slot="leadingIcon"]').classes()
+    expect(classes.filter(name => /(?:^|:)ms-/.test(name))).toEqual([margin])
+  })
+
+  it('lets a `ui.trailingIcon` margin replace the icon pull-in', async () => {
+    const wrapper = await mountSuspended(Button, { props: { label: 'Button', trailingIcon: 'i-lucide-arrow-right', ui: { trailingIcon: 'me-0' } } })
+
+    const classes = wrapper.get('[data-slot="trailingIcon"]').classes()
+    expect(classes.filter(name => /(?:^|:)me-/.test(name))).toEqual(['me-0'])
+  })
+
   it('replaces a slot class through a `:ui` function', async () => {
     const wrapper = await mountSuspended(Button, {
       props: {

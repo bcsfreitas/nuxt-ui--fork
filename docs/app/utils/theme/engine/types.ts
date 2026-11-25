@@ -105,7 +105,7 @@ export const SEMANTIC_ALIASES = ['secondary', 'success', 'info', 'warning', 'err
 export const THEME_DEFAULTS = {
   radius: 0.25,
   fontSize: 16,
-  font: 'Public Sans',
+  font: 'Allo',
   icons: 'lucide'
 } as const
 

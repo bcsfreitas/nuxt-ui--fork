@@ -182,7 +182,7 @@ export default defineNuxtPlugin({
               set('nuxt-ui-black-as-primary', T.blackAsPrimary ? ':root { --ui-primary: black; } .dark { --ui-primary: white; }' : '');
 
               var prefs = T.font || {};
-              var font = (prefs.sans && SAFE.test(prefs.sans)) ? prefs.sans : 'Public Sans';
+              var font = (prefs.sans && SAFE.test(prefs.sans)) ? prefs.sans : 'Allo';
               var css = ':root { --font-sans: \\'' + font + '\\', sans-serif; }';
               var serif = (prefs.serif && SAFE.test(prefs.serif)) ? prefs.serif : undefined;
               var mono = (prefs.mono && SAFE.test(prefs.mono)) ? prefs.mono : undefined;
@@ -203,7 +203,7 @@ export default defineNuxtPlugin({
               if (bodyRules) { css += ' body { ' + bodyRules + '}'; }
               if (Object.keys(prefs).length) { set('nuxt-ui-font', css); }
               [font, serif, mono].forEach(function(name) {
-                if (!name || name === 'Public Sans') return;
+                if (!name || name === 'Allo') return;
                 var id = 'font-' + name.toLowerCase().replace(/\\s+/g, '-');
                 if (document.getElementById(id)) return;
                 var lnk = document.createElement('link');
