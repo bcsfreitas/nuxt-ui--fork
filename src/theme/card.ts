@@ -25,7 +25,7 @@ export default {
       },
       shaded: {
         // Raised in both themes: light keeps the soft shadow, dark gets the elevated background plus a hairline edge
-        root: 'bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:0_0_0_1px_var(--ui-border-accented),var(--shadow-card)]'
+        root: 'bg-(--ui-card-bg) shadow-(--ui-card-shadow) [--ui-card-bg:var(--ui-bg)] [--ui-card-shadow:var(--shadow-card)] dark:[--ui-card-bg:var(--ui-bg-elevated)] dark:[--ui-card-shadow:var(--shadow-card-raised)]'
       }
     }
   },

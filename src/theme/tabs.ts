@@ -122,7 +122,7 @@ export default (options: Required<ModuleOptions>) => ({
     color: 'neutral',
     variant: 'pill',
     class: {
-      list: '[--ui-tabs-segment-bg:var(--ui-bg)] [--ui-tabs-segment-shadow:var(--shadow-xs)] dark:[--ui-tabs-segment-bg:var(--ui-bg-accented)] dark:[--ui-tabs-segment-shadow:inset_0_0_0_1px_color-mix(in_oklab,var(--ui-text-highlighted)_10%,transparent)]',
+      list: '[--ui-tabs-segment-bg:var(--ui-bg)] [--ui-tabs-segment-shadow:var(--shadow-xs)] dark:[--ui-tabs-segment-bg:var(--ui-bg-accented)] dark:[--ui-tabs-segment-shadow:var(--shadow-segment-edge)]',
       indicator: 'bg-(--ui-tabs-segment-bg) shadow-(--ui-tabs-segment-shadow)',
       trigger: [`data-[state=active]:text-highlighted outline-inverted/25 focus-visible:outline-3`, ssr('before:bg-(--ui-tabs-segment-bg)', 'before:shadow-(--ui-tabs-segment-shadow)')]
     }
