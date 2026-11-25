@@ -223,6 +223,26 @@ describe('InputMenu', () => {
     })
   })
 
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(InputMenu, { props: { items: ['A', 'B'], icon: 'i-lucide-search', size: size as any } })
+
+    const frame = wrapper.get('[data-slot="root"]').classes()
+    expect(frame.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(frame).toContain('supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))]')
+    expect(wrapper.get('[data-slot="base"]').classes()).toEqual(expect.arrayContaining(['py-(--py)', 'px-(--px)', 'rounded-(--ui-frame-radius)', 'ps-(--ui-field-icon-padding)']))
+    expect(wrapper.get('[data-slot="leading"]').classes()).toContain('ps-(--ui-field-inset)')
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
+  })
+
+  it('lets a consumer `rounded-*` / padding class replace the derived geometry', async () => {
+    const wrapper = await mountSuspended(InputMenu, { props: { items: ['A', 'B'], ui: { base: 'rounded-full px-4' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining(['rounded-full', 'px-4']))
+    expect(classes).not.toContain('rounded-(--ui-frame-radius)')
+    expect(classes).not.toContain('px-(--px)')
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(InputMenu, {
       props: {

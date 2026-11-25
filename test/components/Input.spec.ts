@@ -78,6 +78,48 @@ describe('Input', () => {
     }
   )
 
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(Input, { props: { icon: 'i-lucide-search', size: size as any } })
+
+    const frame = wrapper.classes()
+    expect(frame.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(frame).toContain('supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))]')
+    expect(wrapper.get('[data-slot="base"]').classes()).toEqual(expect.arrayContaining(['py-(--py)', 'px-(--px)', 'rounded-(--ui-frame-radius)', 'ps-(--ui-field-icon-padding)']))
+    expect(wrapper.get('[data-slot="leading"]').classes()).toContain('ps-(--ui-field-inset)')
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
+  })
+
+  it('lets a consumer `rounded-*` / padding class replace the derived geometry', async () => {
+    const wrapper = await mountSuspended(Input, { props: { ui: { base: 'rounded-full px-4' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining(['rounded-full', 'px-4']))
+    expect(classes).not.toContain('rounded-(--ui-frame-radius)')
+    expect(classes).not.toContain('px-(--px)')
+  })
+
+  it.each([['xs', 4], ['sm', 4], ['md', 5], ['lg', 5], ['xl', 6]])('keeps the upstream icon size as the fallback at size %s', async (size, spacing) => {
+    const wrapper = await mountSuspended(Input, { props: { icon: 'i-lucide-search', size: size as any } })
+
+    expect(wrapper.classes()).toContain(`[--ui-control-icon-size:--spacing(${spacing})]`)
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('supports-[height:1lh]:[--ui-control-icon-size:1lh]')
+  })
+
+  it('lets a `ui.leadingIcon` size replace the derived icon size', async () => {
+    const wrapper = await mountSuspended(Input, { props: { icon: 'i-lucide-search', ui: { leadingIcon: 'size-3' } } })
+
+    const classes = wrapper.get('[data-slot="leadingIcon"]').classes()
+    expect(classes).toContain('size-3')
+    expect(classes).not.toContain('size-(--ui-control-icon-size)')
+  })
+
+  it('lets `ui.leadingIcon` / `ui.trailingIcon` margins stand alone', async () => {
+    const wrapper = await mountSuspended(Input, { props: { icon: 'i-lucide-search', trailingIcon: 'i-lucide-x', ui: { leadingIcon: 'ms-4', trailingIcon: 'me-0' } } })
+
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes().filter(name => /(?:^|:)ms-/.test(name))).toEqual(['ms-4'])
+    expect(wrapper.get('[data-slot="trailingIcon"]').classes().filter(name => /(?:^|:)me-/.test(name))).toEqual(['me-0'])
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(Input, {
       props: {

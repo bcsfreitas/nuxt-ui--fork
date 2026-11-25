@@ -1,3 +1,5 @@
+import { controlRadiusAt } from './utils/control-geometry'
+
 export const fieldGroupVariant = {
   fieldGroup: {
     horizontal: 'not-only:first:rounded-e-none not-only:last:rounded-s-none not-last:not-first:rounded-none focus-visible:z-[1]',
@@ -30,12 +32,13 @@ export const fieldGroupVariantWithRoot = {
 export default {
   base: 'relative',
   variants: {
+    // The controls' outer corner at the group size, read by children that keep their own size (a Badge prefix)
     size: {
-      xs: '',
-      sm: '',
-      md: '',
-      lg: '',
-      xl: ''
+      xs: controlRadiusAt('--ui-field-group-radius', 'xs'),
+      sm: controlRadiusAt('--ui-field-group-radius', 'sm'),
+      md: controlRadiusAt('--ui-field-group-radius', 'md'),
+      lg: controlRadiusAt('--ui-field-group-radius', 'lg'),
+      xl: controlRadiusAt('--ui-field-group-radius', 'xl')
     },
     orientation: {
       horizontal: 'inline-flex -space-x-px',

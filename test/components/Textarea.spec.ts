@@ -82,11 +82,11 @@ describe('Textarea', () => {
     })
 
     test.each([
-      ['xs', '[--ui-frame-inset:--spacing(1)]'],
-      ['sm', '[--ui-frame-inset:--spacing(1.5)]'],
-      ['md', '[--ui-frame-inset:--spacing(1.5)]'],
-      ['lg', '[--ui-frame-inset:--spacing(2)]'],
-      ['xl', '[--ui-frame-inset:--spacing(2)]']
+      ['xs', '[--ui-frame-inset:var(--py)]'],
+      ['sm', '[--ui-frame-inset:var(--py)]'],
+      ['md', '[--ui-frame-inset:var(--py)]'],
+      ['lg', '[--ui-frame-inset:var(--py)]'],
+      ['xl', '[--ui-frame-inset:var(--py)]']
     ])('insets slot buttons from the top edge at size %s', async (size, inset) => {
       const wrapper = await mountWithSlotButtons({ size })
 
@@ -104,9 +104,57 @@ describe('Textarea', () => {
       const classes = wrapper.get('[data-slot="leading"]').classes()
 
       expect(classes).toContain('[--ui-frame-inset:--spacing(3)]')
-      expect(classes).not.toContain('[--ui-frame-inset:--spacing(1.5)]')
+      expect(classes).not.toContain('[--ui-frame-inset:var(--py)]')
       expect(classes).toContain('inset-y-(--ui-frame-inset)')
     })
+  })
+
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(Textarea, { props: { icon: 'i-lucide-search', size: size as any } })
+
+    const frame = wrapper.classes()
+    expect(frame.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(frame).toContain('supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))]')
+    expect(wrapper.get('[data-slot="base"]').classes()).toEqual(expect.arrayContaining(['py-(--py)', 'px-(--px)', 'rounded-(--ui-frame-radius)', 'ps-(--ui-field-icon-padding)']))
+    expect(wrapper.get('[data-slot="leading"]').classes()).toContain('ps-(--ui-field-inset)')
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
+    expect(wrapper.get('[data-slot="leading"]').classes()).toContain('[--ui-frame-inset:var(--py)]')
+  })
+
+  it('lets a consumer `rounded-*` / padding class replace the derived geometry', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { ui: { base: 'rounded-full px-4' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining(['rounded-full', 'px-4']))
+    expect(classes).not.toContain('rounded-(--ui-frame-radius)')
+    expect(classes).not.toContain('px-(--px)')
+  })
+
+  it('keeps the resize handle corner at `rounded-md` while resizable', async () => {
+    const wrapper = await mountSuspended(Textarea)
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining([
+      'rounded-(--ui-frame-radius)',
+      'rounded-ee-(--ui-textarea-resize-radius)',
+      '[--ui-textarea-resize-radius:min(var(--ui-frame-radius),var(--radius-md))]',
+      '[&.resize-none]:[--ui-textarea-resize-radius:var(--ui-frame-radius)]'
+    ]))
+  })
+
+  it('keeps the full corner with autoresize', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { autoresize: true } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toContain('resize-none')
+    expect(classes.some(name => name.includes('rounded-ee-'))).toBe(false)
+  })
+
+  it('lets a consumer `rounded-*` class replace the resize handle corner', async () => {
+    const wrapper = await mountSuspended(Textarea, { props: { ui: { base: 'rounded-full' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes.filter(name => /(?:^|:)rounded-/.test(name))).toEqual(['rounded-full'])
   })
 
   it('passes accessibility tests', async () => {
