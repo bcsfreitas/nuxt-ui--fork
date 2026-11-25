@@ -4,7 +4,8 @@ export default (options: Required<ModuleOptions>) => ({
   slots: {
     // The frame radius follows the Modal (`rounded-lg`) the palette usually sits in; set `--ui-frame-radius` when embedding it elsewhere
     root: 'flex flex-col min-h-0 min-w-0 divide-y divide-default [--ui-frame-radius:var(--radius-lg)]',
-    input: '[--ui-frame-radius:var(--radius-lg)]',
+    // Repeats Input's enhanced form, which would otherwise win in browsers with `lh`
+    input: '[--ui-frame-radius:var(--radius-lg)] supports-[height:1lh]:[--ui-frame-radius:var(--radius-lg)]',
     close: '',
     back: 'p-0',
     content: 'relative overflow-hidden flex flex-col focus:outline-none',
