@@ -3,6 +3,7 @@ import type { HighlighterGeneric } from 'shiki'
 import type { TabsItem } from '@nuxt/ui'
 import { createHighlighter } from 'shiki'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
+import { useCookie, useRoute, useRouter } from '#imports'
 
 type SourceKind = 'page' | 'component' | 'theme'
 
@@ -19,7 +20,14 @@ const route = useRoute()
 const toast = useToast()
 const { toggle } = useCodePanel()
 
-const tab = useCookie<SourceKind>('code-panel-tab', { default: () => 'page' })
+// A computed over the cookie, so templates get a ref in both playgrounds (the Vue stub's cookie is a plain object)
+const tabCookie = useCookie<SourceKind>('code-panel-tab', { default: () => 'page' })
+const tab = computed<SourceKind>({
+  get: () => tabCookie.value,
+  set: (value) => {
+    tabCookie.value = value
+  }
+})
 const files = reactive<Record<SourceKind, SourceFile>>({
   page: { path: '', code: '', saved: '' },
   component: { path: '', code: '', saved: '' },
@@ -59,7 +67,7 @@ watch([() => active.value.code, tab], async ([value]) => {
 
 async function loadFile(kind: SourceKind) {
   try {
-    const result = await $fetch('/api/source', { query: { route: route.path, kind } })
+    const result = await $fetch<{ path: string, content: string }>('/api/source', { query: { route: route.path, kind } })
     Object.assign(files[kind], { path: result.path, code: result.content, saved: result.content })
   } catch {
     Object.assign(files[kind], { path: '', code: '', saved: '' })
