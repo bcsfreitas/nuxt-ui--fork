@@ -1034,7 +1034,11 @@ function svgNode(ctx: Context, element: SVGSVGElement): PaperNode {
     const paint: string[] = []
     for (const property of ['fill', 'stroke'] as const) {
       const value = style.getPropertyValue(property)
-      if (value && value !== 'none' && !value.startsWith('url(')) {
+      if (!value) continue
+      // Paper has no paint servers, and dropping `fill="none"` would paint the shape black
+      if (value === 'none' || value.startsWith('url(')) {
+        paint.push(`${property}: none`)
+      } else {
         paint.push(`${property}: ${colorValue(ctx, value, 'text', hints, `svg ${property}`) ?? value}`)
       }
     }
