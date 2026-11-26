@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, inject } from 'vue'
 
 // The landing's wall: the Theme Studio's grid tiles without the virtualizer.
 // Plain async components (not Nuxt's lazy hydration) because the Vue playground renders this page too.
@@ -48,6 +48,15 @@ const tiles = [
   { name: 'auth-form', component: AuthForm },
   { name: 'prompt', component: Prompt }
 ]
+
+// Only the Nuxt playground in dev provides the code panel
+const editable = inject('code-panel', false)
+const { openFile } = useCodePanel()
+
+// `transfer-funds` lives in `PlaygroundTransferFunds.vue`
+function fileOf(name: string) {
+  return `Playground${name.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('')}.vue`
+}
 </script>
 
 <template>
@@ -55,7 +64,22 @@ const tiles = [
        follow this box through container queries, not the viewport. -->
   <div class="@container">
     <div class="columns-1 gap-4 p-4 *:mb-4 *:break-inside-avoid @min-[600px]:columns-2 @min-[600px]:p-6 @min-[900px]:columns-3 @min-[1200px]:columns-4">
-      <PlaygroundCard v-for="tile in tiles" :key="tile.name">
+      <PlaygroundCard
+        v-for="tile in tiles"
+        :key="tile.name"
+        :data-tile="tile.name"
+        class="group/tile"
+      >
+        <UButton
+          v-if="editable"
+          label="Edit code"
+          icon="i-lucide-code"
+          color="neutral"
+          variant="outline"
+          size="xs"
+          class="absolute top-2 end-2 z-10 opacity-0 group-hover/tile:opacity-100 focus-visible:opacity-100"
+          @click="openFile(fileOf(tile.name))"
+        />
         <component :is="tile.component" />
       </PlaygroundCard>
     </div>

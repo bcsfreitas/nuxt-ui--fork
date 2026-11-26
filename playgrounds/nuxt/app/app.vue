@@ -19,7 +19,10 @@ useHead({
 provide('components', components)
 
 const { open: codeOpen } = useCodePanel()
-const showCode = computed(() => codeOpen.value && route.path.startsWith('/components/') && !route.path.startsWith('/components/sidebar'))
+const showCode = computed(() => codeOpen.value && (route.path === '/' || (route.path.startsWith('/components/') && !route.path.startsWith('/components/sidebar'))))
+
+// Lets the home wall offer "Edit code" on its tiles, only where the code panel can save
+provide('code-panel', import.meta.dev)
 </script>
 
 <template>
