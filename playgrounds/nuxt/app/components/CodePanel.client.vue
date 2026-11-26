@@ -1,19 +1,37 @@
 <script setup lang="ts">
 import type { HighlighterGeneric } from 'shiki'
+import type { TabsItem } from '@nuxt/ui'
 import { createHighlighter } from 'shiki'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
+
+type SourceKind = 'page' | 'component'
+
+interface SourceFile {
+  path: string
+  code: string
+  saved: string
+}
 
 const route = useRoute()
 const toast = useToast()
 const { toggle } = useCodePanel()
 
-const path = ref('')
-const code = ref('')
-const saved = ref('')
+const tab = useCookie<SourceKind>('code-panel-tab', { default: () => 'page' })
+const files = reactive<Record<SourceKind, SourceFile>>({
+  page: { path: '', code: '', saved: '' },
+  component: { path: '', code: '', saved: '' }
+})
 const loading = ref(false)
 const saving = ref(false)
 
-const dirty = computed(() => code.value !== saved.value)
+const active = computed(() => files[tab.value])
+const isDirty = (kind: SourceKind) => files[kind].code !== files[kind].saved
+const dirty = computed(() => isDirty(tab.value))
+
+const tabs = computed<TabsItem[]>(() => [
+  { label: 'Page', value: 'page', disabled: !files.page.path },
+  { label: 'Component', value: 'component', disabled: !files.component.path }
+])
 
 let highlighter: Promise<HighlighterGeneric<any, any>> | undefined
 const html = ref('')
@@ -27,7 +45,7 @@ function getHighlighter() {
   return highlighter
 }
 
-watch(code, async (value) => {
+watch(() => active.value.code, async (value) => {
   const shiki = await getHighlighter()
   // A trailing space keeps the last empty line as tall as the textarea's
   html.value = shiki.codeToHtml(`${value} `, {
@@ -38,36 +56,41 @@ watch(code, async (value) => {
   })
 }, { immediate: true })
 
+async function loadFile(kind: SourceKind) {
+  try {
+    const result = await $fetch('/api/source', { query: { route: route.path, kind } })
+    Object.assign(files[kind], { path: result.path, code: result.content, saved: result.content })
+  } catch {
+    Object.assign(files[kind], { path: '', code: '', saved: '' })
+  }
+}
+
 async function load() {
   if (!route.path.startsWith('/components/')) {
     return
   }
 
   loading.value = true
-  try {
-    const result = await $fetch('/api/source', { query: { route: route.path } })
-    path.value = result.path
-    code.value = result.content
-    saved.value = result.content
-  } catch {
-    path.value = ''
-    code.value = ''
-    saved.value = ''
-  } finally {
-    loading.value = false
+  await Promise.all([loadFile('page'), loadFile('component')])
+  loading.value = false
+
+  if (!files[tab.value].path) {
+    tab.value = files.page.path ? 'page' : 'component'
   }
 }
 
 async function save() {
-  if (!dirty.value || saving.value) {
+  const kind = tab.value
+  const file = files[kind]
+  if (!isDirty(kind) || saving.value) {
     return
   }
 
   saving.value = true
-  const content = code.value
+  const content = file.code
   try {
-    await $fetch('/api/source', { method: 'PUT', body: { route: route.path, content } })
-    saved.value = content
+    await $fetch('/api/source', { method: 'PUT', body: { route: route.path, kind, content } })
+    file.saved = content
   } catch (error: any) {
     toast.add({ title: 'Could not save the file', description: error?.data?.message ?? error?.message, color: 'error' })
   } finally {
@@ -76,7 +99,7 @@ async function save() {
 }
 
 function revert() {
-  code.value = saved.value
+  active.value.code = active.value.saved
 }
 
 function onKeydown(event: KeyboardEvent) {
@@ -90,14 +113,14 @@ function onKeydown(event: KeyboardEvent) {
     event.preventDefault()
     const el = event.target as HTMLTextAreaElement
     el.setRangeText('  ', el.selectionStart, el.selectionEnd, 'end')
-    code.value = el.value
+    active.value.code = el.value
   }
 }
 
 watch(() => route.path, load, { immediate: true })
 
 const removeGuard = useRouter().beforeEach((to, from) => {
-  if (dirty.value && to.path !== from.path) {
+  if ((isDirty('page') || isDirty('component')) && to.path !== from.path) {
     return window.confirm('Discard unsaved changes?')
   }
 })
@@ -108,13 +131,26 @@ onBeforeUnmount(removeGuard)
 <template>
   <UDashboardPanel id="code" :ui="{ body: 'p-0 sm:p-0 gap-0' }">
     <template #header>
-      <UDashboardNavbar :ui="{ title: 'font-mono text-sm font-normal truncate' }" :title="path || 'Code'">
-        <template #leading>
-          <UIcon name="i-lucide-code-xml" class="size-4 text-muted shrink-0" />
+      <UDashboardNavbar :ui="{ left: 'min-w-0', right: 'shrink-0' }">
+        <template #title>
+          <UTabs
+            v-model="tab"
+            :items="tabs"
+            :content="false"
+            variant="link"
+            size="sm"
+          >
+            <template #trailing="{ item }">
+              <span
+                v-if="isDirty(item.value as SourceKind)"
+                class="size-1.5 rounded-full bg-warning"
+                aria-label="Unsaved changes"
+              />
+            </template>
+          </UTabs>
         </template>
 
         <template #right>
-          <UBadge v-if="dirty" label="Unsaved" color="warning" variant="subtle" size="sm" />
           <UButton
             v-if="dirty"
             label="Revert"
@@ -148,35 +184,42 @@ onBeforeUnmount(removeGuard)
     </template>
 
     <template #body>
-      <div v-if="loading && !path" class="flex flex-1 items-center justify-center text-sm text-muted">
+      <div v-if="loading && !active.path" class="flex flex-1 items-center justify-center text-sm text-muted">
         Loading…
       </div>
 
-      <div v-else-if="!path" class="flex flex-1 items-center justify-center text-sm text-muted">
+      <div v-else-if="!active.path" class="flex flex-1 items-center justify-center text-sm text-muted">
         This page has no source file to edit.
       </div>
 
-      <div v-else class="flex-1 overflow-auto bg-default">
-        <div class="grid min-w-full w-max font-mono text-xs/5">
-          <!-- eslint-disable vue/no-v-html -->
-          <div
-            aria-hidden="true"
-            class="[grid-area:1/1] pointer-events-none [&_pre]:p-4 [&_pre]:bg-transparent! [&_pre]:font-mono"
-            v-html="html"
-          />
-          <!-- eslint-enable vue/no-v-html -->
-          <textarea
-            v-model="code"
-            wrap="off"
-            spellcheck="false"
-            autocapitalize="off"
-            autocomplete="off"
-            aria-label="Page source code"
-            class="[grid-area:1/1] p-4 resize-none overflow-hidden bg-transparent text-transparent caret-(--ui-text-highlighted) outline-none selection:bg-primary/20 whitespace-pre"
-            @keydown="onKeydown"
-          />
+      <template v-else>
+        <div class="px-4 py-2 border-b border-default font-mono text-xs text-muted truncate">
+          {{ active.path }}
         </div>
-      </div>
+
+        <div class="flex-1 overflow-auto bg-default">
+          <div class="grid min-w-full w-max font-mono text-xs/5">
+            <!-- eslint-disable vue/no-v-html -->
+            <div
+              aria-hidden="true"
+              class="[grid-area:1/1] pointer-events-none [&_pre]:p-4 [&_pre]:bg-transparent! [&_pre]:font-mono"
+              v-html="html"
+            />
+            <!-- eslint-enable vue/no-v-html -->
+            <textarea
+              :key="tab"
+              v-model="active.code"
+              wrap="off"
+              spellcheck="false"
+              autocapitalize="off"
+              autocomplete="off"
+              :aria-label="tab === 'page' ? 'Page source code' : 'Component source code'"
+              class="[grid-area:1/1] p-4 resize-none overflow-hidden bg-transparent text-transparent caret-(--ui-text-highlighted) outline-none selection:bg-primary/20 whitespace-pre"
+              @keydown="onKeydown"
+            />
+          </div>
+        </div>
+      </template>
     </template>
   </UDashboardPanel>
 </template>

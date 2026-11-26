@@ -1,9 +1,10 @@
 import { readFile } from 'node:fs/promises'
 import { defineEventHandler, getQuery, useRuntimeConfig } from 'nuxt/server'
-import { resolvePageFile } from '../utils/page-source'
+import { resolveSourceFile } from '../utils/source-file'
 
 export default defineEventHandler(async (event) => {
-  const { file, relative } = resolvePageFile(getQuery(event).route, useRuntimeConfig().pagesDir)
+  const { route, kind } = getQuery(event)
+  const { file, relative } = resolveSourceFile(route, kind, useRuntimeConfig())
 
   return { path: relative, content: await readFile(file, 'utf8') }
 })
