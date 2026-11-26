@@ -78,7 +78,7 @@ const SEMANTIC_HINTS: Record<string, string[]> = {
   border: ['default', 'muted', 'accented', 'inverted', 'control']
 }
 
-export function serializeForPaper(root: HTMLElement, mode: PaperTokenMode): PaperSerializeResult {
+function createContext(root: HTMLElement, mode: PaperTokenMode): Context {
   const canvas = document.createElement('canvas')
   canvas.width = 1
   canvas.height = 1
@@ -89,6 +89,52 @@ export function serializeForPaper(root: HTMLElement, mode: PaperTokenMode): Pape
 
   const ctx: Context = { root, tokens: [], canvas: context2d, unmapped: new Set() }
   ctx.tokens = resolveTokens(ctx, mode)
+  return ctx
+}
+
+/** The element is as wide as its content on one line, so it can hug in Paper */
+function hugsContent(element: HTMLElement | SVGElement) {
+  const width = element.getBoundingClientRect().width
+  const value = element.style.getPropertyValue('width')
+  const priority = element.style.getPropertyPriority('width')
+  element.style.setProperty('width', 'max-content', 'important')
+  const content = element.getBoundingClientRect().width
+  if (value) {
+    element.style.setProperty('width', value, priority)
+  } else {
+    element.style.removeProperty('width')
+  }
+  return Math.abs(content - width) <= 0.5
+}
+
+/**
+ * Serializes a single rendered element as the top layer, without the `Preview` container.
+ * It keeps its rendered width unless that width is just its content's.
+ */
+export function serializeElementForPaper(element: HTMLElement | SVGElement, mode: PaperTokenMode, options: { layerName?: string } = {}): PaperSerializeResult {
+  const ctx = createContext(element.parentElement ?? document.body, mode)
+  const node = convertElement(ctx, element)
+  if (!node) {
+    return { html: '', unmapped: [] }
+  }
+
+  if (options.layerName) {
+    node.layerName = options.layerName
+  }
+  if (node.tag !== 'svg' && node.tag !== 'img') {
+    const style = getComputedStyle(element)
+    const fixed = fixedSize(element)
+    const width = fixed.width ?? (hugsContent(element) ? undefined : element.getBoundingClientRect().width)
+    if (width !== undefined) node.style.push(`width: ${formatPx(width)}`)
+    if (fixed.height !== undefined) node.style.push(`height: ${formatPx(fixed.height)}`)
+    node.style.push(...sizeLimits(style))
+  }
+
+  return { html: render(node, 0), unmapped: [...ctx.unmapped].sort() }
+}
+
+export function serializeForPaper(root: HTMLElement, mode: PaperTokenMode): PaperSerializeResult {
+  const ctx = createContext(root, mode)
 
   const rootStyle = getComputedStyle(root)
   const items = collectItems(root)
@@ -536,7 +582,7 @@ function textTransform(text: string, transform: string) {
 function runText(nodes: Node[], parentStyle: CSSStyleDeclaration) {
   const preserve = parentStyle.whiteSpace.startsWith('pre')
   // eslint-disable-next-line unicorn/prefer-dom-node-text-content -- innerText applies text-transform and <br> like the render
-  const text = nodes.map(node => node instanceof HTMLElement ? node.innerText : textTransform(node.textContent || '', parentStyle.textTransform)).join('')
+  const text = nodes.filter(node => node.nodeType !== Node.COMMENT_NODE).map(node => node instanceof HTMLElement ? node.innerText : textTransform(node.textContent || '', parentStyle.textTransform)).join('')
   return preserve ? text : text.replace(/[ \t\r\n]+/g, ' ').trim()
 }
 

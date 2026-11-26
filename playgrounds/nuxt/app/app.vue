@@ -63,7 +63,7 @@ provide('components', components)
         }"
       >
         <template #body>
-          <div class="flex flex-col items-center justify-center min-h-full shrink-0">
+          <div class="flex flex-col items-center justify-center min-h-full shrink-0" data-copy-element-area>
             <NuxtPage />
           </div>
         </template>
@@ -73,5 +73,7 @@ provide('components', components)
     </UDashboardGroup>
 
     <AlloDials />
+
+    <CopyElementOverlay />
   </UApp>
 </template>
