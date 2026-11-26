@@ -266,6 +266,9 @@ catalogs:
     '@standard-schema/spec':
       specifier: ^1.1.0
       version: 1.1.0
+    '@tailwindcss/node':
+      specifier: ^4.3.5
+      version: 4.3.5
     '@tailwindcss/postcss':
       specifier: ^4.3.5
       version: 4.3.5
@@ -1107,6 +1110,9 @@ importers:
       '@nuxt/ui':
         specifier: workspace:*
         version: link:../..
+      '@tailwindcss/node':
+        specifier: 'catalog:'
+        version: 4.3.5
       '@tanstack/charts':
         specifier: 'catalog:'
         version: 1.5.0(vue@3.5.46(typescript@6.0.3))

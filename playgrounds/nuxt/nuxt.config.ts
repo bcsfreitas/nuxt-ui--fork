@@ -1,6 +1,10 @@
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/ui'
+    '@nuxt/ui',
+    // Lets `server/api/paper-css.post.ts` find the playground CSS entry and the generated `ui.css`
+    (_, nuxt) => {
+      nuxt.options.runtimeConfig.paperCss = { rootDir: nuxt.options.rootDir, buildDir: nuxt.options.buildDir }
+    }
   ],
 
   devtools: {
@@ -8,6 +12,11 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+
+  // The Paper export page compiles pasted templates in the browser
+  vue: {
+    runtimeCompiler: true
+  },
 
   content: {
     experimental: {

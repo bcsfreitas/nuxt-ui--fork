@@ -48,6 +48,7 @@ catalog:
   "@regle/rules": ^1.30.0
   "@shikijs/types": ^4.6.0
   "@standard-schema/spec": ^1.1.0
+  "@tailwindcss/node": ^4.3.5
   "@tailwindcss/postcss": ^4.3.5
   "@tailwindcss/vite": ^4.3.5
   "@takumi-rs/core": ^2.22.1

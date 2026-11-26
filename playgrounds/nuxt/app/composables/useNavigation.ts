@@ -103,7 +103,7 @@ const components = [
 export const useNavigation = () => {
   const appConfig = useAppConfig()
 
-  const items = [{ label: 'Home', icon: 'i-lucide-home', to: '/' }, { label: 'Chat', icon: 'i-lucide-message-circle', to: '/chat' }, { label: 'Typography', icon: 'i-lucide-type', to: '/typography' }]
+  const items = [{ label: 'Home', icon: 'i-lucide-home', to: '/' }, { label: 'Chat', icon: 'i-lucide-message-circle', to: '/chat' }, { label: 'Typography', icon: 'i-lucide-type', to: '/typography' }, { label: 'Paper export', icon: 'i-lucide-clipboard-copy', to: '/paper' }]
   const groups = computed(() => [
     { id: 'links', items },
     { id: 'components', label: 'Components', items: components },
