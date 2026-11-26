@@ -1,30 +1,29 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
+
 // The landing's wall: the Theme Studio's grid tiles without the virtualizer.
-// It shows them all anyway, and a virtualized wall needs a measured DOM, so
-// the server would paint an empty box that only fills in on hydration.
-// Each tile hydrates on its own once it scrolls into view, so a phone only
-// pays for the one or two it opens on.
-const Input = defineLazyHydrationComponent('visible', () => import('./PlaygroundInput.vue'))
-const CommandPalette = defineLazyHydrationComponent('visible', () => import('./PlaygroundCommandPalette.vue'))
-const Calendar = defineLazyHydrationComponent('visible', () => import('./PlaygroundCalendar.vue'))
-const Notifications = defineLazyHydrationComponent('visible', () => import('./PlaygroundNotifications.vue'))
-const Transactions = defineLazyHydrationComponent('visible', () => import('./PlaygroundTransactions.vue'))
-const TransferFunds = defineLazyHydrationComponent('visible', () => import('./PlaygroundTransferFunds.vue'))
-const InviteTeam = defineLazyHydrationComponent('visible', () => import('./PlaygroundInviteTeam.vue'))
-const Analytics = defineLazyHydrationComponent('visible', () => import('./PlaygroundAnalytics.vue'))
-const PinInput = defineLazyHydrationComponent('visible', () => import('./PlaygroundPinInput.vue'))
-const Dashboard = defineLazyHydrationComponent('visible', () => import('./PlaygroundDashboard.vue'))
-const ReportBug = defineLazyHydrationComponent('visible', () => import('./PlaygroundReportBug.vue'))
-const Goal = defineLazyHydrationComponent('visible', () => import('./PlaygroundGoal.vue'))
-const SavingsTargets = defineLazyHydrationComponent('visible', () => import('./PlaygroundSavingsTargets.vue'))
-const Shortcuts = defineLazyHydrationComponent('visible', () => import('./PlaygroundShortcuts.vue'))
-const Navigation = defineLazyHydrationComponent('visible', () => import('./PlaygroundNavigation.vue'))
-const Empty = defineLazyHydrationComponent('visible', () => import('./PlaygroundEmpty.vue'))
-const Announcement = defineLazyHydrationComponent('visible', () => import('./PlaygroundAnnouncement.vue'))
-const Tabs = defineLazyHydrationComponent('visible', () => import('./PlaygroundTabs.vue'))
-const Contributors = defineLazyHydrationComponent('visible', () => import('./PlaygroundContributors.vue'))
-const AuthForm = defineLazyHydrationComponent('visible', () => import('./PlaygroundAuthForm.vue'))
-const Prompt = defineLazyHydrationComponent('visible', () => import('./PlaygroundPrompt.vue'))
+// Plain async components (not Nuxt's lazy hydration) because the Vue playground renders this page too.
+const Input = defineAsyncComponent(() => import('./PlaygroundInput.vue'))
+const CommandPalette = defineAsyncComponent(() => import('./PlaygroundCommandPalette.vue'))
+const Calendar = defineAsyncComponent(() => import('./PlaygroundCalendar.vue'))
+const Notifications = defineAsyncComponent(() => import('./PlaygroundNotifications.vue'))
+const Transactions = defineAsyncComponent(() => import('./PlaygroundTransactions.vue'))
+const TransferFunds = defineAsyncComponent(() => import('./PlaygroundTransferFunds.vue'))
+const InviteTeam = defineAsyncComponent(() => import('./PlaygroundInviteTeam.vue'))
+const Analytics = defineAsyncComponent(() => import('./PlaygroundAnalytics.vue'))
+const PinInput = defineAsyncComponent(() => import('./PlaygroundPinInput.vue'))
+const Dashboard = defineAsyncComponent(() => import('./PlaygroundDashboard.vue'))
+const ReportBug = defineAsyncComponent(() => import('./PlaygroundReportBug.vue'))
+const Goal = defineAsyncComponent(() => import('./PlaygroundGoal.vue'))
+const SavingsTargets = defineAsyncComponent(() => import('./PlaygroundSavingsTargets.vue'))
+const Shortcuts = defineAsyncComponent(() => import('./PlaygroundShortcuts.vue'))
+const Navigation = defineAsyncComponent(() => import('./PlaygroundNavigation.vue'))
+const Empty = defineAsyncComponent(() => import('./PlaygroundEmpty.vue'))
+const Announcement = defineAsyncComponent(() => import('./PlaygroundAnnouncement.vue'))
+const Tabs = defineAsyncComponent(() => import('./PlaygroundTabs.vue'))
+const Contributors = defineAsyncComponent(() => import('./PlaygroundContributors.vue'))
+const AuthForm = defineAsyncComponent(() => import('./PlaygroundAuthForm.vue'))
+const Prompt = defineAsyncComponent(() => import('./PlaygroundPrompt.vue'))
 
 const tiles = [
   { name: 'input', component: Input },
