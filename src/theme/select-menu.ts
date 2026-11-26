@@ -14,7 +14,7 @@ export default (options: Required<ModuleOptions>) => {
     variants: {
       virtualize: {
         true: {
-          viewport: 'p-1 isolate'
+          viewport: 'p-1 [--ui-frame-inset:calc(--spacing(1)+1px)] isolate'
         },
         false: {
           viewport: 'divide-y divide-default'

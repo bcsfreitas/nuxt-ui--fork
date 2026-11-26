@@ -26,6 +26,14 @@ describe('Card', () => {
     ['with footer slot', { slots: { footer: () => 'Footer slot' } }]
   ])
 
+  it('lets a consumer surface win over the shaded surface in every color mode', async () => {
+    const wrapper = await mountSuspended(Card, { props: { class: 'bg-accented shadow-lg' } })
+    const classes: string[] = wrapper.element.className.split(' ')
+
+    expect(classes.filter(c => /^(?:dark:)?bg-/.test(c))).toEqual(['bg-accented'])
+    expect(classes.filter(c => /^(?:dark:)?(?:shadow|ring)(?:-|$)/.test(c))).toEqual(['shadow-lg'])
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(Card)
 

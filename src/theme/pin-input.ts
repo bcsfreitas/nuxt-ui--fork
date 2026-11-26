@@ -1,33 +1,35 @@
 import type { ModuleOptions } from '../module'
+import { controlPy, controlRadius } from './utils/control-geometry'
 
 export default (options: Required<ModuleOptions>) => ({
   slots: {
     root: 'relative inline-flex items-center gap-1.5',
-    base: ['rounded-md border-0 placeholder:text-dimmed text-center disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+    // Square cells: the inline padding equals the block padding
+    base: ['rounded-(--ui-pin-radius) py-(--py) px-(--py) border-0 placeholder:text-dimmed text-center disabled:cursor-not-allowed disabled:opacity-75', controlRadius('--ui-pin-radius'), options.theme.transitions && 'transition-colors'],
     separator: 'text-dimmed flex items-center justify-center'
   },
   variants: {
     size: {
       xs: {
-        base: 'size-6 text-sm/4'
+        base: `${controlPy.xs} size-6 text-sm/4`
       },
       sm: {
-        base: 'size-7 text-sm/4'
+        base: `${controlPy.sm} size-7 text-sm/4`
       },
       md: {
-        base: 'size-8 text-base/5'
+        base: `${controlPy.md} size-8 text-base/5`
       },
       lg: {
-        base: 'size-9 text-base/5'
+        base: `${controlPy.lg} size-9 text-base/5`
       },
       xl: {
-        base: 'size-10 text-base'
+        base: `${controlPy.xl} size-10 text-base`
       }
     },
     variant: {
-      outline: 'text-highlighted bg-default ring ring-inset ring-accented',
+      outline: 'text-highlighted bg-default ring ring-inset ring-control',
       soft: 'text-highlighted bg-elevated/50 hover:bg-elevated focus:bg-elevated disabled:bg-elevated/50',
-      subtle: 'text-highlighted bg-elevated ring ring-inset ring-accented',
+      subtle: 'text-highlighted bg-elevated ring ring-inset ring-control',
       ghost: 'text-highlighted bg-transparent hover:bg-elevated focus:bg-elevated disabled:bg-transparent dark:disabled:bg-transparent',
       none: 'text-highlighted bg-transparent focus:outline-none'
     },
@@ -45,7 +47,7 @@ export default (options: Required<ModuleOptions>) => ({
   compoundVariants: [...(options.theme.colors || []).map((color: string) => ({
     color,
     variant: ['outline', 'subtle'],
-    class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-${color}`
+    class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-focus-${color}`
   })), ...(options.theme.colors || []).map((color: string) => ({
     color,
     variant: ['soft', 'ghost'],
@@ -53,11 +55,11 @@ export default (options: Required<ModuleOptions>) => ({
   })), ...(options.theme.colors || []).map((color: string) => ({
     color,
     highlight: true,
-    class: `ring ring-inset ring-${color}`
+    class: `ring ring-inset ring-focus-${color}`
   })), {
     color: 'neutral',
     variant: ['outline', 'subtle'],
-    class: 'outline-inverted/25 focus-visible:outline-3 focus-visible:ring-inverted'
+    class: 'outline-inverted/25 focus-visible:outline-3 focus-visible:ring-2 focus-visible:ring-focus-inverted'
   }, {
     color: 'neutral',
     variant: ['soft', 'ghost'],
@@ -65,7 +67,7 @@ export default (options: Required<ModuleOptions>) => ({
   }, {
     color: 'neutral',
     highlight: true,
-    class: 'ring ring-inset ring-inverted'
+    class: 'ring ring-inset ring-focus-inverted'
   }, {
     fixed: false,
     size: 'xs',

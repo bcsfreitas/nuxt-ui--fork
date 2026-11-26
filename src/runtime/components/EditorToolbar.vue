@@ -356,16 +356,24 @@ function getDropdownItems(item: EditorToolbarDropdownItem) {
                 :items="getDropdownItems(item as EditorToolbarDropdownItem)"
               >
                 <UTooltip v-if="item.tooltip" :disabled="isDisabled(item)" v-bind="{ ...(item.tooltip || {}) }">
-                  <UButton :active="isActive(item)" :disabled="isDisabled(item)" v-bind="getButtonProps(item)" @click="onClick($event, item)" />
+                  <UButton :active="isActive(item)" :disabled="isDisabled(item)" :class="ui.item({ class: props.ui?.item })" v-bind="getButtonProps(item)" @click="onClick($event, item)" />
                 </UTooltip>
 
-                <UButton v-else :active="isActive(item)" :disabled="isDisabled(item)" v-bind="getButtonProps(item)" @click="onClick($event, item)" />
+                <UButton
+                  v-else
+                  :active="isActive(item)"
+                  :disabled="isDisabled(item)"
+                  :class="ui.item({ class: props.ui?.item })"
+                  v-bind="getButtonProps(item)"
+                  @click="onClick($event, item)"
+                />
               </UDropdownMenu>
 
               <UTooltip v-else-if="item.tooltip" :disabled="isDisabled(item)" v-bind="{ ...(item.tooltip || {}) }">
                 <UButton
                   :active="isActive(item)"
                   :disabled="isDisabled(item)"
+                  :class="ui.item({ class: props.ui?.item })"
                   v-bind="getButtonProps(item)"
                   :ui="item.ui"
                   @click="onClick($event, item)"
@@ -376,6 +384,7 @@ function getDropdownItems(item: EditorToolbarDropdownItem) {
                 v-else
                 :active="isActive(item)"
                 :disabled="isDisabled(item)"
+                :class="ui.item({ class: props.ui?.item })"
                 v-bind="getButtonProps(item)"
                 :ui="item.ui"
                 @click="onClick($event, item)"

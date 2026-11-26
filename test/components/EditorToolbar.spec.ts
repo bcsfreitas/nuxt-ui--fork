@@ -198,4 +198,44 @@ describe('EditorToolbar', () => {
       expect(wrapper.find('[role=toolbar] button').attributes('aria-label')).toBe('Headings')
     })
   })
+
+  describe('shared surface', () => {
+    const restSurface = /(?:^|\s)(?:bg|ring|border|shadow)-(?!\()/
+
+    it.each(['bubble', 'floating'] as const)('%s toolbar owns the surface and its buttons follow its corner', async (layout) => {
+      const wrapper = await mountSuspended(EditorToolbar, { props: { ...props, layout } })
+
+      const toolbar = wrapper.find('[role=toolbar]')
+      expect(toolbar.classes()).toEqual(expect.arrayContaining(['bg-(--ui-toolbar-bg)', 'border', 'border-(--ui-toolbar-border)', 'dark:[--ui-toolbar-bg:var(--ui-bg-elevated)]', 'dark:[--ui-toolbar-border:var(--ui-border-accented)]', 'rounded-(--ui-frame-radius)']))
+
+      const buttons = toolbar.findAll('button')
+      expect(buttons.length).toBeGreaterThan(0)
+      for (const button of buttons) {
+        expect(button.classes()).toContain('rounded-(--ui-frame-shape-radius)')
+        expect(button.classes()).not.toContain('rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]')
+        expect(button.classes().join(' ')).not.toMatch(restSurface)
+      }
+    })
+
+    it('fixed toolbar keeps its buttons as they are', async () => {
+      const wrapper = await mountSuspended(EditorToolbar, { props })
+
+      const toolbar = wrapper.find('[role=toolbar]')
+      expect(toolbar.classes().join(' ')).not.toContain('frame')
+      for (const button of toolbar.findAll('button')) {
+        expect(button.classes()).toContain('rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]')
+        expect(button.classes().join(' ')).not.toContain('frame-shape')
+      }
+    })
+
+    it('lets an item class win over the toolbar button shape', async () => {
+      const wrapper = await mountSuspended(EditorToolbar, {
+        props: { ...props, layout: 'bubble', items: [{ 'kind': 'mark', 'mark': 'bold', 'icon': 'i-lucide-bold', 'aria-label': 'Bold', 'class': 'rounded-full' }] }
+      })
+
+      const button = wrapper.find('[role=toolbar] button')
+      expect(button.classes()).toContain('rounded-full')
+      expect(button.classes()).not.toContain('rounded-(--ui-frame-shape-radius)')
+    })
+  })
 })

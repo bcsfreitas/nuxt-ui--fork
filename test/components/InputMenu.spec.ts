@@ -192,6 +192,57 @@ describe('InputMenu', () => {
     expect(withMultiple.html()).toBe(autocomplete.html())
   })
 
+  describe('slot buttons', () => {
+    async function mountWithSlotButtons() {
+      return mountSuspended({
+        components: { UButton, UInputMenu: InputMenu },
+        template: `<UInputMenu><template #leading><UButton icon="i-lucide-plus" size="sm" /></template><template #trailing><UButton icon="i-lucide-x" size="sm" class="rounded-full" /></template></UInputMenu>`
+      })
+    }
+
+    it('publishes the field radius as the frame', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      expect(wrapper.get('[data-slot="root"]').classes()).toContain('[--ui-frame-radius:var(--radius-md)]')
+    })
+
+    it('hands the concentric radius to buttons in the leading and trailing slots', async () => {
+      const wrapper = await mountWithSlotButtons()
+
+      for (const slot of ['leading', 'trailing']) {
+        expect(wrapper.get(`[data-slot="${slot}"]`).classes()).toEqual(expect.arrayContaining(['[&_:where(button,a)]:frame-shape-(--ui-button-radius)', '[&_:where(button,a)]:[--ui-button-frame-radius:var(--ui-frame-shape-radius)]']))
+      }
+    })
+
+    it('lets a consumer radius class win on a slot button', async () => {
+      const wrapper = await mountWithSlotButtons()
+      const button = wrapper.get('[data-slot="trailing"] button')
+
+      expect(button.classes()).toContain('rounded-full')
+      expect(button.classes().join(' ')).not.toContain('--ui-button-frame-radius')
+    })
+  })
+
+  it.each(sizes as string[])('carries the shared geometry recipe at size %s', async (size) => {
+    const wrapper = await mountSuspended(InputMenu, { props: { items: ['A', 'B'], icon: 'i-lucide-search', size: size as any } })
+
+    const frame = wrapper.get('[data-slot="root"]').classes()
+    expect(frame.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(frame).toContain('supports-[height:1lh]:[--ui-frame-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))]')
+    expect(wrapper.get('[data-slot="base"]').classes()).toEqual(expect.arrayContaining(['py-(--py)', 'px-(--px)', 'rounded-(--ui-frame-radius)', 'ps-(--ui-field-icon-padding)']))
+    expect(wrapper.get('[data-slot="leading"]').classes()).toContain('ps-(--ui-field-inset)')
+    expect(wrapper.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
+  })
+
+  it('lets a consumer `rounded-*` / padding class replace the derived geometry', async () => {
+    const wrapper = await mountSuspended(InputMenu, { props: { items: ['A', 'B'], ui: { base: 'rounded-full px-4' } } })
+
+    const classes = wrapper.get('[data-slot="base"]').classes()
+    expect(classes).toEqual(expect.arrayContaining(['rounded-full', 'px-4']))
+    expect(classes).not.toContain('rounded-(--ui-frame-radius)')
+    expect(classes).not.toContain('px-(--px)')
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(InputMenu, {
       props: {
