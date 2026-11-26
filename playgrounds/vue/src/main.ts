@@ -6,7 +6,8 @@ import ui from '@nuxt/ui/vue-plugin'
 
 import App from './app.vue'
 
-const pages = import.meta.glob(['../../nuxt/app/pages/*.vue', '../../nuxt/app/pages/components/*.vue'])
+// The Paper export page needs Nuxt's `#components` and a server route
+const pages = import.meta.glob(['../../nuxt/app/pages/*.vue', '../../nuxt/app/pages/components/*.vue', '!../../nuxt/app/pages/paper.vue'])
 
 const routes = Object.keys(pages).map((path) => {
   const name = path.match(/\.\.\/\.\.\/nuxt\/app\/pages(.*)\.vue$/)![1].toLowerCase()

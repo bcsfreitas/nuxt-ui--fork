@@ -18,6 +18,7 @@
     "@internationalized/date": "catalog:",
     "@nuxt/content": "catalog:",
     "@nuxt/ui": "catalog:",
+    "@tailwindcss/node": "catalog:",
     "@tanstack/charts": "catalog:",
     "@tanstack/vue-table": "catalog:",
     "@tiptap/core": "catalog:",
