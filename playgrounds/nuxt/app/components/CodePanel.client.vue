@@ -15,6 +15,11 @@ interface SourceFile {
   saved: string
 }
 
+interface SourceResponse {
+  path: string
+  content: string
+}
+
 interface HomeFileItem {
   label: string
   value: string
@@ -70,7 +75,7 @@ watch([() => active.value.code, lang], async ([value, language]) => {
 
 async function loadFile(kind: SourceKind) {
   try {
-    const result = await $fetch('/api/source', { query: { route: route.path, kind } })
+    const result = await $fetch<SourceResponse>('/api/source', { query: { route: route.path, kind } })
     Object.assign(files[kind], { path: result.path, code: result.content, saved: result.content })
   } catch {
     Object.assign(files[kind], { path: '', code: '', saved: '' })
@@ -80,7 +85,7 @@ async function loadFile(kind: SourceKind) {
 async function loadHomeFile() {
   const id = homeFile.value
   try {
-    const result = await $fetch('/api/source', { query: { kind: 'home', file: id } })
+    const result = await $fetch<SourceResponse>('/api/source', { query: { kind: 'home', file: id } })
     if (homeFile.value === id) {
       Object.assign(home, { path: result.path, code: result.content, saved: result.content })
     }
