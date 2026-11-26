@@ -86,29 +86,34 @@ describe('Tabs', () => {
     expect(classes).not.toContain('ring')
   })
 
-  it.each(sizes as string[])('gives link triggers the shared geometry recipe at size %s', async (size) => {
-    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'link', size: size as any } })
+  it.each(['pill', 'link'].flatMap(variant => (sizes as string[]).map(size => [variant, size])))('gives %s triggers the Button corner at size %s', async (variant, size) => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: variant as any, size: size as any } })
+    const list = wrapper.get('[data-slot="list"]').classes()
     const trigger = wrapper.findAll('[data-slot="trigger"]')[1]!
     const classes = trigger.classes()
 
+    expect(list.some(name => name.startsWith('[--py:'))).toBe(true)
+    expect(list.some(name => name.startsWith('supports-[height:1lh]:[--ui-tabs-trigger-radius:'))).toBe(true)
     expect(classes).toContain('py-(--py)')
     expect(classes).toContain('px-(--px)')
     expect(classes).toContain('rounded-(--ui-tabs-trigger-radius)')
-    expect(classes.some(name => name.startsWith('[--py:'))).toBe(true)
-    expect(classes.some(name => name.startsWith('supports-[height:1lh]:[--ui-tabs-trigger-radius:'))).toBe(true)
     expect(trigger.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
   })
 
-  it.each(sizes as string[])('keeps the pill trigger on the concentric segment at size %s', async (size) => {
-    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'pill', size: size as any } })
-    const trigger = wrapper.findAll('[data-slot="trigger"]')[1]!
-    const classes = trigger.classes()
+  it('wraps the pill list concentrically around the trigger corner', async () => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, variant: 'pill' } })
+    const list = wrapper.get('[data-slot="list"]').classes()
 
-    expect(classes).toContain('rounded-(--ui-frame-shape-radius)')
-    expect(classes).toContain('frame-shape-md')
+    expect(list).toContain('rounded-(--ui-tabs-list-radius)')
+    expect(list.some(name => name.startsWith('[--ui-tabs-list-radius:min(var(--ui-radius)'))).toBe(true)
+  })
+
+  it('lets a `ui.trigger` radius replace the derived corner', async () => {
+    const wrapper = await mountSuspended(Tabs, { props: { ...props, ui: { trigger: 'rounded-full' } } })
+    const classes = wrapper.findAll('[data-slot="trigger"]')[1]!.classes()
+
+    expect(classes).toContain('rounded-full')
     expect(classes).not.toContain('rounded-(--ui-tabs-trigger-radius)')
-    expect(classes).toContain('px-(--px)')
-    expect(trigger.get('[data-slot="leadingIcon"]').classes()).toContain('size-(--ui-control-icon-size)')
   })
 
   it.each([['xs', 4], ['sm', 4], ['md', 5], ['lg', 5], ['xl', 6]])('keeps the upstream icon size as the fallback at size %s', async (size, spacing) => {
