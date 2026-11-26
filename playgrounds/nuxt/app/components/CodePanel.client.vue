@@ -3,6 +3,7 @@ import type { HighlighterGeneric } from 'shiki'
 import type { TabsItem } from '@nuxt/ui'
 import { createHighlighter } from 'shiki'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
+import { useCookie, useRoute, useRouter } from '#imports'
 
 type SourceKind = 'page' | 'component' | 'theme'
 
@@ -59,7 +60,7 @@ watch([() => active.value.code, tab], async ([value]) => {
 
 async function loadFile(kind: SourceKind) {
   try {
-    const result = await $fetch('/api/source', { query: { route: route.path, kind } })
+    const result = await $fetch<{ path: string, content: string }>('/api/source', { query: { route: route.path, kind } })
     Object.assign(files[kind], { path: result.path, code: result.content, saved: result.content })
   } catch {
     Object.assign(files[kind], { path: '', code: '', saved: '' })
