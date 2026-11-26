@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useClipboard, useEventListener } from '@vueuse/core'
-import { useColorMode, useRoute, useToast } from '#imports'
+import { useColorMode, useRoute } from '#imports'
 import { serializeElementForPaper } from '../utils/paper-serialize'
 
 interface Instance {

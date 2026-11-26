@@ -409,7 +409,7 @@ function collectItems(element: Element): Item[] {
         visit(child)
         continue
       }
-      if (style.display === 'inline' && isInlineText(child) && !hasBox(child, style)) {
+      if (style.display === 'inline' && isInlineText(child) && !hasBox(style)) {
         run.push(child)
         continue
       }
@@ -468,7 +468,7 @@ function contentBox(element: Element, style: CSSStyleDeclaration) {
   }
 }
 
-function hasBox(element: Element, style: CSSStyleDeclaration) {
+function hasBox(style: CSSStyleDeclaration) {
   const background = style.backgroundColor
   const transparent = !background || background === 'transparent' || /^rgba\(.*,\s*0\)$/.test(background)
   const borders = ['Top', 'Right', 'Bottom', 'Left'].some(side => px(style.getPropertyValue(`border-${side.toLowerCase()}-width`)) > 0 && style.getPropertyValue(`border-${side.toLowerCase()}-style`) !== 'none')
@@ -959,7 +959,7 @@ function convertElement(ctx: Context, element: HTMLElement | SVGElement): PaperN
     const range = document.createRange()
     range.selectNodeContents(element)
     const paragraph: PaperNode = { tag: 'p', layerName: name, style: textStyles(ctx, element, style, lineCount(range), text), children: [], text }
-    if (!hasBox(element, style)) {
+    if (!hasBox(style)) {
       return paragraph
     }
     const align = style.textAlign === 'center' ? ['align-items: center'] : []
