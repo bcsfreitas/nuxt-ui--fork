@@ -20,7 +20,14 @@ const route = useRoute()
 const toast = useToast()
 const { toggle } = useCodePanel()
 
-const tab = useCookie<SourceKind>('code-panel-tab', { default: () => 'page' })
+// A computed over the cookie, so templates get a ref in both playgrounds (the Vue stub's cookie is a plain object)
+const tabCookie = useCookie<SourceKind>('code-panel-tab', { default: () => 'page' })
+const tab = computed<SourceKind>({
+  get: () => tabCookie.value,
+  set: (value) => {
+    tabCookie.value = value
+  }
+})
 const files = reactive<Record<SourceKind, SourceFile>>({
   page: { path: '', code: '', saved: '' },
   component: { path: '', code: '', saved: '' },
