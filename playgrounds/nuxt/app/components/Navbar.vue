@@ -14,6 +14,8 @@ const title = computed(() => upperName(name.value))
 
 const components = inject<{ to: string, label: string }[]>('components')
 
+const { open: codeOpen, toggle: toggleCode } = useCodePanel()
+
 const index = computed(() => components?.findIndex(component => component.to === route.path) ?? -1)
 
 function navigate(index: number) {
@@ -64,6 +66,16 @@ defineShortcuts({
     </template>
 
     <template #trailing>
+      <UButton
+        icon="i-lucide-code-xml"
+        color="neutral"
+        :variant="codeOpen ? 'soft' : 'ghost'"
+        size="xs"
+        :aria-pressed="codeOpen"
+        aria-label="Edit page code"
+        @click="toggleCode"
+      />
+
       <slot name="trailing">
         <UButton
           icon="i-lucide-external-link"
