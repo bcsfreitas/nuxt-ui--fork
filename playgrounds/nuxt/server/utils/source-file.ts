@@ -5,8 +5,8 @@ import { createError } from 'nuxt/server'
 
 const SLUG = /^[a-z0-9-]+(?:\/[a-z0-9-]+)*$/
 
-// Maps a `/components/<slug>` route to its page file or to the library component it shows. Dev only: the playground edits its own sources.
-export function resolveSourceFile(route: unknown, kind: unknown, dirs: { pagesDir: string, componentsDir: string }) {
+// Maps a `/components/<slug>` route to its page file or to the library component and theme it shows. Dev only: the playground edits its own sources.
+export function resolveSourceFile(route: unknown, kind: unknown, dirs: { pagesDir: string, componentsDir: string, themeDir: string }) {
   if (!import.meta.dev) {
     throw createError({ status: 404 })
   }
@@ -26,6 +26,10 @@ export function resolveSourceFile(route: unknown, kind: unknown, dirs: { pagesDi
     const segments = slug.split('/')
     const name = pascalCase(segments.pop()!)
     candidates = [join(root, ...segments, `${name}.vue`)]
+  } else if (kind === 'theme') {
+    root = resolve(dirs.themeDir)
+    prefix = 'src/theme'
+    candidates = [join(root, `${slug}.ts`)]
   } else if (kind === 'page' || kind === undefined) {
     root = resolve(dirs.pagesDir, 'components')
     prefix = 'pages/components'

@@ -19,7 +19,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     pagesDir: fileURLToPath(new URL('./app/pages', import.meta.url)),
-    componentsDir: fileURLToPath(new URL('../../src/runtime/components', import.meta.url))
+    componentsDir: fileURLToPath(new URL('../../src/runtime/components', import.meta.url)),
+    themeDir: fileURLToPath(new URL('../../src/theme', import.meta.url))
   },
 
   routeRules: {

@@ -4,7 +4,10 @@ import type { TabsItem } from '@nuxt/ui'
 import { createHighlighter } from 'shiki'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 
-type SourceKind = 'page' | 'component'
+type SourceKind = 'page' | 'component' | 'theme'
+
+const kinds: SourceKind[] = ['page', 'component', 'theme']
+const labels: Record<SourceKind, string> = { page: 'Page', component: 'Component', theme: 'Theme' }
 
 interface SourceFile {
   path: string
@@ -19,7 +22,8 @@ const { toggle } = useCodePanel()
 const tab = useCookie<SourceKind>('code-panel-tab', { default: () => 'page' })
 const files = reactive<Record<SourceKind, SourceFile>>({
   page: { path: '', code: '', saved: '' },
-  component: { path: '', code: '', saved: '' }
+  component: { path: '', code: '', saved: '' },
+  theme: { path: '', code: '', saved: '' }
 })
 const loading = ref(false)
 const saving = ref(false)
@@ -28,28 +32,25 @@ const active = computed(() => files[tab.value])
 const isDirty = (kind: SourceKind) => files[kind].code !== files[kind].saved
 const dirty = computed(() => isDirty(tab.value))
 
-const tabs = computed<TabsItem[]>(() => [
-  { label: 'Page', value: 'page', disabled: !files.page.path },
-  { label: 'Component', value: 'component', disabled: !files.component.path }
-])
+const tabs = computed<TabsItem[]>(() => kinds.map(kind => ({ label: labels[kind], value: kind, disabled: !files[kind].path })))
 
 let highlighter: Promise<HighlighterGeneric<any, any>> | undefined
 const html = ref('')
 
 function getHighlighter() {
   highlighter ??= createHighlighter({
-    langs: ['vue'],
+    langs: ['vue', 'ts'],
     themes: ['github-light', 'github-dark'],
     engine: createJavaScriptRegexEngine()
   })
   return highlighter
 }
 
-watch(() => active.value.code, async (value) => {
+watch([() => active.value.code, tab], async ([value]) => {
   const shiki = await getHighlighter()
   // A trailing space keeps the last empty line as tall as the textarea's
   html.value = shiki.codeToHtml(`${value} `, {
-    lang: 'vue',
+    lang: tab.value === 'theme' ? 'ts' : 'vue',
     themes: { light: 'github-light', dark: 'github-dark' },
     // The playground's dual-theme CSS paints every token with the theme background
     colorReplacements: { 'github-light': { '#fff': 'transparent' }, 'github-dark': { '#24292e': 'transparent' } }
@@ -71,11 +72,11 @@ async function load() {
   }
 
   loading.value = true
-  await Promise.all([loadFile('page'), loadFile('component')])
+  await Promise.all(kinds.map(loadFile))
   loading.value = false
 
   if (!files[tab.value].path) {
-    tab.value = files.page.path ? 'page' : 'component'
+    tab.value = kinds.find(kind => files[kind].path) ?? 'page'
   }
 }
 
@@ -120,7 +121,7 @@ function onKeydown(event: KeyboardEvent) {
 watch(() => route.path, load, { immediate: true })
 
 const removeGuard = useRouter().beforeEach((to, from) => {
-  if ((isDirty('page') || isDirty('component')) && to.path !== from.path) {
+  if (kinds.some(isDirty) && to.path !== from.path) {
     return window.confirm('Discard unsaved changes?')
   }
 })
@@ -213,7 +214,7 @@ onBeforeUnmount(removeGuard)
               spellcheck="false"
               autocapitalize="off"
               autocomplete="off"
-              :aria-label="tab === 'page' ? 'Page source code' : 'Component source code'"
+              :aria-label="`${labels[tab]} source code`"
               class="[grid-area:1/1] p-4 resize-none overflow-hidden bg-transparent text-transparent caret-(--ui-text-highlighted) outline-none selection:bg-primary/20 whitespace-pre"
               @keydown="onKeydown"
             />
