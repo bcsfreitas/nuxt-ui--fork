@@ -17,6 +17,9 @@ useHead({
 })
 
 provide('components', components)
+
+const { open: codeOpen } = useCodePanel()
+const showCode = computed(() => codeOpen.value && route.path.startsWith('/components/') && !route.path.startsWith('/components/sidebar'))
 </script>
 
 <template>
@@ -54,6 +57,12 @@ provide('components', components)
       <NuxtPage v-if="route.path.startsWith('/components/sidebar')" />
       <UDashboardPanel
         v-else
+        :id="showCode ? 'preview' : undefined"
+        :key="showCode ? 'split' : 'full'"
+        :resizable="showCode"
+        :default-size="showCode ? 48 : undefined"
+        :min-size="24"
+        :max-size="90"
         class="bg-[#F2F2F2] dark:bg-default"
         :ui="{
           body: [
@@ -68,6 +77,8 @@ provide('components', components)
           </div>
         </template>
       </UDashboardPanel>
+
+      <CodePanel v-if="showCode" />
 
       <UDashboardSearch :groups="groups" :fuse="{ resultLimit: 100 }" />
     </UDashboardGroup>

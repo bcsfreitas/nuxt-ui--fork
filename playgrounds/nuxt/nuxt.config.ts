@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url'
+
 export default defineNuxtConfig({
   modules: [
     '@nuxt/ui'
@@ -13,6 +15,10 @@ export default defineNuxtConfig({
     experimental: {
       sqliteConnector: 'native'
     }
+  },
+
+  runtimeConfig: {
+    pagesDir: fileURLToPath(new URL('./app/pages', import.meta.url))
   },
 
   routeRules: {
