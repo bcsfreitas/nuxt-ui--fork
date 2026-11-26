@@ -72,7 +72,7 @@ const showCode = computed(() => codeOpen.value && route.path.startsWith('/compon
         }"
       >
         <template #body>
-          <div class="flex flex-col items-center justify-center min-h-full shrink-0">
+          <div class="flex flex-col items-center justify-center min-h-full shrink-0" data-copy-element-area>
             <NuxtPage />
           </div>
         </template>
@@ -84,5 +84,7 @@ const showCode = computed(() => codeOpen.value && route.path.startsWith('/compon
     </UDashboardGroup>
 
     <AlloDials />
+
+    <CopyElementOverlay />
   </UApp>
 </template>
