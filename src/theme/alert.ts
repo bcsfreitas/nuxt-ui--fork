@@ -4,8 +4,8 @@ export default (options: Required<ModuleOptions>) => ({
   slots: {
     root: 'relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5',
     wrapper: 'min-w-0 flex-1 flex flex-col',
-    title: 'text-sm font-medium',
-    description: 'text-sm opacity-90',
+    title: 'font-semibold',
+    description: 'opacity-90',
     icon: 'shrink-0 size-5',
     avatar: 'shrink-0',
     avatarSize: '2xl',
@@ -30,6 +30,8 @@ export default (options: Required<ModuleOptions>) => ({
       },
       vertical: {
         root: 'items-start',
+        // Centres the icon on the title's first line
+        icon: 'mt-[calc((1lh_-_--spacing(5))/2)]',
         actions: 'items-start mt-2.5'
       }
     },

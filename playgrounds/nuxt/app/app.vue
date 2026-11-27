@@ -23,6 +23,8 @@ const showCode = computed(() => codeOpen.value && (route.path === '/' || (route.
 
 // Lets the home wall offer "Edit code" on its tiles, only where the code panel can save
 provide('code-panel', import.meta.dev)
+
+const { style: backgroundStyle } = usePlaygroundBackground()
 </script>
 
 <template>
@@ -41,6 +43,8 @@ provide('code-panel', import.meta.dev)
 
           <div v-if="!collapsed" class="flex items-center ms-auto">
             <ThemeDropdown />
+
+            <BackgroundPicker />
 
             <UColorModeButton />
           </div>
@@ -66,7 +70,8 @@ provide('code-panel', import.meta.dev)
         :default-size="showCode ? 48 : undefined"
         :min-size="24"
         :max-size="90"
-        class="bg-[#F2F2F2] dark:bg-default"
+        class="bg-(--playground-bg-light) dark:bg-(--playground-bg-dark)"
+        :style="backgroundStyle"
         :ui="{
           body: [
             route.path.startsWith('/components') && 'mt-16',

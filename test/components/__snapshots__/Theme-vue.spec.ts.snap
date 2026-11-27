@@ -18,7 +18,7 @@ exports[`Theme > renders with theme applied to alert correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted border-[3px]">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>

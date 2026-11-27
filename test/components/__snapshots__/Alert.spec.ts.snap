@@ -4,7 +4,7 @@ exports[`Alert > renders with actions correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-start mt-2.5"><button type="button" data-slot="base" class="rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))] [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) [--px:calc(var(--py)_+_--spacing(1))] supports-[(height:1cap)_and_(height:1lh)]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors [--py:--spacing(1)] [--ui-control-icon-size:--spacing(4)] text-xs gap-1 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary outline-primary/25 focus-visible:outline-3">
         <!--v-if--><span data-slot="label" class="truncate">Action</span>
@@ -19,7 +19,7 @@ exports[`Alert > renders with as correctly 1`] = `
 "<article data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -30,7 +30,7 @@ exports[`Alert > renders with as correctly 1`] = `
 exports[`Alert > renders with avatar correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted"><span data-slot="avatar" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated size-11 text-[22px] shrink-0"><img src="https://github.com/benjamincanac.png" width="44" height="44" data-slot="image" class="h-full w-full rounded-[inherit] object-cover"></span>
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -42,7 +42,7 @@ exports[`Alert > renders with class correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted w-48">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -54,12 +54,12 @@ exports[`Alert > renders with close correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
   <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-center">
-    <!--v-if--><button type="button" data-slot="close" aria-label="Close" class="rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))] [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors [--py:--spacing(1.5)] [--ui-control-icon-size:--spacing(5)] text-sm gap-1.5 text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3 [--px:var(--py)] supports-[(height:1cap)_and_(height:1lh)]:[--px:var(--py)] p-0"><span class="iconify i-lucide:x shrink-0 size-(--ui-control-icon-size) supports-[height:1lh]:[--ui-control-icon-size:1lh] ms-(--ui-control-icon-inset) [--ui-control-icon-inset:0px] supports-[(height:1cap)_and_(height:1lh)]:[--ui-control-icon-inset:calc(var(--py)_-_var(--px))]" aria-hidden="true" data-slot="leadingIcon"></span>
+    <!--v-if--><button type="button" data-slot="close" aria-label="Close" class="rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))] [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors [--py:--spacing(1.5)] [--ui-control-icon-size:--spacing(5)] text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent [--px:var(--py)] supports-[(height:1cap)_and_(height:1lh)]:[--px:var(--py)] p-0"><span class="iconify i-lucide:x shrink-0 size-(--ui-control-icon-size) supports-[height:1lh]:[--ui-control-icon-size:1lh] ms-(--ui-control-icon-inset) [--ui-control-icon-inset:0px] supports-[(height:1cap)_and_(height:1lh)]:[--ui-control-icon-inset:calc(var(--py)_-_var(--px))]" aria-hidden="true" data-slot="leadingIcon"></span>
       <!--v-if-->
       <!--v-if-->
     </button>
@@ -71,7 +71,7 @@ exports[`Alert > renders with close slot correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -83,12 +83,12 @@ exports[`Alert > renders with closeIcon correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
   <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-center">
-    <!--v-if--><button type="button" data-slot="close" aria-label="Close" class="rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))] [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors [--py:--spacing(1.5)] [--ui-control-icon-size:--spacing(5)] text-sm gap-1.5 text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3 [--px:var(--py)] supports-[(height:1cap)_and_(height:1lh)]:[--px:var(--py)] p-0"><span class="iconify i-lucide:trash shrink-0 size-(--ui-control-icon-size) supports-[height:1lh]:[--ui-control-icon-size:1lh] ms-(--ui-control-icon-inset) [--ui-control-icon-inset:0px] supports-[(height:1cap)_and_(height:1lh)]:[--ui-control-icon-inset:calc(var(--py)_-_var(--px))]" aria-hidden="true" data-slot="leadingIcon"></span>
+    <!--v-if--><button type="button" data-slot="close" aria-label="Close" class="rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))] [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors [--py:--spacing(1.5)] [--ui-control-icon-size:--spacing(5)] text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent [--px:var(--py)] supports-[(height:1cap)_and_(height:1lh)]:[--px:var(--py)] p-0"><span class="iconify i-lucide:trash shrink-0 size-(--ui-control-icon-size) supports-[height:1lh]:[--ui-control-icon-size:1lh] ms-(--ui-control-icon-inset) [--ui-control-icon-inset:0px] supports-[(height:1cap)_and_(height:1lh)]:[--ui-control-icon-inset:calc(var(--py)_-_var(--px))]" aria-hidden="true" data-slot="leadingIcon"></span>
       <!--v-if-->
       <!--v-if-->
     </button>
@@ -100,8 +100,8 @@ exports[`Alert > renders with description correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
-    <div data-slot="description" class="text-sm opacity-90 mt-1">Description</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
+    <div data-slot="description" class="opacity-90 mt-1">Description</div>
     <!--v-if-->
   </div>
   <!--v-if-->
@@ -112,8 +112,8 @@ exports[`Alert > renders with description slot correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
-    <div data-slot="description" class="text-sm opacity-90 mt-1">Description slot</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
+    <div data-slot="description" class="opacity-90 mt-1">Description slot</div>
     <!--v-if-->
   </div>
   <!--v-if-->
@@ -121,9 +121,9 @@ exports[`Alert > renders with description slot correctly 1`] = `
 `;
 
 exports[`Alert > renders with icon correctly 1`] = `
-"<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted"><span class="iconify i-lucide:lightbulb shrink-0 size-5" aria-hidden="true" data-slot="icon"></span>
+"<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted"><span class="iconify i-lucide:lightbulb shrink-0 size-5 mt-[calc((1lh_-_--spacing(5))/2)]" aria-hidden="true" data-slot="icon"></span>
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -135,7 +135,7 @@ exports[`Alert > renders with leading slot correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Leading slot</div>
+    <div data-slot="title" class="font-semibold">Leading slot</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -147,7 +147,7 @@ exports[`Alert > renders with neutral variant outline correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start text-highlighted bg-default ring ring-inset ring-default">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -159,7 +159,7 @@ exports[`Alert > renders with neutral variant soft correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start text-highlighted bg-elevated/50">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -171,7 +171,7 @@ exports[`Alert > renders with neutral variant solid correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start text-inverted bg-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -183,7 +183,7 @@ exports[`Alert > renders with neutral variant subtle correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start text-highlighted bg-elevated/50 ring ring-inset ring-accented">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -194,8 +194,8 @@ exports[`Alert > renders with neutral variant subtle correctly 1`] = `
 exports[`Alert > renders with orientation horizontal correctly 1`] = `
 "<div data-orientation="horizontal" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-center bg-primary text-inverted"><span class="iconify i-lucide:lightbulb shrink-0 size-5" aria-hidden="true" data-slot="icon"></span>
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
-    <div data-slot="description" class="text-sm opacity-90 mt-1">This is a description</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
+    <div data-slot="description" class="opacity-90 mt-1">This is a description</div>
     <!--v-if-->
   </div>
   <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-center"><button type="button" data-slot="base" class="rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))] [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) [--px:calc(var(--py)_+_--spacing(1))] supports-[(height:1cap)_and_(height:1lh)]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors [--py:--spacing(1)] [--ui-control-icon-size:--spacing(4)] text-xs gap-1 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary outline-primary/25 focus-visible:outline-3">
@@ -208,10 +208,10 @@ exports[`Alert > renders with orientation horizontal correctly 1`] = `
 `;
 
 exports[`Alert > renders with orientation vertical correctly 1`] = `
-"<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted"><span class="iconify i-lucide:lightbulb shrink-0 size-5" aria-hidden="true" data-slot="icon"></span>
+"<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted"><span class="iconify i-lucide:lightbulb shrink-0 size-5 mt-[calc((1lh_-_--spacing(5))/2)]" aria-hidden="true" data-slot="icon"></span>
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
-    <div data-slot="description" class="text-sm opacity-90 mt-1">This is a description</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
+    <div data-slot="description" class="opacity-90 mt-1">This is a description</div>
     <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-start mt-2.5"><button type="button" data-slot="base" class="rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))] [--ui-button-radius:var(--radius-md)] supports-[height:1lh]:[--ui-button-radius:min(var(--ui-radius)_*_100,_var(--ui-radius)_+_(1lh_-_1rem)_/_4_+_var(--py))] font-medium inline-flex items-center py-(--py) px-(--px) [--px:calc(var(--py)_+_--spacing(1))] supports-[(height:1cap)_and_(height:1lh)]:[--px:calc(var(--py)_+_(1lh_-_1cap)_/_2)] disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors [--py:--spacing(1)] [--ui-control-icon-size:--spacing(4)] text-xs gap-1 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary outline-primary/25 focus-visible:outline-3">
         <!--v-if--><span data-slot="label" class="truncate">Action</span>
         <!--v-if-->
@@ -225,7 +225,7 @@ exports[`Alert > renders with primary variant outline correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start text-primary ring ring-inset ring-primary/25">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -237,7 +237,7 @@ exports[`Alert > renders with primary variant soft correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary/10 text-primary">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -249,7 +249,7 @@ exports[`Alert > renders with primary variant solid correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -261,7 +261,7 @@ exports[`Alert > renders with primary variant subtle correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary/10 text-primary ring ring-inset ring-primary/25">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -273,7 +273,7 @@ exports[`Alert > renders with title correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Alert</div>
+    <div data-slot="title" class="font-semibold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -285,7 +285,7 @@ exports[`Alert > renders with title slot correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">Title slot</div>
+    <div data-slot="title" class="font-semibold">Title slot</div>
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -297,7 +297,7 @@ exports[`Alert > renders with ui correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-primary text-inverted">
   <!--v-if-->
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-bold">Alert</div>
+    <div data-slot="title" class="font-bold">Alert</div>
     <!--v-if-->
     <!--v-if-->
   </div>
