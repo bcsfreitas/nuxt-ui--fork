@@ -6,11 +6,11 @@ export default (options: Required<ModuleOptions>) => ({
   slots: {
     // A parent frame (Input slots) hands its concentric radius through `--ui-button-frame-radius`, so a consumer `rounded-*` class still wins
     base: [
-      'rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]', 
-      controlRadius('--ui-button-radius'), 
-      'font-medium inline-flex items-center', 
-      controlPadding, 
-      'disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75', 
+      'rounded-[var(--ui-button-frame-radius,var(--ui-button-radius))]',
+      controlRadius('--ui-button-radius'),
+      'font-medium inline-flex items-center',
+      controlPadding,
+      'disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75',
       options.theme.transitions && 'transition-colors'
     ],
     label: 'truncate',

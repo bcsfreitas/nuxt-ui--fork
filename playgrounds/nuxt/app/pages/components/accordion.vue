@@ -32,23 +32,22 @@ const items = [{
 <template>
   <Navbar />
 
-    <UAccordion :items="items" class="w-96" :ui="{ trigger: 'px-3.5', body: 'px-3.5' }">
-      <template #body="{ item }">
-        <p class="text-muted">
-          {{ item.content }}
-        </p>
-      </template>
+  <UAccordion :items="items" class="w-96" :ui="{ trigger: 'px-3.5', body: 'px-3.5' }">
+    <template #body="{ item }">
+      <p class="text-muted">
+        {{ item.content }}
+      </p>
+    </template>
 
-      <template #custom="{ item }">
-        <p class="text-muted">
-          Custom: {{ item.content }}
-        </p>
-      </template>
-      <template #custom-body="{ item }">
-        <p class="text-muted">
-          Custom: {{ item.content }}
-        </p>
-      </template>
-    </UAccordion>
-
+    <template #custom="{ item }">
+      <p class="text-muted">
+        Custom: {{ item.content }}
+      </p>
+    </template>
+    <template #custom-body="{ item }">
+      <p class="text-muted">
+        Custom: {{ item.content }}
+      </p>
+    </template>
+  </UAccordion>
 </template>
