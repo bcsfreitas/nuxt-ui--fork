@@ -1,11 +1,14 @@
+import { computed } from 'vue'
+import { useCookieRef } from './useCookieRef'
+
 export const PLAYGROUND_BACKGROUND_DEFAULTS = {
   light: '#F2F2F2',
   dark: ''
 }
 
 export function usePlaygroundBackground() {
-  const light = useCookie<string>('playground-bg-light', { default: () => PLAYGROUND_BACKGROUND_DEFAULTS.light })
-  const dark = useCookie<string>('playground-bg-dark', { default: () => PLAYGROUND_BACKGROUND_DEFAULTS.dark })
+  const light = useCookieRef('playground-bg-light', PLAYGROUND_BACKGROUND_DEFAULTS.light)
+  const dark = useCookieRef('playground-bg-dark', PLAYGROUND_BACKGROUND_DEFAULTS.dark)
 
   // An empty value falls back to the theme's own background
   const style = computed(() => ({
