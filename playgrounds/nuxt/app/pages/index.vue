@@ -1,5 +1,21 @@
+<script setup lang="ts">
+const { open: codeOpen, toggle: toggleCode } = useCodePanel()
+</script>
+
 <template>
-  <UDashboardNavbar class="absolute top-0 inset-x-0 lg:border-b-0" />
+  <UDashboardNavbar class="absolute top-0 inset-x-0 lg:border-b-0">
+    <template #right>
+      <UButton
+        icon="i-lucide-code-xml"
+        color="neutral"
+        :variant="codeOpen ? 'soft' : 'ghost'"
+        size="xs"
+        :aria-pressed="codeOpen"
+        aria-label="Edit page code"
+        @click="toggleCode"
+      />
+    </template>
+  </UDashboardNavbar>
 
   <div class="w-full max-w-(--ui-container) mt-16 space-y-8">
     <div class="text-center space-y-4">
