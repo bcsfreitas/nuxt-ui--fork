@@ -32,7 +32,6 @@ const items = [{
 <template>
   <Navbar />
 
-  <UCard class="shrink-0" :ui="{ body: '!p-0' }">
     <UAccordion :items="items" class="w-96" :ui="{ trigger: 'px-3.5', body: 'px-3.5' }">
       <template #body="{ item }">
         <p class="text-muted">
@@ -51,5 +50,5 @@ const items = [{
         </p>
       </template>
     </UAccordion>
-  </UCard>
+
 </template>

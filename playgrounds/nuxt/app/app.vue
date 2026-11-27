@@ -20,6 +20,8 @@ provide('components', components)
 
 const { open: codeOpen } = useCodePanel()
 const showCode = computed(() => codeOpen.value && route.path.startsWith('/components/') && !route.path.startsWith('/components/sidebar'))
+
+const { style: backgroundStyle } = usePlaygroundBackground()
 </script>
 
 <template>
@@ -38,6 +40,8 @@ const showCode = computed(() => codeOpen.value && route.path.startsWith('/compon
 
           <div v-if="!collapsed" class="flex items-center ms-auto">
             <ThemeDropdown />
+
+            <BackgroundPicker />
 
             <UColorModeButton />
           </div>
@@ -63,7 +67,8 @@ const showCode = computed(() => codeOpen.value && route.path.startsWith('/compon
         :default-size="showCode ? 48 : undefined"
         :min-size="24"
         :max-size="90"
-        class="bg-[#F2F2F2] dark:bg-default"
+        class="bg-(--playground-bg-light) dark:bg-(--playground-bg-dark)"
+        :style="backgroundStyle"
         :ui="{
           body: [
             route.path.startsWith('/components') && 'mt-16',
