@@ -18,7 +18,9 @@ export default defineConfig({
         imports: ['vue']
       },
       components: {
-        dirs: ['../nuxt/app/components']
+        dirs: ['../nuxt/app/components'],
+        // Client-only components (the code panel, the copy overlay) need Nuxt and its server routes
+        globsExclude: ['../nuxt/app/components/**/*.client.vue']
       }
     })
   ]
