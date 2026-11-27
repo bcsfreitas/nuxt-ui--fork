@@ -10,10 +10,9 @@ const ssr = (...classes: string[]) => classes.map(c => `in-[[data-slot=list]:not
 export default (options: Required<ModuleOptions>) => ({
   slots: {
     root: 'flex items-center gap-2',
-    // Sizes set `--py` and the text size on the list, so the triggers and the pill indicator share the Button corner
-    list: ['relative flex p-1 group', controlRadius('--ui-tabs-trigger-radius')],
+    list: 'relative flex p-1 group',
     indicator: 'absolute transition-[translate,width] duration-200 ease-out motion-reduce:transition-none',
-    trigger: ['group relative inline-flex items-center min-w-0 data-[state=inactive]:text-muted hover:data-[state=inactive]:not-disabled:text-default font-medium rounded-(--ui-tabs-trigger-radius)', controlPadding, 'disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
+    trigger: ['group relative inline-flex items-center min-w-0 data-[state=inactive]:text-muted hover:data-[state=inactive]:not-disabled:text-default font-medium rounded-md', controlPadding, 'disabled:cursor-not-allowed disabled:opacity-75', options.theme.transitions && 'transition-colors'],
     leadingIcon: controlLeadingIcon,
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
@@ -33,15 +32,14 @@ export default (options: Required<ModuleOptions>) => ({
     },
     variant: {
       pill: {
-        // Concentric around the triggers: their corner plus the list padding, 0 when `--ui-radius` is 0
-        list: 'bg-elevated ring ring-inset ring-accented rounded-(--ui-tabs-list-radius) [--ui-tabs-list-radius:min(var(--ui-radius)_*_100,_var(--ui-tabs-trigger-radius)_+_--spacing(1))]',
-        trigger: ['grow', ssr('before:content-[\'\']', 'before:absolute', 'before:inset-0', 'before:rounded-(--ui-tabs-trigger-radius)', 'before:shadow-xs', 'before:-z-10', 'isolate')],
-        indicator: 'rounded-(--ui-tabs-trigger-radius) shadow-xs'
+        list: 'bg-elevated ring ring-inset ring-accented rounded-(--ui-frame-radius) [--ui-frame-radius:var(--radius-lg)] [--ui-frame-inset:--spacing(1)]',
+        trigger: [`grow frame-shape-md rounded-(--ui-frame-shape-radius)`, ssr('before:content-[\'\']', 'before:absolute', 'before:inset-0', 'before:rounded-(--ui-frame-shape-radius)', 'before:shadow-xs', 'before:-z-10', 'isolate')],
+        indicator: 'frame-shape-md rounded-(--ui-frame-shape-radius) shadow-xs'
       },
       link: {
         list: 'border-default',
         indicator: 'rounded-full',
-        trigger: [ssr('after:content-[\'\']', 'after:absolute', 'after:rounded-full')]
+        trigger: ['rounded-(--ui-tabs-trigger-radius)', controlRadius('--ui-tabs-trigger-radius'), ssr('after:content-[\'\']', 'after:absolute', 'after:rounded-full')]
       }
     },
     orientation: {
@@ -58,28 +56,24 @@ export default (options: Required<ModuleOptions>) => ({
     },
     size: {
       xs: {
-        list: `${controlPy.xs} text-xs`,
-        trigger: `${controlIconSize.xs} gap-1`,
+        trigger: `${controlPy.xs} ${controlIconSize.xs} text-xs gap-1`,
         leadingAvatarSize: '3xs'
       },
       sm: {
-        list: `${controlPy.sm} text-xs`,
-        trigger: `${controlIconSize.sm} gap-1.5`,
+        trigger: `${controlPy.sm} ${controlIconSize.sm} text-xs gap-1.5`,
         leadingAvatarSize: '3xs'
       },
       md: {
-        list: `${controlPy.md} text-sm`,
-        trigger: `${controlIconSize.md} gap-1.5`,
+        // Upstream md padding is wider than `--py + --spacing(1)`: keep it for browsers without `cap`
+        trigger: `${controlPy.md} ${controlIconSize.md} [--px:--spacing(3)] text-sm gap-1.5`,
         leadingAvatarSize: '2xs'
       },
       lg: {
-        list: `${controlPy.lg} text-sm`,
-        trigger: `${controlIconSize.lg} gap-2`,
+        trigger: `${controlPy.lg} ${controlIconSize.lg} text-sm gap-2`,
         leadingAvatarSize: '2xs'
       },
       xl: {
-        list: `${controlPy.xl} text-base`,
-        trigger: `${controlIconSize.xl} gap-2`,
+        trigger: `${controlPy.xl} ${controlIconSize.xl} text-base gap-2`,
         leadingAvatarSize: 'xs'
       }
     }
